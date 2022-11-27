@@ -20,10 +20,15 @@ public class Messages {
     private Integer responseCode;
     private String responseMessage;
     private Object data;
+    private PagingResponse paging;
 
     public void success() {
         this.responseCode = Constant.OK;
         this.responseMessage = Constant.SUKSES;
+    }
+    public void notFound() {
+        this.responseCode = Constant.NO_CONTENT;
+        this.responseMessage = "Data tidak ada";
     }
     public Messages() {
     }
