@@ -18,4 +18,8 @@ public class Payment {
     @Column(name = "payment_id", nullable = false)
     private Integer payment_id;
 
+    @Column(name ="payment_method")
+    private String paymentMethod;
+
 }
+
