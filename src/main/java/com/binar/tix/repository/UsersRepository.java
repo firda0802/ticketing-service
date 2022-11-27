@@ -7,14 +7,26 @@ package com.binar.tix.repository;
 
 import com.binar.tix.entities.Users;
 import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import javax.transaction.Transactional;
 
 /**
  *
  * @author Riko
  */
 public interface UsersRepository extends JpaRepository<Users, Integer> {
-    Optional<Users> findByEmailIgnoreCaseAndPassword(String email, String password);
 
-    Optional<Users> findByEmailIgnoreCase(String email);
+    Optional<Users> findByUserIdAndStatus(int userId, Boolean status);
+    Optional<Users> findByEmailIgnoreCaseAndPasswordAndStatus(String email, String password, Boolean status);
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query("update Users a set a.status = false where a.userId =:userId")
+    void deleteAkun(@Param("userId") int userId);
+    Optional<Users> findByEmailIgnoreCaseAndStatus(String email, Boolean status);
 }

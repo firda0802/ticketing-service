@@ -17,7 +17,6 @@ import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.util.matcher.*;
 
 /**
- *
  * @author Riko
  */
 @Configuration
@@ -25,7 +24,8 @@ import org.springframework.security.web.util.matcher.*;
 public class SecurityConfiguration {
 
     private static final RequestMatcher PROTECTED_URLS = new OrRequestMatcher(
-            new AntPathRequestMatcher("/admin/**")
+            new AntPathRequestMatcher("/users/**")
+
     );
 
     SecurityAuthenticationProvider provider;
@@ -61,7 +61,7 @@ public class SecurityConfiguration {
                 .authenticationProvider(provider)
                 .addFilterBefore(authenticationFilter(), AnonymousAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/admin/**").hasAnyAuthority(RoleEnum.ADMIN.name())
+                .antMatchers("/users/**").hasAnyAuthority(RoleEnum.BUYER.name())
                 .anyRequest().permitAll()
                 .and()
                 .csrf().disable()
