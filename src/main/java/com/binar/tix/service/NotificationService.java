@@ -6,11 +6,12 @@
 package com.binar.tix.service;
 
 import com.binar.tix.entities.NotifCategory;
-import com.binar.tix.payload.ReqSigninup;
-import org.springframework.security.core.userdetails.User;
+import com.binar.tix.entities.Notifications;
+import com.binar.tix.payload.ReqCreateNotification;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  *
@@ -18,11 +19,15 @@ import java.util.Optional;
  */
 public interface NotificationService {
 
-    void createNotificationCategory(String name);
+    void createNotifUsers(ReqCreateNotification req);
+
+    Page<Notifications> getNotifUsers(Pageable paging, int userId);
+
+
+    int countNotifUsers(int userId);
+    void createUpdateNotifCategory(int id, String name);
 
     List<NotifCategory> getAllNotifCategory();
-
-    Boolean updateNotifCategory(NotifCategory req);
 
     Boolean deleteCategory(Integer id);
 }

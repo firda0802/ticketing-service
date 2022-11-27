@@ -6,6 +6,7 @@ public class Constant {
 
     private Constant() {}
 
+    public static final String USER_ID = "userId";
     public static final String SUKSES = "Sukses";
     public static final String GAGAL = "Proses Gagal";
     public static final Integer OK = HttpServletResponse.SC_OK;

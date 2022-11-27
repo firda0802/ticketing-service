@@ -1,5 +1,7 @@
 package com.binar.tix.config;
 
+import com.binar.tix.utility.MyJwt;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -19,6 +21,7 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
  *
  * @author Riko
  */
+@Slf4j
 public class SecurityAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
     SecurityAuthenticationFilter(final RequestMatcher requiresAuth) {
@@ -36,6 +39,9 @@ public class SecurityAuthenticationFilter extends AbstractAuthenticationProcessi
     @Override
     protected void successfulAuthentication(final HttpServletRequest request, final HttpServletResponse response, final FilterChain chain, final Authentication authResult) throws IOException, ServletException {
         SecurityContextHolder.getContext().setAuthentication(authResult);
+        String auth = request.getHeader("authorization");
+        int userId = MyJwt.getUserId(auth);
+        request.setAttribute("userId", userId);
         chain.doFilter(request, response);
     }
 }
