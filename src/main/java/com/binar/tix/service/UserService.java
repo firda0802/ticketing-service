@@ -5,8 +5,11 @@
  */
 package com.binar.tix.service;
 
+import com.binar.tix.entities.RoleUser;
 import com.binar.tix.entities.Users;
 import com.binar.tix.payload.ReqSigninup;
+
+import java.util.List;
 import java.util.Optional;
 
 import com.binar.tix.payload.ReqUpdateUser;
@@ -21,6 +24,9 @@ public interface UserService {
 
     Users getOneUsers(int userId);
 
+    void addRole(RoleUser name);
+
+    List<RoleUser> getAllRole();
     void deleteUser(int userId);
     Boolean updateUser(int userId, ReqUpdateUser req);
     Boolean registerUser(ReqSigninup req);
