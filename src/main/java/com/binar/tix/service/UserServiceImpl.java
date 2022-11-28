@@ -5,14 +5,16 @@
  */
 package com.binar.tix.service;
 
+import com.binar.tix.entities.RoleUser;
 import com.binar.tix.entities.Users;
 import com.binar.tix.payload.ReqCreateNotification;
 import com.binar.tix.payload.ReqSigninup;
 import com.binar.tix.payload.ReqUpdateUser;
+import com.binar.tix.repository.RoleUserRepository;
 import com.binar.tix.repository.UsersRepository;
 import com.binar.tix.utility.MD5;
 
-import java.util.Optional;
+import java.util.*;
 
 import org.springframework.security.core.userdetails.User;
 import io.jsonwebtoken.Claims;
@@ -24,9 +26,6 @@ import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.Base64;
-import java.util.Date;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -46,6 +45,9 @@ public class UserServiceImpl implements UserService {
     private UsersRepository usersRepository;
 
     @Autowired
+    private RoleUserRepository roleRepository;
+
+    @Autowired
     private NotificationService notificationService;
 
     @Override
@@ -56,6 +58,16 @@ public class UserServiceImpl implements UserService {
             users = getUser.get();
         }
         return users;
+    }
+
+    @Override
+    public void addRole(RoleUser role) {
+        roleRepository.saveAndFlush(role);
+    }
+
+    @Override
+    public List<RoleUser> getAllRole() {
+        return roleRepository.findAll();
     }
 
     @Override
