@@ -30,4 +30,6 @@ public interface NotificationService {
     List<NotifCategory> getAllNotifCategory();
 
     Boolean deleteCategory(Integer id);
+
+    void clearNotif(int userId);
 }

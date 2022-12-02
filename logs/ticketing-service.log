@@ -13919,3 +13919,67 @@ Body   : "-"
 2022-12-02 16:12:21,200 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2022-12-02 16:12:21,210 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2022-12-02 16:12:21,212 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-12-02 16:57:16,709 INFO org.springframework.boot.SpringApplicationBannerPrinter [main] 
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.5)
+
+
+2022-12-02 16:57:16,794 INFO org.springframework.boot.StartupInfoLogger [main] Starting TicketingServiceApplication using Java 11 on MSI with PID 11756 (D:\Studi Independen\ticketing-service\target\classes started by RikoJanuarSawaludin in D:\Studi Independen\ticketing-service)
+2022-12-02 16:57:16,795 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-12-02 16:57:17,554 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-02 16:57:17,639 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 74 ms. Found 14 JPA repository interfaces.
+2022-12-02 16:57:18,489 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-12-02 16:57:18,499 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-12-02 16:57:18,500 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-12-02 16:57:18,500 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-02 16:57:18,652 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-12-02 16:57:18,652 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1821 ms
+2022-12-02 16:57:18,864 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-02 16:57:18,938 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-02 16:57:19,124 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-02 16:57:19,239 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-12-02 16:57:19,348 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-12-02 16:57:19,368 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-12-02 16:57:20,216 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-02 16:57:20,224 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-02 16:57:21,086 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3f0b5619, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@67afc9b6, org.springframework.security.web.context.SecurityContextPersistenceFilter@2f3d5cd, org.springframework.security.web.header.HeaderWriterFilter@6705fb02, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@40696fc6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3ce2c5f6, com.binar.tix.config.SecurityAuthenticationFilter@4e13af1b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@36ce9eaf, org.springframework.security.web.session.SessionManagementFilter@345d641e, org.springframework.security.web.access.ExceptionTranslationFilter@13552290, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@296949c8]
+2022-12-02 16:57:21,206 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-02 16:57:22,024 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-12-02 16:57:22,049 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path '/ticketing-service'
+2022-12-02 16:57:22,067 INFO org.springframework.boot.StartupInfoLogger [main] Started TicketingServiceApplication in 5.876 seconds (JVM running for 6.537)
+2022-12-02 16:58:01,703 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-12-02 16:58:01,705 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2022-12-02 16:58:01,709 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 3 ms
+2022-12-02 16:58:01,813 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-2] Incoming Request Header {content-length=[82], postman-token=[28b66563-91ec-49b4-8084-8a56ec96017a], host=[localhost:8080], content-type=[application/json], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.29.2], accept=[*/*]}
+Method : POST
+Path   : /ticketing-service/ext/register
+Body   : {"fullName":"Demo","email":"demo@gmail.com"}
+2022-12-02 16:58:01,904 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-2] Response : {"responseCode":200,"responseMessage":"Sukses"}
+2022-12-02 16:58:23,468 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-3] Incoming Request Header {authorization=[eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiZGVtb0BnbWFpbC5jb20iLCJyb2xlIjoiQlVZRVIiLCJqdGkiOiI5ZjgwZTA2Ny1lMjcxLTQxMmMtOTA3MC0wZjgxZDM5NWE3ZTkiLCJpYXQiOjE2Njk5NzUwODEsImV4cCI6MTY3MDA2MTQ4MX0.IZZ68M5Q6RQFAdbOm_AZyHmGhHCtUtbmJpTvffaa5o4], postman-token=[ae0bafbf-9831-478d-a1df-01813077fc67], host=[localhost:8080], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.29.2], accept=[*/*]}
+Method : GET
+Path   : /ticketing-service/users/count-notif
+Body   : "-"
+2022-12-02 16:58:23,482 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-3] Response : {"responseCode":200,"responseMessage":"Sukses"}
+2022-12-02 16:58:37,851 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-4] Incoming Request Header {authorization=[eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiZGVtb0BnbWFpbC5jb20iLCJyb2xlIjoiQlVZRVIiLCJqdGkiOiI5ZjgwZTA2Ny1lMjcxLTQxMmMtOTA3MC0wZjgxZDM5NWE3ZTkiLCJpYXQiOjE2Njk5NzUwODEsImV4cCI6MTY3MDA2MTQ4MX0.IZZ68M5Q6RQFAdbOm_AZyHmGhHCtUtbmJpTvffaa5o4], postman-token=[e28145b8-7531-43cb-a8d0-19a0a9232ada], host=[localhost:8080], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.29.2], accept=[*/*]}
+Method : GET
+Path   : /ticketing-service/users/get-notif
+Body   : "limit : 10 , pageNumber : 1"
+2022-12-02 16:58:37,865 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-4] Response : {"responseCode":200,"responseMessage":"Sukses"}
+2022-12-02 16:58:45,121 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-5] Incoming Request Header {authorization=[eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiZGVtb0BnbWFpbC5jb20iLCJyb2xlIjoiQlVZRVIiLCJqdGkiOiI5ZjgwZTA2Ny1lMjcxLTQxMmMtOTA3MC0wZjgxZDM5NWE3ZTkiLCJpYXQiOjE2Njk5NzUwODEsImV4cCI6MTY3MDA2MTQ4MX0.IZZ68M5Q6RQFAdbOm_AZyHmGhHCtUtbmJpTvffaa5o4], postman-token=[cbdaddb1-f72f-4c04-9351-453564aab4d2], host=[localhost:8080], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.29.2], accept=[*/*]}
+Method : GET
+Path   : /ticketing-service/users/count-notif
+Body   : "-"
+2022-12-02 16:58:45,123 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-5] Response : {"responseCode":200,"responseMessage":"Sukses"}
+2022-12-02 16:58:48,939 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-6] Incoming Request Header {authorization=[eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiZGVtb0BnbWFpbC5jb20iLCJyb2xlIjoiQlVZRVIiLCJqdGkiOiI5ZjgwZTA2Ny1lMjcxLTQxMmMtOTA3MC0wZjgxZDM5NWE3ZTkiLCJpYXQiOjE2Njk5NzUwODEsImV4cCI6MTY3MDA2MTQ4MX0.IZZ68M5Q6RQFAdbOm_AZyHmGhHCtUtbmJpTvffaa5o4], postman-token=[38ca40cd-1edc-4a0b-a593-c0221a4647ed], host=[localhost:8080], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.29.2], accept=[*/*]}
+Method : GET
+Path   : /ticketing-service/users/get-notif
+Body   : "limit : 10 , pageNumber : 1"
+2022-12-02 16:58:48,954 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-6] Response : {"responseCode":200,"responseMessage":"Sukses"}
+2022-12-02 16:59:04,615 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-02 16:59:04,616 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-12-02 16:59:04,616 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.

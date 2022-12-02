@@ -182,6 +182,7 @@ public class UsersController {
                 resp.setPaging(dataPaging);
                 resp.setData(data.getContent());
                 resp.success();
+                notifService.clearNotif(userId);
             } else {
                 resp.notFound();
             }
