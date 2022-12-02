@@ -23,6 +23,8 @@ public class Seats implements Serializable {
     @Column(name = "seats_group")
     private char seatsGroup;
 
+    @Column(name = "position")
+    private Integer positions;
     @Column(name = "class_id")
     private Integer classId;
 
@@ -36,9 +38,10 @@ public class Seats implements Serializable {
     public Seats() {
     }
 
-    public Seats(String seatsNumber, char seatsGroup, Integer classId) {
+    public Seats(String seatsNumber, char seatsGroup, Integer classId, Integer positions) {
         this.seatsNumber = seatsNumber;
         this.seatsGroup = seatsGroup;
         this.classId = classId;
+        this.positions = positions;
     }
 }

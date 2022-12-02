@@ -28,7 +28,7 @@ public class Messages {
     }
     public void notFound() {
         this.responseCode = Constant.NO_CONTENT;
-        this.responseMessage = "Data tidak ada";
+        this.responseMessage = "Data tidak ditemukan";
     }
     public Messages() {
     }
