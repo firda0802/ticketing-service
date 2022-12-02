@@ -7,11 +7,13 @@ package com.binar.tix.service;
 
 import com.binar.tix.entities.RoleUser;
 import com.binar.tix.entities.Users;
+import com.binar.tix.enums.RoleEnum;
 import com.binar.tix.payload.ReqCreateNotification;
 import com.binar.tix.payload.ReqSigninup;
 import com.binar.tix.payload.ReqUpdateUser;
 import com.binar.tix.repository.RoleUserRepository;
 import com.binar.tix.repository.UsersRepository;
+import com.binar.tix.utility.Constant;
 import com.binar.tix.utility.MD5;
 
 import java.util.*;
@@ -39,16 +41,16 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Value("${secret.key}")
-    private String secretKey;
+    String secretKey;
 
     @Autowired
-    private UsersRepository usersRepository;
+    UsersRepository usersRepository;
 
     @Autowired
-    private RoleUserRepository roleRepository;
+    RoleUserRepository roleRepository;
 
     @Autowired
-    private NotificationService notificationService;
+    NotificationService notificationService;
 
     @Override
     public Users getOneUsers(int userId) {
@@ -92,10 +94,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean registerUser(ReqSigninup req) {
+    public String registerUser(ReqSigninup req) {
         Optional<Users> cekUser = usersRepository.findByEmailIgnoreCaseAndStatus(req.getEmail(), true);
         if (cekUser.isPresent()) {
-            return false;
+            return "";
         } else {
             Users newUsers = new Users();
             newUsers.setStatus(Boolean.TRUE);
@@ -111,7 +113,19 @@ public class UserServiceImpl implements UserService {
             notif.setTitle("Hai! Selamat datang di E-Flight");
             notif.setContent("Nikmati layanan pemesanan tiket pesawat secara online disini");
             notificationService.createNotifUsers(notif);
-            return true;
+
+            Key hmacKey = new SecretKeySpec(Base64.getDecoder().decode(secretKey),
+                    SignatureAlgorithm.HS256.getJcaName());
+            Instant now = Instant.now();
+            return Jwts.builder()
+                    .claim("userId", newUsers.getUserId())
+                    .claim(Constant.EMAIL, newUsers.getEmail())
+                    .claim("role", RoleEnum.BUYER.name())
+                    .setId(UUID.randomUUID().toString())
+                    .setIssuedAt(Date.from(now))
+                    .setExpiration(Date.from(now.plus(1, ChronoUnit.DAYS)))
+                    .signWith(hmacKey)
+                    .compact();
         }
     }
 
@@ -125,10 +139,9 @@ public class UserServiceImpl implements UserService {
                     .build()
                     .parseClaimsJws(session);
             Claims claims = jwt.getBody();
-            String email = "email";
-            Optional<Users> cekUser = usersRepository.findByEmailIgnoreCaseAndStatus(claims.get(email).toString(), true);
+            Optional<Users> cekUser = usersRepository.findByEmailIgnoreCaseAndStatus(claims.get(Constant.EMAIL).toString(), true);
             if (cekUser.isPresent()) {
-                User user = new User(claims.get(email).toString(), MD5.encrypt(claims.get(email).toString()), true, true, true, true,
+                User user = new User(claims.get(Constant.EMAIL).toString(), MD5.encrypt(claims.get(Constant.EMAIL).toString()), true, true, true, true,
                         AuthorityUtils.createAuthorityList(claims.get("role").toString()));
                 return Optional.of(user);
             } else {
@@ -151,7 +164,7 @@ public class UserServiceImpl implements UserService {
             Instant now = Instant.now();
             return Jwts.builder()
                     .claim("userId", u.getUserId())
-                    .claim("email", u.getEmail())
+                    .claim(Constant.EMAIL, u.getEmail())
                     .claim("role", u.getRole().getRoleName())
                     .setId(UUID.randomUUID().toString())
                     .setIssuedAt(Date.from(now))

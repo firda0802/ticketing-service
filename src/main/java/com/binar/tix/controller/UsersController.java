@@ -34,10 +34,10 @@ import javax.servlet.http.HttpServletRequest;
 public class UsersController {
 
     @Autowired
-    private UserService userService;
+    UserService userService;
 
     @Autowired
-    private NotificationService notifService;
+    NotificationService notifService;
 
     private final ObjectMapper mapper = new ObjectMapper();
 
@@ -49,14 +49,15 @@ public class UsersController {
         boolean emailValid = EmailValidator.getInstance().isValid(req.getEmail().toLowerCase());
         Messages resp = new Messages();
         if (emailValid) {
-            boolean createUser = userService.registerUser(req);
-            if (createUser) {
+            String createUser = userService.registerUser(req);
+            if (createUser.length() > 0) {
                 resp.success();
+                resp.setData(createUser);
             } else {
                 resp.setResponseCode(Constant.ALREADY_EXIST);
                 resp.setResponseMessage("Email sudah terdaftar");
             }
-            String writeLogResp = HttpUtility.writeLogResp(mapper.writeValueAsString(resp));
+            String writeLogResp = HttpUtility.writeLogResp(mapper.writeValueAsString(new Messages(resp.getResponseCode(), resp.getResponseMessage())));
             log.info(writeLogResp);
             return ResponseEntity.ok().body(resp);
         } else {

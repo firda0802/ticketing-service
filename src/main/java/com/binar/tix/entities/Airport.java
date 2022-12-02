@@ -17,11 +17,24 @@ public class Airport implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "airport_seq")
     @SequenceGenerator(name = "airport_seq", sequenceName = "id_airport_seq", initialValue = 1, allocationSize = 1)
     @Column(name = "id_airport", nullable = false)
-    private Integer id_airport;
+    private Integer idAirport;
 
     @Column(name = "name")
-    private String Name;
+    private String name;
 
     @Column(name = "address")
     private String address;
+
+    @Column(name = "city_id")
+    private Integer cityId;
+
+    @ManyToOne
+    @JoinColumn(name = "city_id", insertable = false, updatable = false)
+    private DestinationCity city;
+
+    public Airport(String name, String address, Integer cityId) {
+        this.name = name;
+        this.address = address;
+        this.cityId = cityId;
+    }
 }

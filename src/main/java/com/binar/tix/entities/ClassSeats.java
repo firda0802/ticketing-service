@@ -23,4 +23,11 @@ public class ClassSeats implements Serializable {
     @Column(name = "price")
     private Integer price;
 
+    public ClassSeats() {
+    }
+
+    public ClassSeats(String name, Integer price) {
+        this.name = name;
+        this.price = price;
+    }
 }

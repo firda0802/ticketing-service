@@ -21,11 +21,24 @@ public class Seats implements Serializable {
     private String seatsNumber;
 
     @Column(name = "seats_group")
-    private Integer seatsGroup;
+    private char seatsGroup;
 
     @Column(name = "class_id")
     private Integer classId;
 
-    @Column(name = "airplanes_id")
+    @Column(name = "airplane_id")
     private Integer airplanesId;
+
+    @ManyToOne
+    @JoinColumn(name = "class_id", insertable = false, updatable = false)
+    private ClassSeats classSeats;
+
+    public Seats() {
+    }
+
+    public Seats(String seatsNumber, char seatsGroup, Integer classId) {
+        this.seatsNumber = seatsNumber;
+        this.seatsGroup = seatsGroup;
+        this.classId = classId;
+    }
 }

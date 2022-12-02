@@ -29,7 +29,7 @@ public interface UserService {
     List<RoleUser> getAllRole();
     void deleteUser(int userId);
     Boolean updateUser(int userId, ReqUpdateUser req);
-    Boolean registerUser(ReqSigninup req);
+    String registerUser(ReqSigninup req);
     Optional<User> validateSession(String session);
     String login(ReqSigninup req);
 }
