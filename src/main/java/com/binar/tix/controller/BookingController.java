@@ -70,5 +70,16 @@ public class BookingController {
         return ResponseEntity.ok().body(resp);
     }
 
+    @GetMapping(value = "/chose-seats/{scheduleId}")
+    public ResponseEntity<Messages> seatsAvailable(@PathVariable(name = "scheduleId") int scheduleId, HttpServletRequest httpServletRequest) throws JsonProcessingException {
+        String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString("-"));
+        log.info(writeLog);
+
+        Messages resp = bookingService.seatsAvailable(scheduleId);
+        String writeLogResp = HttpUtility.writeLogResp(mapper.writeValueAsString(new Messages(resp.getResponseCode(), resp.getResponseMessage())));
+        log.info(writeLogResp);
+        return ResponseEntity.ok().body(resp);
+    }
+
 
 }
