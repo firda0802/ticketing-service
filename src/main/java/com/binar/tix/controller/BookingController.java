@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Slf4j
 @RestController
+@RequestMapping("/booking")
 public class BookingController {
 
     @Autowired
