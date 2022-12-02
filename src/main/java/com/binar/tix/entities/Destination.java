@@ -17,11 +17,30 @@ public class Destination implements Serializable {
     private Integer destinationId;
 
     @Column(name = "departure")
-    private String departure;
+    private int departure;
 
-    @Column(name = "destination")
-    private String destination;
+    @ManyToOne
+    @JoinColumn(name = "departure", insertable = false, updatable = false)
+    private DestinationCity departureCity;
 
-    @Column(name = "airplanes_id")
-    private Integer airplanesId;
+    @Column(name = "destinations")
+    private int destinations;
+
+    @ManyToOne
+    @JoinColumn(name = "destinations", insertable = false, updatable = false)
+    private DestinationCity destinationsCity;
+
+    @Column(name = "additional_price")
+    private int additionalPrice;
+
+    @Column(name = "duration")
+    private Integer duration;
+    public Destination() {}
+
+    public Destination(int departure, int destinations, int additionalPrice, Integer duration) {
+        this.departure = departure;
+        this.destinations = destinations;
+        this.additionalPrice = additionalPrice;
+        this.duration = duration;
+    }
 }

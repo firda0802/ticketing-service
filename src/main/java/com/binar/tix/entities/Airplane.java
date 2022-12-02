@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -17,14 +18,14 @@ public class Airplane implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "airplane_seq")
     @SequenceGenerator(name = "airplane_seq", sequenceName = "id_airplane_seq", initialValue = 1, allocationSize = 1)
-    @Column(name = "id_airplane", nullable = false)
-    private Integer id_airplane;
+    @Column(name = "airplane_id", nullable = false)
+    private Integer airplaneId;
 
     @Column(name = "type")
     private String type;
 
     @Column(name = "luggage_capacity")
-    private int luggage_capacity;
+    private int luggageCapacity;
 
     @Column(name = "id_airport")
     private int airportId;
@@ -33,4 +34,13 @@ public class Airplane implements Serializable {
     @JoinColumn(name = "id_airport", insertable = false, updatable = false)
     private Airport airport;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "airplane_id")
+    private Set<Seats> seats;
+
+    public Airplane(String type, int luggageCapacity, int airportId) {
+        this.type = type;
+        this.luggageCapacity = luggageCapacity;
+        this.airportId = airportId;
+    }
 }

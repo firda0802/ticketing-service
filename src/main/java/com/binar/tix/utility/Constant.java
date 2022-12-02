@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Constant {
 
     private Constant() {}
-
+    public static final String EMAIL = "email";
     public static final String USER_ID = "userId";
     public static final String SUKSES = "Sukses";
     public static final String GAGAL = "Proses Gagal";
