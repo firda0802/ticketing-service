@@ -12,6 +12,7 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.authentication.AnonymousAuthenticationFilter;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.util.matcher.*;
@@ -24,8 +25,8 @@ import org.springframework.security.web.util.matcher.*;
 public class SecurityConfiguration {
 
     private static final RequestMatcher PROTECTED_URLS = new OrRequestMatcher(
-            new AntPathRequestMatcher("/users/**")
-
+            new AntPathRequestMatcher("/users/**"),
+            new AntPathRequestMatcher("/booking/**")
     );
 
     SecurityAuthenticationProvider provider;
@@ -59,9 +60,11 @@ public class SecurityConfiguration {
                 .exceptionHandling()
                 .and()
                 .authenticationProvider(provider)
+                .addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class)
                 .addFilterBefore(authenticationFilter(), AnonymousAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/users/**").hasAnyAuthority(RoleEnum.BUYER.name())
+                .antMatchers("/booking/**").hasAnyAuthority(RoleEnum.BUYER.name())
                 .anyRequest().permitAll()
                 .and()
                 .csrf().disable()
