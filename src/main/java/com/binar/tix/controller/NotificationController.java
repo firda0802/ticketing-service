@@ -36,7 +36,7 @@ import java.util.List;
 public class NotificationController {
 
     @Autowired
-    private NotificationService notifService;
+    NotificationService notifService;
 
     private final ObjectMapper mapper = new ObjectMapper();
 

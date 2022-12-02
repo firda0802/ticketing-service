@@ -17,9 +17,9 @@ import java.util.Optional;
 public class NotificationServiceImpl implements NotificationService{
 
     @Autowired
-    private NotificationRepository notifRepository;
+    NotificationRepository notifRepository;
     @Autowired
-    private NotifCategoryRepository notifCategoryRepository;
+    NotifCategoryRepository notifCategoryRepository;
 
     @Override
     public void createNotifUsers(ReqCreateNotification req) {
