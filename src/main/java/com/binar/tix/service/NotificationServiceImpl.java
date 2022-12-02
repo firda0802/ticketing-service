@@ -34,7 +34,6 @@ public class NotificationServiceImpl implements NotificationService{
 
     @Override
     public Page<Notifications> getNotifUsers(Pageable paging, int idUsers) {
-        notifRepository.clearNotif(idUsers);
         return notifRepository.findByUserId(idUsers, paging);
     }
 
@@ -65,5 +64,10 @@ public class NotificationServiceImpl implements NotificationService{
         }else{
             return false;
         }
+    }
+
+    @Override
+    public void clearNotif(int userId) {
+        notifRepository.clearNotif(userId);
     }
 }
