@@ -37,4 +37,7 @@ public class Airport implements Serializable {
         this.address = address;
         this.cityId = cityId;
     }
+
+
+
 }

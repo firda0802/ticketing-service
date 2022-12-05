@@ -14,10 +14,10 @@ import java.io.Serializable;
 @Table(name = "orders")
 public class Orders implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "orders_seq")
-    @SequenceGenerator(name = "orders_seq", sequenceName = "orders_id_seq", initialValue = 1, allocationSize = 1)
-    @Column(name = "orders_id", nullable = false)
-    private Long orders_id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "invoice_no_seq")
+    @SequenceGenerator(name = "invoice_no_seq", sequenceName = "invoice_no_seq", initialValue = 1, allocationSize = 1)
+    @Column(name = "invoice_no_id", nullable = false)
+    private Long Invoice_no;
 
     @Column(name = "user_id")
     private int userId;
