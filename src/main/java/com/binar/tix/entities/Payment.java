@@ -18,6 +18,13 @@ public class Payment {
     @Column(name = "payment_id", nullable = false)
     private Integer payment_id;
 
+    @Column(name = "id_admin")
+    private int id_admin;
+
+    @ManyToOne
+    @JoinColumn(name = "id_admin", insertable = false, updatable = false)
+    private Admin admin;
+
     @Column(name ="payment_method")
     private String paymentMethod;
 
