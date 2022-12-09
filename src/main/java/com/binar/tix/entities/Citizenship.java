@@ -1,6 +1,7 @@
 package com.binar.tix.entities;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,25 +10,22 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
-@Table(name = "class_seats")
-public class ClassSeats implements Serializable {
+@RequiredArgsConstructor
+@Table(name = "citizenship")
+public class Citizenship implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "class_id")
-    private Integer classId;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "price")
-    private Integer price;
+    @Column(name = "code")
+    private String code;
 
-    public ClassSeats() {
-    }
-
-    public ClassSeats(String name, Integer price) {
+    public Citizenship(String name, String code) {
         this.name = name;
-        this.price = price;
+        this.code = code;
     }
 }

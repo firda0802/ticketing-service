@@ -1,5 +1,6 @@
 package com.binar.tix.entities;
 
+import com.binar.tix.payload.ScheduleAirplane;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
@@ -45,6 +46,12 @@ public class Schedule implements Serializable {
     @Column(name = "airplanes_id")
     private Integer airplanesId;
 
+    @Column(name = "price")
+    private Integer price;
+
+    @Column(name = "flight")
+    private String flight;
+
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "airplanes_id", insertable = false, updatable = false)
@@ -72,14 +79,16 @@ public class Schedule implements Serializable {
     private LocalDateTime cdate;
 
 
-    public Schedule(Integer destinationId, Integer classId, Integer priceId, LocalTime startTime, LocalTime endTime, LocalDate flightDate, int airplanesId) {
+    public Schedule(Integer destinationId, Integer classId, Integer priceId, LocalTime startTime, LocalTime endTime, LocalDate flightDate, ScheduleAirplane scheduleAirplane) {
         this.destinationId = destinationId;
         this.classId = classId;
         this.priceId = priceId;
         this.startTime = startTime;
         this.endTime = endTime;
         this.flightDate = flightDate;
-        this.airplanesId = airplanesId;
+        this.airplanesId = scheduleAirplane.getAirplanesId();
+        this.price = scheduleAirplane.getPrice();
+        this.flight = scheduleAirplane.getFlight();
     }
 }
 

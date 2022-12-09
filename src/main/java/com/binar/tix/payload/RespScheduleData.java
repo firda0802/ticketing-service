@@ -10,6 +10,7 @@ import java.time.LocalTime;
 @Setter
 public class RespScheduleData {
 
+    private String flight;
     private int scheduleId;
     private String classType;
     private String luggageCapacity;
