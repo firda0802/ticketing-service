@@ -110,7 +110,7 @@ public class UserServiceImpl implements UserService {
             ReqCreateNotification notif = new ReqCreateNotification();
             notif.setUserId(newUsers.getUserId());
             notif.setNotificationCategoryId(1);
-            notif.setTitle("Hai! Selamat datang di E-Flight");
+            notif.setTitle("Hai! Selamat datang di Safety Fly");
             notif.setContent("Nikmati layanan pemesanan tiket pesawat secara online disini");
             notificationService.createNotifUsers(notif);
 
@@ -123,7 +123,7 @@ public class UserServiceImpl implements UserService {
                     .claim("role", RoleEnum.BUYER.name())
                     .setId(UUID.randomUUID().toString())
                     .setIssuedAt(Date.from(now))
-                    .setExpiration(Date.from(now.plus(1, ChronoUnit.DAYS)))
+                    .setExpiration(Date.from(now.plus(30, ChronoUnit.DAYS)))
                     .signWith(hmacKey)
                     .compact();
         }
@@ -168,7 +168,7 @@ public class UserServiceImpl implements UserService {
                     .claim("role", u.getRole().getRoleName())
                     .setId(UUID.randomUUID().toString())
                     .setIssuedAt(Date.from(now))
-                    .setExpiration(Date.from(now.plus(1, ChronoUnit.DAYS)))
+                    .setExpiration(Date.from(now.plus(30, ChronoUnit.DAYS)))
                     .signWith(hmacKey)
                     .compact();
         } else {

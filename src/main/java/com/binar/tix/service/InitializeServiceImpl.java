@@ -5,6 +5,7 @@ import com.binar.tix.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -35,6 +36,15 @@ public class InitializeServiceImpl implements InitializeService{
 
     @Autowired
     PricingRepository pricingRepository;
+
+    @Autowired
+    PaymentRepository paymentRepository;
+
+    @Autowired
+    CitizenshipRepository citizenshipRepository;
+
+    @Autowired
+    FacilityRepository facilityRepository;
 
     @Override
     public void initPricing(Pricing req) {
@@ -99,5 +109,40 @@ public class InitializeServiceImpl implements InitializeService{
     @Override
     public void initSchedule(List<Schedule> req) {
         scheduleRepository.saveAll(req);
+    }
+
+    @Override
+    public void initPayment(Payment payment) {
+        payment.setStatus(true);
+        paymentRepository.saveAndFlush(payment);
+    }
+
+    @Override
+    public List<Payment> listPayment() {
+        return paymentRepository.findByStatus(Boolean.TRUE);
+    }
+
+    @Override
+    public List<Citizenship> listCitizenship() {
+        List<Citizenship> list = citizenshipRepository.findAll();
+        if(!list.isEmpty()){
+            list.sort(Comparator.comparing(Citizenship::getName));
+        }
+        return list;
+    }
+
+    @Override
+    public void initCitizenship(Citizenship req) {
+        citizenshipRepository.saveAndFlush(req);
+    }
+
+    @Override
+    public List<Facility> listFacility() {
+        return facilityRepository.findAll();
+    }
+
+    @Override
+    public void initFacility(List<Facility> req) {
+        facilityRepository.saveAll(req);
     }
 }

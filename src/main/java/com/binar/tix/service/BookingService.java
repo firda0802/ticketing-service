@@ -6,11 +6,10 @@
 package com.binar.tix.service;
 
 import com.binar.tix.entities.*;
-import com.binar.tix.payload.DataSeats;
-import com.binar.tix.payload.Messages;
-import com.binar.tix.payload.ReqShowBooking;
-import com.binar.tix.payload.RespSeats;
+import com.binar.tix.payload.*;
+import org.springframework.data.domain.Page;
 
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 /**
@@ -30,4 +29,10 @@ public interface BookingService {
     Messages seatsAvailable(int scheduleId);
 
     List<RespSeats> dataSeats(List<DataSeats> list, int classId);
+
+    String createOrder(ReqCreateOrder req, int userId);
+
+    Page<Orders> historyBooking(int userId, Pageable paging);
+
+    Messages detailHistory(String invoiceNo);
 }

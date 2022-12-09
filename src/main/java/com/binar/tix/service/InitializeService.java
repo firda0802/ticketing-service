@@ -35,4 +35,15 @@ public interface InitializeService {
     List<PassengerType> getPassengerType();
 
     void initSchedule(List<Schedule> req);
+
+    void initPayment(Payment payment);
+    List<Payment> listPayment();
+
+    List<Citizenship> listCitizenship();
+
+    void initCitizenship(Citizenship req);
+
+    List<Facility> listFacility();
+
+    void initFacility(List<Facility> req);
 }

@@ -1,6 +1,6 @@
 package com.binar.tix.payload;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -11,21 +11,19 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.util.List;
 
-@Getter
-@Setter
-public class ReqShowBooking {
+@Getter @Setter
+public class ReqCreateOrder {
 
-    private int departureCity;
-    private int destinationsCity;
+    private String title;
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+7")
-    private LocalDate departureDate;
-    @JsonSerialize(using = LocalDateSerializer.class)
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+7")
     private LocalDate returnDate;
-    private List<PassengerData> passenger;
-    private int classSeats;
+    private String bookingBy;
+    private String email;
+    private String phoneNo;
+    private int scheduleId;
+    private int paymentId;
+    private Integer amount;
+    private List<ReqCreateOrderDetail> details;
 
 }

@@ -1,13 +1,13 @@
 package com.binar.tix.payload;
-
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class RespSeatsDetail {
+public class RespHistoryDetailtem {
 
-    private int seatsId;
+    private String name;
+    private String type;
     private String seatsNumber;
-    private String statusSeats;
-    private Boolean canBook;
+    private int luggageCapacity;
+
 }
