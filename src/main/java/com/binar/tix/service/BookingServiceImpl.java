@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -43,6 +44,9 @@ public class BookingServiceImpl implements BookingService {
 
     @Autowired
     FacilityRepository facilityRepository;
+
+    @Autowired
+    SeatsRepository seatsRepository;
 
     @Override
     public List<DestinationCity> listDestinationCity() {
@@ -163,7 +167,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public String createOrder(ReqCreateOrder req, int userId) {
+    public String createOrder(ReqCreateOrder req, int userId, RespScheduleReturn scheduleReturn) {
         StringBuilder checkStatus = new StringBuilder();
         Date date = new Date();
         Format formatter1 = new SimpleDateFormat("yyMMdd");
@@ -188,7 +192,15 @@ public class BookingServiceImpl implements BookingService {
             OrdersDetails detail = new OrdersDetails();
             detail.setTitle(d.getTitle());
             detail.setFullName(d.getFullName());
-            detail.setSeatsId(d.getIdSeats());
+            if(scheduleReturn == null){
+                detail.setSeatsId(d.getIdSeats());
+            }else{
+                Seats seats = seatsRepository.findById(d.getIdSeats()).orElse(null);
+                assert seats != null;
+                Seats returnSeats = seatsRepository.findByClassIdAndAirplanesIdAndSeatsNumber(scheduleReturn.getClassId(), scheduleReturn.getAirplaneId(), seats.getSeatsNumber());
+                detail.setSeatsId(returnSeats.getSeatsId());
+            }
+
             detail.setCitizenshipId(d.getCitizenship());
             detail.setPassengerType(d.getPassengerType());
 
@@ -210,24 +222,106 @@ public class BookingServiceImpl implements BookingService {
         if (checkStatus.toString().contains("1")) {
             return "";
         } else {
-            ordersRepository.saveAndFlush(orders);
-            ReqCreateNotification notif = new ReqCreateNotification();
-            notif.setUserId(userId);
-            notif.setNotificationCategoryId(2);
-            notif.setTitle("Pemesanan Tiket Berhasil");
-            notif.setContent("Selamat! Transaksi dengan invoice no. " + invoice + " sukses dilakukan");
-            notificationService.createNotifUsers(notif);
-            return "Success";
+            Optional<Schedule> sch = scheduleRepository.findById(orders.getScheduleId());
+            String resp = "";
+            if(sch.isPresent()){
+                Destination destination = sch.get().getDestination();
+                resp = destination.getDepartureCity().getCityName() + " - " + destination.getDestinationsCity().getCityName();
+                ordersRepository.saveAndFlush(orders);
+                ReqCreateNotification notif = new ReqCreateNotification();
+                notif.setUserId(userId);
+                notif.setNotificationCategoryId(2);
+                notif.setTitle("Pemesanan Tiket Berhasil");
+                notif.setContent("Selamat! Transaksi dengan invoice no. " + invoice + " sukses dilakukan");
+                notificationService.createNotifUsers(notif);
+            }
+            return resp;
         }
+    }
+
+
+
+    @Override
+    public RespScheduleReturn getScheduleReturn(int scheduleId, LocalDate returnDate) {
+        RespScheduleReturn resp = new RespScheduleReturn();
+        int scheduleIds = 0;
+        Optional<Schedule> data = scheduleRepository.findById(scheduleId);
+        if(data.isPresent()){
+            Schedule s1 = data.get();
+            int departure = s1.getDestination().getDeparture();
+            int destination = s1.getDestination().getDestinations();
+            Optional<Destination> cekDestination = destinationRepository.findByDepartureAndDestinations(destination, departure);
+            if(cekDestination.isPresent()){
+                Destination dst = cekDestination.get();
+                Schedule returnSchedule = scheduleRepository.findByDestinationIdAndClassIdAndFlightDateAndStartTimeAndEndTime(dst.getDestinationId(), s1.getClassId(), s1.getFlightDate(), s1.getStartTime(), s1.getEndTime());
+                scheduleIds = returnSchedule.getScheduleId();
+                resp.setClassId(returnSchedule.getClassId());
+                resp.setAirplaneId(returnSchedule.getAirplanesId());
+            }
+        }
+        resp.setScheduleId(scheduleIds);
+        return resp;
     }
 
     @Override
     public Page<Orders> historyBooking(int userId, Pageable paging) {
-        return null;
+        return ordersRepository.findByUserId(userId, paging);
     }
 
     @Override
     public Messages detailHistory(String invoiceNo) {
-        return null;
+        Messages msg = new Messages();
+        Optional<Orders> orders = ordersRepository.findById(invoiceNo);
+        if(orders.isPresent()){
+            Orders o = orders.get();
+            msg.success();
+            RespHistoryDetail resp = new RespHistoryDetail();
+            resp.setInvoiceNo(o.getInvoiceNo());
+            resp.setBookingBy(getTitle(o.getTitle()) + o.getBookingBy());
+            resp.setAirplane(o.getSchedule().getAirplane().getType());
+            resp.setStartTime(o.getSchedule().getStartTime());
+            resp.setEndTime(o.getSchedule().getEndTime());
+            resp.setFlightDate(o.getSchedule().getFlightDate());
+            resp.setPaymentDate(o.getPaymentDate());
+            resp.setPaymentName(o.getPayment().getPaymentMethod());
+            resp.setTotalPerson(o.getOrdersDetails().size());
+            resp.setClassType(o.getSchedule().getClassSeats().getName());
+            String destination1 = o.getSchedule().getDestination().getDepartureCity().getCityName();
+            String destination2 = o.getSchedule().getDestination().getDestinationsCity().getCityName();
+            resp.setDepartureCity(destination1);
+            resp.setDestinationsCity(destination2);
+
+            List<RespHistoryDetailtem> detail = new ArrayList<>();
+            for(OrdersDetails d : o.getOrdersDetails()){
+                RespHistoryDetailtem rd = new RespHistoryDetailtem();
+                rd.setName(getTitle(d.getTitle()) + d.getFullName());
+                rd.setType(d.getPassenger().getType());
+                rd.setSeatsNumber(d.getSeats().getSeatsNumber());
+                if(resp.getClassType().equals("Business Class")){
+                    rd.setLuggageCapacity(o.getSchedule().getAirplane().getLuggageCapacity() + 10);
+                }else{
+                    rd.setLuggageCapacity(o.getSchedule().getAirplane().getLuggageCapacity());
+                }
+                if(d.getPassportNumber() != null){
+                    rd.setTravelDocument(new TravelDocument(d.getPassportNumber(), d.getIssuingCountry(), d.getExpirationDate()));
+                }
+                detail.add(rd);
+            }
+            resp.setDetail(detail);
+            resp.setAmount(o.getAmount());
+            msg.setData(resp);
+        }else{
+            msg.notFound();
+        }
+        return msg;
+    }
+
+    @Override
+    public String getTitle(String title) {
+        if(title.equals("Tuan")){
+            return "Tn. ";
+        }else{
+            return "Ny. ";
+        }
     }
 }
