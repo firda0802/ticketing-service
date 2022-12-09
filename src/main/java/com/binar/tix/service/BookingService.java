@@ -10,6 +10,8 @@ import com.binar.tix.payload.*;
 import org.springframework.data.domain.Page;
 
 import org.springframework.data.domain.Pageable;
+
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -30,7 +32,11 @@ public interface BookingService {
 
     List<RespSeats> dataSeats(List<DataSeats> list, int classId);
 
-    String createOrder(ReqCreateOrder req, int userId);
+    String createOrder(ReqCreateOrder req, int userId, RespScheduleReturn scheduleReturn);
+
+    String getTitle(String title);
+
+    RespScheduleReturn getScheduleReturn(int scheduleId, LocalDate returnDate);
 
     Page<Orders> historyBooking(int userId, Pageable paging);
 
