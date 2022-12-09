@@ -9,5 +9,6 @@ public class RespHistoryDetailtem {
     private String type;
     private String seatsNumber;
     private int luggageCapacity;
+    private TravelDocument travelDocument;
 
 }
