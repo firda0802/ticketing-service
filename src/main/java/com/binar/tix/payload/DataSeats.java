@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class DataSeats {
+    private int seatsId;
     private String seatsNumber;
     private String seatsGroup;
     private int classSeats;
