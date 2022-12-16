@@ -46,4 +46,8 @@ public interface InitializeService {
     List<Facility> listFacility();
 
     void initFacility(List<Facility> req);
+
+    List<Users> dataAdmin();
+
+    void initAdmin(Users users);
 }

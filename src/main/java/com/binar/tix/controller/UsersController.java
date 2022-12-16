@@ -8,7 +8,9 @@ package com.binar.tix.controller;
 import com.binar.tix.entities.Notifications;
 import com.binar.tix.entities.Users;
 import com.binar.tix.payload.*;
+import com.binar.tix.service.GoogleOauth;
 import com.binar.tix.service.NotificationService;
+import com.binar.tix.service.UserService;
 import com.binar.tix.utility.Constant;
 import com.binar.tix.utility.HttpUtility;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -22,9 +24,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.binar.tix.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 
 /**
  * @author Riko
@@ -38,6 +41,9 @@ public class UsersController {
 
     @Autowired
     NotificationService notifService;
+
+    @Autowired
+    GoogleOauth googleOauth;
 
     private final ObjectMapper mapper = new ObjectMapper();
 
@@ -73,7 +79,7 @@ public class UsersController {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(req));
         log.info(writeLog);
 
-        String token = userService.login(req);
+        String token = userService.login(req, 1);
         Messages resp = new Messages();
         if (token.length() > 0) {
             resp.success();
@@ -116,7 +122,7 @@ public class UsersController {
         RespProfil profil = new RespProfil();
         profil.setUserId(users.getUserId());
         profil.setFullName(users.getFullName());
-        profil.setEmail(users.getFullName());
+        profil.setEmail(users.getEmail());
         profil.setAddress(users.getAddress());
         profil.setPhoneNo(users.getPhoneNo());
         profil.setBirthDate(users.getBirthDate());
@@ -191,4 +197,17 @@ public class UsersController {
             return ResponseEntity.ok().body(resp);
         }
     }
+
+    @PostMapping(value = "/ext/googleid-token")
+    public ResponseEntity<Messages> verifyGoogleId(@RequestBody RespLogin req, HttpServletRequest httpServletRequest) throws IOException, GeneralSecurityException {
+        String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(req));
+        log.info(writeLog);
+
+        Messages resp = googleOauth.verify(req.getToken());
+
+        String writeLogResp = HttpUtility.writeLogResp(mapper.writeValueAsString(new Messages(resp.getResponseCode(), resp.getResponseMessage())));
+        log.info(writeLogResp);
+        return ResponseEntity.ok().body(resp);
+    }
+
 }
