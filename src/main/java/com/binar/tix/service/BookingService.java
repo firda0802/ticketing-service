@@ -7,10 +7,12 @@ package com.binar.tix.service;
 
 import com.binar.tix.entities.*;
 import com.binar.tix.payload.*;
+import com.google.zxing.WriterException;
 import org.springframework.data.domain.Page;
 
 import org.springframework.data.domain.Pageable;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -32,7 +34,7 @@ public interface BookingService {
 
     List<RespSeats> dataSeats(List<DataSeats> list, int classId);
 
-    String createOrder(ReqCreateOrder req, int userId, RespScheduleReturn scheduleReturn);
+    String createOrder(ReqCreateOrder req, int userId, RespScheduleReturn scheduleReturn) throws WriterException, IOException;
 
     String getTitle(String title);
 
@@ -41,4 +43,6 @@ public interface BookingService {
     Page<Orders> historyBooking(int userId, Pageable paging);
 
     Messages detailHistory(String invoiceNo);
+
+    Boolean validateTokenQr(String token);
 }

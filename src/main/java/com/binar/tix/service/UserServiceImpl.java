@@ -95,7 +95,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String registerUser(ReqSigninup req) {
-        Optional<Users> cekUser = usersRepository.findByEmailIgnoreCaseAndStatus(req.getEmail(), true);
+        Optional<Users> cekUser = usersRepository.findByEmailIgnoreCaseAndStatusAndRoleId(req.getEmail(), true, 1);
         if (cekUser.isPresent()) {
             return "";
         } else {
@@ -114,18 +114,7 @@ public class UserServiceImpl implements UserService {
             notif.setContent("Nikmati layanan pemesanan tiket pesawat secara online disini");
             notificationService.createNotifUsers(notif);
 
-            Key hmacKey = new SecretKeySpec(Base64.getDecoder().decode(secretKey),
-                    SignatureAlgorithm.HS256.getJcaName());
-            Instant now = Instant.now();
-            return Jwts.builder()
-                    .claim("userId", newUsers.getUserId())
-                    .claim(Constant.EMAIL, newUsers.getEmail())
-                    .claim("role", RoleEnum.BUYER.name())
-                    .setId(UUID.randomUUID().toString())
-                    .setIssuedAt(Date.from(now))
-                    .setExpiration(Date.from(now.plus(30, ChronoUnit.DAYS)))
-                    .signWith(hmacKey)
-                    .compact();
+            return generateToken(newUsers.getUserId(), RoleEnum.BUYER.name(), newUsers.getEmail());
         }
     }
 
@@ -147,32 +136,41 @@ public class UserServiceImpl implements UserService {
             } else {
                 return Optional.empty();
             }
-
-
         } catch (Exception e) {
             return Optional.empty();
         }
     }
 
     @Override
-    public String login(ReqSigninup req) {
-        Optional<Users> cekUser = usersRepository.findByEmailIgnoreCaseAndPasswordAndStatus(req.getEmail(), MD5.encrypt(req.getPassword()), true);
+    public String login(ReqSigninup req, int type) {
+        Optional<Users> cekUser = usersRepository.findByEmailIgnoreCaseAndPasswordAndStatusAndRoleId(req.getEmail(), MD5.encrypt(req.getPassword()), true,  type);
         if (cekUser.isPresent()) {
             Users u = cekUser.get();
-            Key hmacKey = new SecretKeySpec(Base64.getDecoder().decode(secretKey),
-                    SignatureAlgorithm.HS256.getJcaName());
-            Instant now = Instant.now();
-            return Jwts.builder()
-                    .claim("userId", u.getUserId())
-                    .claim(Constant.EMAIL, u.getEmail())
-                    .claim("role", u.getRole().getRoleName())
-                    .setId(UUID.randomUUID().toString())
-                    .setIssuedAt(Date.from(now))
-                    .setExpiration(Date.from(now.plus(30, ChronoUnit.DAYS)))
-                    .signWith(hmacKey)
-                    .compact();
+            return generateToken(u.getUserId(), u.getRole().getRoleName(), u.getEmail());
         } else {
             return "";
         }
+    }
+
+    @Override
+    public Users checkEmail(String email) {
+        Optional<Users> cekUser = usersRepository.findByEmailIgnoreCaseAndStatusAndRoleId(email, true, 1);
+        return cekUser.orElse(null);
+    }
+
+    @Override
+    public String generateToken(int userId, String roleName, String email) {
+        Key hmacKey = new SecretKeySpec(Base64.getDecoder().decode(secretKey),
+                SignatureAlgorithm.HS256.getJcaName());
+        Instant now = Instant.now();
+        return Jwts.builder()
+                .claim("userId", userId)
+                .claim(Constant.EMAIL, email)
+                .claim("role", roleName)
+                .setId(UUID.randomUUID().toString())
+                .setIssuedAt(Date.from(now))
+                .setExpiration(Date.from(now.plus(30, ChronoUnit.DAYS)))
+                .signWith(hmacKey)
+                .compact();
     }
 }

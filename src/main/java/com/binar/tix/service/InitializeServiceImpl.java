@@ -26,9 +26,6 @@ public class InitializeServiceImpl implements InitializeService{
     ClassRepository classRepository;
 
     @Autowired
-    SeatsRepository seatsRepository;
-
-    @Autowired
     PassengerTypeRepository passengerTypeRepository;
 
     @Autowired
@@ -45,6 +42,9 @@ public class InitializeServiceImpl implements InitializeService{
 
     @Autowired
     FacilityRepository facilityRepository;
+
+    @Autowired
+    UsersRepository usersRepository;
 
     @Override
     public void initPricing(Pricing req) {
@@ -144,5 +144,15 @@ public class InitializeServiceImpl implements InitializeService{
     @Override
     public void initFacility(List<Facility> req) {
         facilityRepository.saveAll(req);
+    }
+
+    @Override
+    public List<Users> dataAdmin() {
+        return usersRepository.findByRoleId(2);
+    }
+
+    @Override
+    public void initAdmin(Users users) {
+        usersRepository.saveAndFlush(users);
     }
 }

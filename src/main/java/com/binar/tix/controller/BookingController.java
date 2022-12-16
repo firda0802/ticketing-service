@@ -8,6 +8,7 @@ import com.binar.tix.utility.Constant;
 import com.binar.tix.utility.HttpUtility;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.zxing.WriterException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,8 +17,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -127,7 +128,7 @@ public class BookingController {
     }
 
     @PostMapping(value = "/create-order")
-    public ResponseEntity<Messages> createOrder(@RequestBody ReqCreateOrder req, HttpServletRequest httpServletRequest) throws JsonProcessingException {
+    public ResponseEntity<Messages> createOrder(@RequestBody ReqCreateOrder req, HttpServletRequest httpServletRequest) throws WriterException, IOException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(req));
         log.info(writeLog);
 
@@ -220,6 +221,25 @@ public class BookingController {
 
         Messages resp = bookingService.detailHistory(invoiceNo);
         String writeLogResp = HttpUtility.writeLogResp(mapper.writeValueAsString(new Messages(resp.getResponseCode(), resp.getResponseMessage())));
+        log.info(writeLogResp);
+        return ResponseEntity.ok().body(resp);
+    }
+
+    @GetMapping(value = "/validate-token/{tokenQr}")
+    public ResponseEntity<Messages> validateToken(@PathVariable(name = "tokenQr") String tokenQr, HttpServletRequest httpServletRequest) throws JsonProcessingException {
+        String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(tokenQr));
+        log.info(writeLog);
+
+        boolean status = bookingService.validateTokenQr(tokenQr);
+        Messages resp = new Messages();
+        if(status){
+            resp.setResponseCode(Constant.OK);
+            resp.setResponseMessage("Verified Success Token");
+        }else{
+            resp.setResponseCode(Constant.NO_CONTENT);
+            resp.setResponseMessage("Token is Invalid");
+        }
+        String writeLogResp = HttpUtility.writeLogResp(mapper.writeValueAsString(resp));
         log.info(writeLogResp);
         return ResponseEntity.ok().body(resp);
     }

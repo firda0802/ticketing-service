@@ -42,8 +42,7 @@ public class Users implements Serializable {
     @SequenceGenerator(name = "users_seq", sequenceName = "users_id_seq", initialValue = 1, allocationSize = 1)
     @Column(name = "user_id")
     private Integer userId;
-    
-    @Column(name = "role_id")
+        @Column(name = "role_id")
     private int roleId;
     
     @ManyToOne

@@ -5,13 +5,17 @@ import com.binar.tix.enums.StatusEnum;
 import com.binar.tix.payload.*;
 import com.binar.tix.repository.*;
 import com.binar.tix.utility.Constant;
+import com.binar.tix.utility.QrCode;
+import com.google.zxing.WriterException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.jasypt.util.text.StrongTextEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Pageable;
 
+import java.io.IOException;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -167,7 +171,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public String createOrder(ReqCreateOrder req, int userId, RespScheduleReturn scheduleReturn) {
+    public String createOrder(ReqCreateOrder req, int userId, RespScheduleReturn scheduleReturn) throws WriterException, IOException {
         StringBuilder checkStatus = new StringBuilder();
         Date date = new Date();
         Format formatter1 = new SimpleDateFormat("yyMMdd");
@@ -192,9 +196,9 @@ public class BookingServiceImpl implements BookingService {
             OrdersDetails detail = new OrdersDetails();
             detail.setTitle(d.getTitle());
             detail.setFullName(d.getFullName());
-            if(scheduleReturn == null){
+            if (scheduleReturn == null) {
                 detail.setSeatsId(d.getIdSeats());
-            }else{
+            } else {
                 Seats seats = seatsRepository.findById(d.getIdSeats()).orElse(null);
                 assert seats != null;
                 Seats returnSeats = seatsRepository.findByClassIdAndAirplanesIdAndSeatsNumber(scheduleReturn.getClassId(), scheduleReturn.getAirplaneId(), seats.getSeatsNumber());
@@ -222,11 +226,13 @@ public class BookingServiceImpl implements BookingService {
         if (checkStatus.toString().contains("1")) {
             return "";
         } else {
-            Optional<Schedule> sch = scheduleRepository.findById(orders.getScheduleId());
             String resp = "";
-            if(sch.isPresent()){
+            String urlQrCode = QrCode.generate(invoice);
+            Optional<Schedule> sch = scheduleRepository.findById(orders.getScheduleId());
+            if (sch.isPresent() && urlQrCode.length() > 0) {
                 Destination destination = sch.get().getDestination();
                 resp = destination.getDepartureCity().getCityName() + " - " + destination.getDestinationsCity().getCityName();
+                orders.setQrCodeUrl(urlQrCode);
                 ordersRepository.saveAndFlush(orders);
                 ReqCreateNotification notif = new ReqCreateNotification();
                 notif.setUserId(userId);
@@ -240,18 +246,17 @@ public class BookingServiceImpl implements BookingService {
     }
 
 
-
     @Override
     public RespScheduleReturn getScheduleReturn(int scheduleId, LocalDate returnDate) {
         RespScheduleReturn resp = new RespScheduleReturn();
         int scheduleIds = 0;
         Optional<Schedule> data = scheduleRepository.findById(scheduleId);
-        if(data.isPresent()){
+        if (data.isPresent()) {
             Schedule s1 = data.get();
             int departure = s1.getDestination().getDeparture();
             int destination = s1.getDestination().getDestinations();
             Optional<Destination> cekDestination = destinationRepository.findByDepartureAndDestinations(destination, departure);
-            if(cekDestination.isPresent()){
+            if (cekDestination.isPresent()) {
                 Destination dst = cekDestination.get();
                 Schedule returnSchedule = scheduleRepository.findByDestinationIdAndClassIdAndFlightDateAndStartTimeAndEndTime(dst.getDestinationId(), s1.getClassId(), s1.getFlightDate(), s1.getStartTime(), s1.getEndTime());
                 scheduleIds = returnSchedule.getScheduleId();
@@ -272,7 +277,7 @@ public class BookingServiceImpl implements BookingService {
     public Messages detailHistory(String invoiceNo) {
         Messages msg = new Messages();
         Optional<Orders> orders = ordersRepository.findById(invoiceNo);
-        if(orders.isPresent()){
+        if (orders.isPresent()) {
             Orders o = orders.get();
             msg.success();
             RespHistoryDetail resp = new RespHistoryDetail();
@@ -292,17 +297,17 @@ public class BookingServiceImpl implements BookingService {
             resp.setDestinationsCity(destination2);
 
             List<RespHistoryDetailtem> detail = new ArrayList<>();
-            for(OrdersDetails d : o.getOrdersDetails()){
+            for (OrdersDetails d : o.getOrdersDetails()) {
                 RespHistoryDetailtem rd = new RespHistoryDetailtem();
                 rd.setName(getTitle(d.getTitle()) + d.getFullName());
                 rd.setType(d.getPassenger().getType());
                 rd.setSeatsNumber(d.getSeats().getSeatsNumber());
-                if(resp.getClassType().equals("Business Class")){
+                if (resp.getClassType().equals("Business Class")) {
                     rd.setLuggageCapacity(o.getSchedule().getAirplane().getLuggageCapacity() + 10);
-                }else{
+                } else {
                     rd.setLuggageCapacity(o.getSchedule().getAirplane().getLuggageCapacity());
                 }
-                if(d.getPassportNumber() != null){
+                if (d.getPassportNumber() != null) {
                     rd.setTravelDocument(new TravelDocument(d.getPassportNumber(), d.getIssuingCountry(), d.getExpirationDate()));
                 }
                 detail.add(rd);
@@ -310,17 +315,30 @@ public class BookingServiceImpl implements BookingService {
             resp.setDetail(detail);
             resp.setAmount(o.getAmount());
             msg.setData(resp);
-        }else{
+        } else {
             msg.notFound();
         }
         return msg;
     }
 
     @Override
+    public Boolean validateTokenQr(String token) {
+        StrongTextEncryptor textEncryptor = new StrongTextEncryptor();
+        textEncryptor.setPassword(Constant.ENCRYPT_KEY);
+        try {
+            String decryptToken = textEncryptor.decrypt(token);
+            Optional<Orders> data = ordersRepository.findById(decryptToken);
+            return data.isPresent();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
     public String getTitle(String title) {
-        if(title.equals("Tuan")){
+        if (title.equals("Tuan")) {
             return "Tn. ";
-        }else{
+        } else {
             return "Ny. ";
         }
     }

@@ -31,5 +31,9 @@ public interface UserService {
     Boolean updateUser(int userId, ReqUpdateUser req);
     String registerUser(ReqSigninup req);
     Optional<User> validateSession(String session);
-    String login(ReqSigninup req);
+    String login(ReqSigninup req, int type);
+
+    Users checkEmail(String email);
+
+    String generateToken(int userId, String roleName, String email);
 }
