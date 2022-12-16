@@ -2,9 +2,11 @@ package com.binar.tix.config;
 
 import com.binar.tix.entities.*;
 import com.binar.tix.enums.RoleEnum;
+import com.binar.tix.service.InitializeService;
 import com.binar.tix.service.NotificationService;
 import com.binar.tix.service.SetupData;
 import com.binar.tix.service.UserService;
+import com.binar.tix.utility.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -16,6 +18,9 @@ public class DataLoader implements ApplicationRunner {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    InitializeService initializeService;
 
     @Autowired
     NotificationService notificationService;
@@ -38,6 +43,16 @@ public class DataLoader implements ApplicationRunner {
             notificationService.createUpdateNotifCategory(0, "Introduce");
             notificationService.createUpdateNotifCategory(0, "Booking");
             notificationService.createUpdateNotifCategory(0, "Event");
+        }
+
+        if(initializeService.dataAdmin().isEmpty()){
+            Users admin = new Users();
+            admin.setEmail("admin@safly.com");
+            admin.setPassword(MD5.encrypt("admin123"));
+            admin.setStatus(Boolean.TRUE);
+            admin.setRoleId(2);
+            admin.setFullName("Safly Admin");
+            initializeService.initAdmin(admin);
         }
 
         setupData.generate();

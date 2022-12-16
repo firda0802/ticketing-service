@@ -6,6 +6,7 @@ public class Constant {
 
     private Constant() {}
 
+    public  static final String ENCRYPT_KEY = "44F4iTX9nplIpohdCXMh8GijF6iM1aGZooY";
     public  static final String DOMESTIK = "domestik";
     public  static final String INTER = "international";
     public static final String EMAIL = "email";
