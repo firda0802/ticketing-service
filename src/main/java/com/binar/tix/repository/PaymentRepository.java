@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 public interface PaymentRepository extends JpaRepository<Payment, Integer> {
 
@@ -17,4 +18,5 @@ public interface PaymentRepository extends JpaRepository<Payment, Integer> {
     void disablePayment(@Param("paymentId") int paymentId);
 
     List<Payment> findByStatus(Boolean status);
+    Optional<Payment> findById(Integer paymentId);
 }
