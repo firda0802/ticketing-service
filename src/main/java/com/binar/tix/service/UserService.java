@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.binar.tix.payload.ReqUpdateUser;
+import com.binar.tix.payload.RespLogin;
 import org.springframework.security.core.userdetails.User;
 
 
@@ -26,10 +27,11 @@ public interface UserService {
 
     void addRole(RoleUser name);
 
+    String generateToken(int userId, String email, String role);
     List<RoleUser> getAllRole();
     void deleteUser(int userId);
     Boolean updateUser(int userId, ReqUpdateUser req);
     String registerUser(ReqSigninup req);
     Optional<User> validateSession(String session);
-    String login(ReqSigninup req);
+    RespLogin login(ReqSigninup req);
 }

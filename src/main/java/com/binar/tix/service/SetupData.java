@@ -399,7 +399,7 @@ public class SetupData {
             jktFirstClass.setType(typeFirstClass);
             jktFirstClass.setLuggageCapacity(50);
             jktFirstClass.setAirportId(airportJakarta.getIdAirport());
-            jktFirstClass.setSeats(generateSeats(economiClass.getClassId(), businessClass.getClassId()));
+            jktFirstClass.setSeats(generateSeatsFirstClass());
             initService.initAirplanes(jktFirstClass);
 
             jktEconomyBussines.setType(typeA);

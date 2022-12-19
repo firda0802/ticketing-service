@@ -11,6 +11,7 @@ import com.binar.tix.enums.RoleEnum;
 import com.binar.tix.payload.ReqCreateNotification;
 import com.binar.tix.payload.ReqSigninup;
 import com.binar.tix.payload.ReqUpdateUser;
+import com.binar.tix.payload.RespLogin;
 import com.binar.tix.repository.RoleUserRepository;
 import com.binar.tix.repository.UsersRepository;
 import com.binar.tix.utility.Constant;
@@ -67,6 +68,8 @@ public class UserServiceImpl implements UserService {
         roleRepository.saveAndFlush(role);
     }
 
+
+
     @Override
     public List<RoleUser> getAllRole() {
         return roleRepository.findAll();
@@ -114,18 +117,7 @@ public class UserServiceImpl implements UserService {
             notif.setContent("Nikmati layanan pemesanan tiket pesawat secara online disini");
             notificationService.createNotifUsers(notif);
 
-            Key hmacKey = new SecretKeySpec(Base64.getDecoder().decode(secretKey),
-                    SignatureAlgorithm.HS256.getJcaName());
-            Instant now = Instant.now();
-            return Jwts.builder()
-                    .claim("userId", newUsers.getUserId())
-                    .claim(Constant.EMAIL, newUsers.getEmail())
-                    .claim("role", RoleEnum.BUYER.name())
-                    .setId(UUID.randomUUID().toString())
-                    .setIssuedAt(Date.from(now))
-                    .setExpiration(Date.from(now.plus(30, ChronoUnit.DAYS)))
-                    .signWith(hmacKey)
-                    .compact();
+            return generateToken(newUsers.getUserId(), newUsers.getEmail(), RoleEnum.BUYER.name());
         }
     }
 
@@ -155,24 +147,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String login(ReqSigninup req) {
+    public RespLogin login(ReqSigninup req) {
         Optional<Users> cekUser = usersRepository.findByEmailIgnoreCaseAndPasswordAndStatus(req.getEmail(), MD5.encrypt(req.getPassword()), true);
         if (cekUser.isPresent()) {
             Users u = cekUser.get();
-            Key hmacKey = new SecretKeySpec(Base64.getDecoder().decode(secretKey),
-                    SignatureAlgorithm.HS256.getJcaName());
-            Instant now = Instant.now();
-            return Jwts.builder()
-                    .claim("userId", u.getUserId())
-                    .claim(Constant.EMAIL, u.getEmail())
-                    .claim("role", u.getRole().getRoleName())
-                    .setId(UUID.randomUUID().toString())
-                    .setIssuedAt(Date.from(now))
-                    .setExpiration(Date.from(now.plus(30, ChronoUnit.DAYS)))
-                    .signWith(hmacKey)
-                    .compact();
+            RespLogin login = new RespLogin();
+            login.setToken(generateToken(u.getUserId(), u.getEmail(), u.getRole().getRoleName()));
+            login.setRole(u.getRole().getRoleName());
+            return login;
         } else {
-            return "";
+            return null;
         }
+    }
+
+    @Override
+    public String generateToken(int userId, String email, String role) {
+        Key hmacKey = new SecretKeySpec(Base64.getDecoder().decode(secretKey),
+                SignatureAlgorithm.HS256.getJcaName());
+        Instant now = Instant.now();
+        return Jwts.builder()
+                .claim("userId", userId)
+                .claim(Constant.EMAIL, email)
+                .claim("role", role)
+                .setId(UUID.randomUUID().toString())
+                .setIssuedAt(Date.from(now))
+                .setExpiration(Date.from(now.plus(30, ChronoUnit.DAYS)))
+                .signWith(hmacKey)
+                .compact();
     }
 }

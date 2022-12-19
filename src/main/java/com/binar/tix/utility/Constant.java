@@ -6,6 +6,7 @@ public class Constant {
 
     private Constant() {}
 
+    public static final String AUTH = "Authorization";
     public  static final String DOMESTIK = "domestik";
     public  static final String INTER = "international";
     public static final String EMAIL = "email";

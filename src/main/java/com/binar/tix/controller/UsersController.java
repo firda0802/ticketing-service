@@ -73,13 +73,11 @@ public class UsersController {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(req));
         log.info(writeLog);
 
-        String token = userService.login(req);
+        RespLogin token = userService.login(req);
         Messages resp = new Messages();
-        if (token.length() > 0) {
+        if (token != null) {
             resp.success();
-            RespLogin respLogin = new RespLogin();
-            respLogin.setToken(token);
-            resp.setData(respLogin);
+            resp.setData(token);
         } else {
             resp.setResponseCode(Constant.NO_CONTENT);
             resp.setResponseMessage("Email atau password salah");
