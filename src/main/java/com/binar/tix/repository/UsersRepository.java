@@ -26,7 +26,7 @@ public interface UsersRepository extends JpaRepository<Users, Integer> {
     List<Users> findByRoleId(int roleId);
 
     Optional<Users> findByUserIdAndStatus(int userId, Boolean status);
-    Optional<Users> findByEmailIgnoreCaseAndPasswordAndStatusAndRoleId(String email, String password, Boolean status, int roleId);
+    Optional<Users> findByEmailIgnoreCaseAndPasswordAndStatus(String email, String password, Boolean status);
 
     @Transactional
     @Modifying(clearAutomatically = true)

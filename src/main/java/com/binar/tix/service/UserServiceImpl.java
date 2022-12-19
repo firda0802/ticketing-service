@@ -11,6 +11,7 @@ import com.binar.tix.enums.RoleEnum;
 import com.binar.tix.payload.ReqCreateNotification;
 import com.binar.tix.payload.ReqSigninup;
 import com.binar.tix.payload.ReqUpdateUser;
+import com.binar.tix.payload.RespLogin;
 import com.binar.tix.repository.RoleUserRepository;
 import com.binar.tix.repository.UsersRepository;
 import com.binar.tix.utility.Constant;
@@ -142,13 +143,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String login(ReqSigninup req, int type) {
-        Optional<Users> cekUser = usersRepository.findByEmailIgnoreCaseAndPasswordAndStatusAndRoleId(req.getEmail(), MD5.encrypt(req.getPassword()), true,  type);
+    public RespLogin login(ReqSigninup req) {
+        Optional<Users> cekUser = usersRepository.findByEmailIgnoreCaseAndPasswordAndStatus(req.getEmail(), MD5.encrypt(req.getPassword()), true);
         if (cekUser.isPresent()) {
             Users u = cekUser.get();
-            return generateToken(u.getUserId(), u.getRole().getRoleName(), u.getEmail());
+            RespLogin login = new RespLogin();
+            login.setToken(generateToken(u.getUserId(), u.getRole().getRoleName(), u.getEmail()));
+            login.setRole(u.getRole().getRoleName());
+            return login;
         } else {
-            return "";
+            return null;
         }
     }
 
