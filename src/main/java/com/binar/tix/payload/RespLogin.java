@@ -15,4 +15,5 @@ import lombok.Setter;
 @Getter @Setter
 public class RespLogin {
     private String token;
+    private String role;
 }
