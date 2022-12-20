@@ -8,10 +8,7 @@ package com.binar.tix.service;
 import com.binar.tix.entities.RoleUser;
 import com.binar.tix.entities.Users;
 import com.binar.tix.enums.RoleEnum;
-import com.binar.tix.payload.ReqCreateNotification;
-import com.binar.tix.payload.ReqSigninup;
-import com.binar.tix.payload.ReqUpdateUser;
-import com.binar.tix.payload.RespLogin;
+import com.binar.tix.payload.*;
 import com.binar.tix.repository.RoleUserRepository;
 import com.binar.tix.repository.UsersRepository;
 import com.binar.tix.utility.Constant;
@@ -143,7 +140,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public RespLogin login(ReqSigninup req) {
+    public RespLogin login(ReqLogin req) {
         Optional<Users> cekUser = usersRepository.findByEmailIgnoreCaseAndPasswordAndStatus(req.getEmail(), MD5.encrypt(req.getPassword()), true);
         if (cekUser.isPresent()) {
             Users u = cekUser.get();
