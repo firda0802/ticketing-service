@@ -6,25 +6,19 @@
 package com.binar.tix.controller;
 
 import com.binar.tix.entities.NotifCategory;
-import com.binar.tix.entities.Notifications;
-import com.binar.tix.payload.*;
+import com.binar.tix.payload.Messages;
+import com.binar.tix.payload.ReqNotifCategory;
 import com.binar.tix.service.NotificationService;
-import com.binar.tix.utility.Constant;
 import com.binar.tix.utility.HttpUtility;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import javax.servlet.http.HttpServletRequest;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import java.util.List;
 
 /**

@@ -15,17 +15,25 @@ import com.binar.tix.utility.Constant;
 import com.binar.tix.utility.HttpUtility;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
@@ -47,8 +55,21 @@ public class UsersController {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Registrasi User",
+                            description = "Jika registrasi berhasil, akan mendapatkan return token yang digunakan untuk mengakses api lainnya yang memerlukan header Authorization sesuai dengan role-nya.",
+                            value = "{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Sukses\",\n" +
+                                    "    \"data\": \"eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjQ1LCJlbWFpbCI6InJpa29qYW51YXJzYXdhbHVkc3NpbnNzQGdtYWlsLmNvbSIsInJvbGUiOiJCVVlFUiIsImp0aSI6ImFkOWM4MzllLWJiMWEtNDBlMS1iZGM3LWY2NDk3MzMwMDM5YSIsImlhdCI6MTY3MTQzMzQ4OCwiZXhwIjoxNjc0MDI1NDg4fQ.rC9MG_QV1zhR9f78GYL_JCsNGq1a3iGYu9SDCOE7jck\"\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @PostMapping(value = "/ext/register")
-    public ResponseEntity<Messages> register(@RequestBody ReqSigninup req, HttpServletRequest httpServletRequest) throws JsonProcessingException {
+    public ResponseEntity<Messages> register(@RequestBody(description = "User harus melakukan registrasi untuk mendapatkan akun yang bisa digunakan login pada aplikasi. Email hanya bisa didaftarkan 1x saja dan alamat email harus valid.", required = true,
+            content = @Content(
+                    schema = @Schema(implementation = ReqSigninup.class)))
+                                             @Valid ReqSigninup req, HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(req));
         log.info(writeLog);
 
@@ -74,8 +95,24 @@ public class UsersController {
         }
     }
 
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Registrasi User",
+                            description = "Ketika login berhasil, maka akan mendapatkan token yang digunakan untuk mengakses api lainnya yang memerlukan header Authorization sesuai dengan rolenya",
+                            value = "{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Sukses\",\n" +
+                                    "    \"data\": {\n" +
+                                    "        \"token\": \"eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjM4LCJlbWFpbCI6ImhlbGxvQGdtYWlsLmNvbSIsInJvbGUiOiJCVVlFUiIsImp0aSI6IjYyMGVkMWQ5LTA0MzAtNDA1Ni1hM2ZhLTBjOGFjMjczYjcyNyIsImlhdCI6MTY3MTQzMzQ0NiwiZXhwIjoxNjc0MDI1NDQ2fQ.uA1XLoZMEr2N7TF3YZjwu48sdOiSJQssCHIhRBRl4hU\",\n" +
+                                    "        \"role\": \"BUYER\"\n" +
+                                    "    }\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @PostMapping(value = "/ext/login")
-    public ResponseEntity<Messages> login(@RequestBody ReqSigninup req, HttpServletRequest httpServletRequest) throws JsonProcessingException {
+    public ResponseEntity<Messages> login(@RequestBody(description = "Proses login hanya valid ketika data user sesuai dengan data di database. Dengan email dan password yang valid.", required = true,
+            content = @Content(
+                    schema = @Schema(implementation = ReqLogin.class)))
+                                              @Valid ReqLogin req, HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(req));
         log.info(writeLog);
 
