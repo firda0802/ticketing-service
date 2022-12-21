@@ -22,7 +22,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @Slf4j
 @RestController

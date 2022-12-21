@@ -18,7 +18,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import java.util.List;
 
 /**
