@@ -51,6 +51,31 @@ public class UserServiceImpl implements UserService {
     NotificationService notificationService;
 
     @Override
+    public String registerUser(ReqSigninup req) {
+        Optional<Users> cekUser = usersRepository.findByEmailIgnoreCaseAndStatusAndRoleId(req.getEmail(), true, 1);
+        if (cekUser.isPresent()) {
+            return "";
+        } else {
+            Users newUsers = new Users();
+            newUsers.setStatus(Boolean.TRUE);
+            newUsers.setEmail(req.getEmail());
+            newUsers.setFullName(req.getFullName());
+            newUsers.setPassword(MD5.encrypt(req.getPassword()));
+            newUsers.setRoleId(1);
+            usersRepository.saveAndFlush(newUsers);
+
+            ReqCreateNotification notif = new ReqCreateNotification();
+            notif.setUserId(newUsers.getUserId());
+            notif.setNotificationCategoryId(1);
+            notif.setTitle("Hai! Selamat datang di Safety Fly");
+            notif.setContent("Nikmati layanan pemesanan tiket pesawat secara online disini");
+            notificationService.createNotifUsers(notif);
+
+            return generateToken(newUsers.getUserId(), RoleEnum.BUYER.name(), newUsers.getEmail());
+        }
+    }
+
+    @Override
     public Users getOneUsers(int userId) {
         Users users = new Users();
         Optional<Users> getUser = usersRepository.findByUserIdAndStatus(userId, true);
@@ -88,31 +113,6 @@ public class UserServiceImpl implements UserService {
             return true;
         } else {
             return false;
-        }
-    }
-
-    @Override
-    public String registerUser(ReqSigninup req) {
-        Optional<Users> cekUser = usersRepository.findByEmailIgnoreCaseAndStatusAndRoleId(req.getEmail(), true, 1);
-        if (cekUser.isPresent()) {
-            return "";
-        } else {
-            Users newUsers = new Users();
-            newUsers.setStatus(Boolean.TRUE);
-            newUsers.setEmail(req.getEmail());
-            newUsers.setFullName(req.getFullName());
-            newUsers.setPassword(MD5.encrypt(req.getPassword()));
-            newUsers.setRoleId(1);
-            usersRepository.saveAndFlush(newUsers);
-
-            ReqCreateNotification notif = new ReqCreateNotification();
-            notif.setUserId(newUsers.getUserId());
-            notif.setNotificationCategoryId(1);
-            notif.setTitle("Hai! Selamat datang di Safety Fly");
-            notif.setContent("Nikmati layanan pemesanan tiket pesawat secara online disini");
-            notificationService.createNotifUsers(notif);
-
-            return generateToken(newUsers.getUserId(), RoleEnum.BUYER.name(), newUsers.getEmail());
         }
     }
 
