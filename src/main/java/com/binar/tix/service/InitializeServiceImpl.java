@@ -47,6 +47,11 @@ public class InitializeServiceImpl implements InitializeService{
     UsersRepository usersRepository;
 
     @Override
+    public List<ClassSeats> listClass() {
+        return classRepository.findAll();
+    }
+
+    @Override
     public void initPricing(Pricing req) {
         pricingRepository.saveAndFlush(req);
     }

@@ -3,12 +3,9 @@ package com.binar.tix.payload;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
-public class ReqCreateAirport {
+@Getter @Setter
+public class ReqUpdateClass {
     private int id;
     private String name;
-    private String address;
-
-    private int cityId;
+    private int price;
 }
