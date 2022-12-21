@@ -103,7 +103,7 @@ public class UserServiceImpl implements UserService {
             newUsers.setFullName(req.getFullName());
             newUsers.setPassword(MD5.encrypt(req.getPassword()));
             newUsers.setRoleId(1);
-            usersRepository.save(newUsers);
+            usersRepository.saveAndFlush(newUsers);
 
             ReqCreateNotification notif = new ReqCreateNotification();
             notif.setUserId(newUsers.getUserId());

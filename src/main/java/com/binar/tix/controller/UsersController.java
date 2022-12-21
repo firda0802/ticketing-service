@@ -21,7 +21,6 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -58,7 +57,7 @@ public class UsersController {
     @Operation(responses = {
             @ApiResponse(responseCode = "200", content = @Content(examples = {
                     @ExampleObject(name = "Registrasi User",
-                            description = "Jika registrasi berhasil, akan mendapatkan return token yang digunakan untuk mengakses api lainnya yang memerlukan header Authorization sesuai dengan role-nya.",
+                            description = "User harus melakukan registrasi untuk mendapatkan akun yang bisa digunakan login pada aplikasi. Email hanya bisa didaftarkan 1x saja dan alamat email harus valid. Jika registrasi berhasil, akan mendapatkan return token yang digunakan untuk mengakses api lainnya yang memerlukan header Authorization sesuai dengan role-nya.",
                             value = "{\n" +
                                     "    \"responseCode\": 200,\n" +
                                     "    \"responseMessage\": \"Sukses\",\n" +
@@ -66,10 +65,7 @@ public class UsersController {
                                     "}")
             }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @PostMapping(value = "/ext/register")
-    public ResponseEntity<Messages> register(@RequestBody(description = "User harus melakukan registrasi untuk mendapatkan akun yang bisa digunakan login pada aplikasi. Email hanya bisa didaftarkan 1x saja dan alamat email harus valid.", required = true,
-            content = @Content(
-                    schema = @Schema(implementation = ReqSigninup.class)))
-                                             @Valid ReqSigninup req, HttpServletRequest httpServletRequest) throws JsonProcessingException {
+    public ResponseEntity<Messages> register(@RequestBody ReqSigninup req, HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(req));
         log.info(writeLog);
 
@@ -98,7 +94,7 @@ public class UsersController {
     @Operation(responses = {
             @ApiResponse(responseCode = "200", content = @Content(examples = {
                     @ExampleObject(name = "Registrasi User",
-                            description = "Ketika login berhasil, maka akan mendapatkan token yang digunakan untuk mengakses api lainnya yang memerlukan header Authorization sesuai dengan rolenya",
+                            description = "Proses login hanya valid ketika data user sesuai dengan data di database. Dengan email dan password yang valid. Ketika login berhasil, maka akan mendapatkan token yang digunakan untuk mengakses api lainnya yang memerlukan header Authorization sesuai dengan rolenya",
                             value = "{\n" +
                                     "    \"responseCode\": 200,\n" +
                                     "    \"responseMessage\": \"Sukses\",\n" +
@@ -109,10 +105,7 @@ public class UsersController {
                                     "}")
             }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @PostMapping(value = "/ext/login")
-    public ResponseEntity<Messages> login(@RequestBody(description = "Proses login hanya valid ketika data user sesuai dengan data di database. Dengan email dan password yang valid.", required = true,
-            content = @Content(
-                    schema = @Schema(implementation = ReqLogin.class)))
-                                              @Valid ReqLogin req, HttpServletRequest httpServletRequest) throws JsonProcessingException {
+    public ResponseEntity<Messages> login(@RequestBody ReqLogin req, HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(req));
         log.info(writeLog);
 
