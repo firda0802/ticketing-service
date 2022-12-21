@@ -2,7 +2,7 @@ package com.binar.tix.controller;
 
 import com.binar.tix.payload.Messages;
 import com.binar.tix.payload.ReqCreateSchedule;
-import com.binar.tix.service.ScheduleService;
+import com.binar.tix.service.CrudService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 public class ScheduleController {
 
     @Autowired
-    ScheduleService scheduleService;
+    CrudService scheduleService;
 
     @Operation(summary="Menambahkan Jadwal")
     @ApiResponses(value = {

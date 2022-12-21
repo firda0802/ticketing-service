@@ -2,7 +2,7 @@ package com.binar.tix.controller;
 
 import com.binar.tix.payload.Messages;
 import com.binar.tix.payload.ReqCreateSeats;
-import com.binar.tix.service.SeatsService;
+import com.binar.tix.service.CrudService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 public class SeatsController {
 
     @Autowired
-    SeatsService seatsService;
+    CrudService seatsService;
 
     @Operation(summary="Menambahkan Kursi")
     @ApiResponses(value = {

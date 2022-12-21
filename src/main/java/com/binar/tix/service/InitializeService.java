@@ -15,6 +15,7 @@ import java.util.List;
  */
 public interface InitializeService {
 
+    List<ClassSeats> listClass();
     void initPricing(Pricing req);
     List<Airport> getAirport();
     void initAirport(Airport airport);

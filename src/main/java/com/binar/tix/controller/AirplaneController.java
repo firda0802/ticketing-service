@@ -2,7 +2,7 @@ package com.binar.tix.controller;
 
 import com.binar.tix.payload.Messages;
 import com.binar.tix.payload.ReqCreateAirplane;
-import com.binar.tix.service.AirplaneService;
+import com.binar.tix.service.CrudService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 public class AirplaneController {
 
     @Autowired
-    AirplaneService airplaneService;
+    CrudService crudService;
 
     @Operation(summary="Menambahkan Pesawat")
     @ApiResponses(value = {
@@ -36,7 +36,7 @@ public class AirplaneController {
                             schema = @Schema(implementation = Response.class))})})
     @PostMapping("/add-airplane")
     public ResponseEntity<Messages> create(@RequestBody ReqCreateAirplane airplane){
-        airplaneService.saveAirplane(airplane);
+        crudService.saveAirplane(airplane);
         Messages messages= new Messages();
         messages.setResponseCode(201);
         messages.setResponseMessage("Berhasil Ditambahkan");
@@ -60,7 +60,7 @@ public class AirplaneController {
         Messages messages= new Messages();
         messages.setResponseCode(200);
         messages.setResponseMessage("Berhasil Ditampilkan");
-        messages.setData(airplaneService.findAllAirplanes());
+        messages.setData(crudService.findAllAirplanes());
         return ResponseEntity.ok().body(messages);
     }
 
@@ -78,9 +78,9 @@ public class AirplaneController {
     @PutMapping("/update-airplane/{airplaneId}")
     public ResponseEntity<Messages> update(@PathVariable Integer airplaneId, @RequestBody ReqCreateAirplane airplane){
         Messages messages= new Messages();
-        Boolean status = airplaneService.updateAirplane(airplaneId, airplane);
+        Boolean status = crudService.updateAirplane(airplaneId, airplane);
         if (Boolean.TRUE.equals(status)) {
-            airplaneService.updateAirplane(airplaneId, airplane);
+            crudService.updateAirplane(airplaneId, airplane);
             messages.setResponseCode(200);
             messages.setResponseMessage("Berhasil Diupdate");
         }
@@ -105,9 +105,9 @@ public class AirplaneController {
     @DeleteMapping("/delete-airplane/{airplaneId}")
     public ResponseEntity<Messages> delete(@PathVariable Integer airplaneId){
         Messages messages= new Messages();
-        Boolean status = airplaneService.deleteAirplane(airplaneId);
+        Boolean status = crudService.deleteAirplane(airplaneId);
         if (Boolean.TRUE.equals(status)) {
-            airplaneService.deleteAirplane(airplaneId);
+            crudService.deleteAirplane(airplaneId);
             messages.setResponseCode(200);
             messages.setResponseMessage("Berhasil Dihapus");
         }
