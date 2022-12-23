@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
     NotificationService notificationService;
 
     @Override
-    public String registerUser(ReqSigninup req) {
+    public String registerUser(ReqRegister req) {
         Optional<Users> cekUser = usersRepository.findByEmailIgnoreCaseAndStatusAndRoleId(req.getEmail(), true, 1);
         if (cekUser.isPresent()) {
             return "";
