@@ -25,7 +25,6 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/booking")
 public class BookingController {
 
     @Autowired
@@ -86,7 +85,7 @@ public class BookingController {
         return ResponseEntity.ok().body(resp);
     }
 
-    @GetMapping(value = "/citizenship")
+    @GetMapping(value = "/booking/citizenship")
     public ResponseEntity<Messages> citizenship(HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString("-"));
         log.info(writeLog);
@@ -116,7 +115,7 @@ public class BookingController {
 
     }
 
-    @GetMapping(value = "/chose-seats/{scheduleId}")
+    @GetMapping(value = "/booking/chose-seats/{scheduleId}")
     public ResponseEntity<Messages> seatsAvailable(@PathVariable(name = "scheduleId") int scheduleId, HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(scheduleId));
         log.info(writeLog);
@@ -127,7 +126,7 @@ public class BookingController {
         return ResponseEntity.ok().body(resp);
     }
 
-    @PostMapping(value = "/create-order")
+    @PostMapping(value = "/booking/create-order")
     public ResponseEntity<Messages> createOrder(@RequestBody ReqCreateOrder req, HttpServletRequest httpServletRequest) throws WriterException, IOException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(req));
         log.info(writeLog);
@@ -164,7 +163,7 @@ public class BookingController {
     }
 
 
-    @GetMapping(value = "/history")
+    @GetMapping(value = "/booking/history")
     public ResponseEntity<Messages> historyBooking(@RequestParam(name = "limit") int limit, @RequestParam(name = "pageNumber") int pageNumber, HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString("limit : " + limit + " , pageNumber : " + pageNumber));
         log.info(writeLog);
@@ -214,7 +213,7 @@ public class BookingController {
         }
     }
 
-    @GetMapping(value = "/history-detail/{invoiceNo}")
+    @GetMapping(value = "/booking/history-detail/{invoiceNo}")
     public ResponseEntity<Messages> detailHistory(@PathVariable(name = "invoiceNo") String invoiceNo, HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(invoiceNo));
         log.info(writeLog);

@@ -7,6 +7,5 @@ import lombok.Setter;
 public class RespDataGoogle {
     private String fullName;
     private String email;
-    private String type;
     private String token;
 }

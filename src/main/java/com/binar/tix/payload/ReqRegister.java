@@ -15,7 +15,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class ReqSigninup {
+public class ReqRegister {
 
     private String fullName;
 
