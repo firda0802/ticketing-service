@@ -18,6 +18,7 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI customOpenAPI() {
         ArrayList<Server> servers = new ArrayList<>();
+        servers.add(new Server().url("https://ticketing-service-bej5.up.railway.app/ticketing-service").description("Production Server"));
         servers.add(new Server().url("https://tix-service-bej5.up.railway.app/ticketing-service").description("Staging Server"));
         servers.add(new Server().url("http:localhost:8080/ticketing-service").description("Local Server Server"));
         return new OpenAPI()
