@@ -2,14 +2,17 @@ package com.binar.tix.service;
 
 import com.binar.tix.entities.Users;
 import com.binar.tix.payload.Messages;
+import com.binar.tix.payload.ReqRegister;
 import com.binar.tix.payload.RespDataGoogle;
 import com.binar.tix.utility.Constant;
+import com.binar.tix.utility.MD5;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,11 +44,16 @@ public class GoogleOauth {
             data.setEmail(email);
             Users user = userService.checkEmail(email);
             if (user != null) {
-                data.setType("Login");
+                //login
                 data.setToken(userService.generateToken(user.getUserId(), user.getRole().getRoleName(), user.getEmail()));
             } else {
-                data.setType("Register");
-                data.setToken("");
+                //register
+                ReqRegister req = new ReqRegister();
+                req.setEmail(data.getEmail());
+                req.setPassword(MD5.encrypt(RandomStringUtils.randomAlphanumeric(10)));
+                req.setFullName(data.getFullName());
+                userService.registerUser(req);
+                data.setToken(userService.registerUser(req));
             }
             resp.setData(data);
 
