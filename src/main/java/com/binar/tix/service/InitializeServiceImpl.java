@@ -5,11 +5,10 @@ import com.binar.tix.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.List;
 
 @Service
-public class InitializeServiceImpl implements InitializeService{
+public class InitializeServiceImpl implements InitializeService {
 
     @Autowired
     AirportRepository airportRepository;
@@ -52,8 +51,8 @@ public class InitializeServiceImpl implements InitializeService{
     }
 
     @Override
-    public void initPricing(Pricing req) {
-        pricingRepository.saveAndFlush(req);
+    public Pricing initPricing(Pricing req) {
+       return pricingRepository.saveAndFlush(req);
     }
 
     @Override
@@ -62,13 +61,13 @@ public class InitializeServiceImpl implements InitializeService{
     }
 
     @Override
-    public void initAirport(Airport airport) {
-        airportRepository.saveAndFlush(airport);
+    public Airport initAirport(Airport airport) {
+        return airportRepository.saveAndFlush(airport);
     }
 
     @Override
-    public void initAirplanes(Airplane airplane) {
-        airplaneRepository.saveAndFlush(airplane);
+    public Airplane initAirplanes(Airplane airplane) {
+        return airplaneRepository.saveAndFlush(airplane);
     }
 
     @Override
@@ -77,13 +76,13 @@ public class InitializeServiceImpl implements InitializeService{
     }
 
     @Override
-    public void initClassSeats(ClassSeats classSeats) {
-        classRepository.saveAndFlush(classSeats);
+    public ClassSeats initClassSeats(ClassSeats classSeats) {
+        return classRepository.saveAndFlush(classSeats);
     }
 
     @Override
-    public void initDestinationCity(DestinationCity destinationCity) {
-        destinationCityRepository.saveAndFlush(destinationCity);
+    public DestinationCity initDestinationCity(DestinationCity destinationCity) {
+        return destinationCityRepository.saveAndFlush(destinationCity);
     }
 
     @Override
@@ -92,8 +91,8 @@ public class InitializeServiceImpl implements InitializeService{
     }
 
     @Override
-    public void initDestination(List<Destination> destination) {
-        destinationRepository.saveAll(destination);
+    public List<Destination> initDestination(List<Destination> destination) {
+        return destinationRepository.saveAll(destination);
     }
 
     @Override
@@ -102,8 +101,8 @@ public class InitializeServiceImpl implements InitializeService{
     }
 
     @Override
-    public void initPassengerType(PassengerType req) {
-        passengerTypeRepository.saveAndFlush(req);
+    public PassengerType initPassengerType(PassengerType req) {
+        return passengerTypeRepository.saveAndFlush(req);
     }
 
     @Override
@@ -112,14 +111,14 @@ public class InitializeServiceImpl implements InitializeService{
     }
 
     @Override
-    public void initSchedule(List<Schedule> req) {
-        scheduleRepository.saveAll(req);
+    public List<Schedule> initSchedule(List<Schedule> req) {
+        return scheduleRepository.saveAll(req);
     }
 
     @Override
-    public void initPayment(Payment payment) {
+    public Payment initPayment(Payment payment) {
         payment.setStatus(true);
-        paymentRepository.saveAndFlush(payment);
+        return paymentRepository.saveAndFlush(payment);
     }
 
     @Override
@@ -129,16 +128,12 @@ public class InitializeServiceImpl implements InitializeService{
 
     @Override
     public List<Citizenship> listCitizenship() {
-        List<Citizenship> list = citizenshipRepository.findAll();
-        if(!list.isEmpty()){
-            list.sort(Comparator.comparing(Citizenship::getName));
-        }
-        return list;
+        return citizenshipRepository.findAll();
     }
 
     @Override
-    public void initCitizenship(Citizenship req) {
-        citizenshipRepository.saveAndFlush(req);
+    public Citizenship initCitizenship(Citizenship req) {
+       return citizenshipRepository.saveAndFlush(req);
     }
 
     @Override
@@ -147,8 +142,8 @@ public class InitializeServiceImpl implements InitializeService{
     }
 
     @Override
-    public void initFacility(List<Facility> req) {
-        facilityRepository.saveAll(req);
+    public List<Facility> initFacility(List<Facility> req) {
+        return facilityRepository.saveAll(req);
     }
 
     @Override
@@ -157,7 +152,7 @@ public class InitializeServiceImpl implements InitializeService{
     }
 
     @Override
-    public void initAdmin(Users users) {
-        usersRepository.saveAndFlush(users);
+    public Users initAdmin(Users users) {
+        return usersRepository.saveAndFlush(users);
     }
 }

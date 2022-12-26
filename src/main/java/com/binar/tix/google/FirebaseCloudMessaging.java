@@ -1,4 +1,4 @@
-package com.binar.tix.service;
+package com.binar.tix.google;
 
 import com.binar.tix.payload.Messages;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -6,10 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.auth.oauth2.AccessToken;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.auth.oauth2.ServiceAccountCredentials;
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -20,12 +16,17 @@ import org.apache.logging.log4j.LogManager;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 /**
  *
  * @author Riko
  */
 @Service
-public class FCMService {
+public class FirebaseCloudMessaging {
 
     private final org.apache.logging.log4j.Logger log = LogManager.getLogger(this.getClass());
     private final ObjectMapper mapper = new ObjectMapper();

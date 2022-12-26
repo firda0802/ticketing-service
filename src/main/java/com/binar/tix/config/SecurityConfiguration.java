@@ -26,7 +26,8 @@ public class SecurityConfiguration {
 
     private static final RequestMatcher PROTECTED_URLS = new OrRequestMatcher(
             new AntPathRequestMatcher("/users/**"),
-            new AntPathRequestMatcher("/booking/**")
+            new AntPathRequestMatcher("/booking/**"),
+            new AntPathRequestMatcher("/admin/**")
     );
 
     SecurityAuthenticationProvider provider;
@@ -64,6 +65,7 @@ public class SecurityConfiguration {
                 .addFilterBefore(authenticationFilter(), AnonymousAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/users/**", "/booking/**").hasAnyAuthority(RoleEnum.BUYER.name())
+                .antMatchers("/admin/**").hasAnyAuthority(RoleEnum.ADMIN.name())
                 .anyRequest().permitAll()
                 .and()
                 .csrf().disable()

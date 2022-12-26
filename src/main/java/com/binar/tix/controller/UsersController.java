@@ -7,8 +7,8 @@ package com.binar.tix.controller;
 
 import com.binar.tix.entities.Notifications;
 import com.binar.tix.entities.Users;
+import com.binar.tix.google.SigninWithGoogle;
 import com.binar.tix.payload.*;
-import com.binar.tix.service.GoogleOauth;
 import com.binar.tix.service.NotificationService;
 import com.binar.tix.service.UserService;
 import com.binar.tix.utility.Constant;
@@ -48,7 +48,7 @@ public class UsersController {
     NotificationService notifService;
 
     @Autowired
-    GoogleOauth googleOauth;
+    SigninWithGoogle googleOauth;
 
     private final ObjectMapper mapper = new ObjectMapper();
 

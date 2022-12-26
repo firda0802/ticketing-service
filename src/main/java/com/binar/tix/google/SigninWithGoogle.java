@@ -1,9 +1,10 @@
-package com.binar.tix.service;
+package com.binar.tix.google;
 
 import com.binar.tix.entities.Users;
 import com.binar.tix.payload.Messages;
 import com.binar.tix.payload.ReqRegister;
 import com.binar.tix.payload.RespDataGoogle;
+import com.binar.tix.service.UserService;
 import com.binar.tix.utility.Constant;
 import com.binar.tix.utility.MD5;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
@@ -22,7 +23,7 @@ import java.util.Collections;
 
 @Slf4j
 @Service
-public class GoogleOauth {
+public class SigninWithGoogle {
 
     @Autowired
     UserService userService;
