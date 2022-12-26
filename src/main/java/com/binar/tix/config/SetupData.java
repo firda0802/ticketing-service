@@ -1,7 +1,8 @@
-package com.binar.tix.service;
+package com.binar.tix.config;
 
 import com.binar.tix.entities.*;
 import com.binar.tix.payload.ScheduleAirplane;
+import com.binar.tix.service.InitializeService;
 import com.binar.tix.utility.Constant;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
@@ -11,7 +12,10 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Service
 @Slf4j

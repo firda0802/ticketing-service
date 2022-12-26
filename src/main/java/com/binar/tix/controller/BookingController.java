@@ -1,5 +1,6 @@
 package com.binar.tix.controller;
 
+import com.binar.tix.entities.Citizenship;
 import com.binar.tix.entities.Orders;
 import com.binar.tix.payload.*;
 import com.binar.tix.service.BookingService;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Slf4j
@@ -72,7 +74,7 @@ public class BookingController {
         return ResponseEntity.ok().body(resp);
     }
 
-    @GetMapping(value = "/payment_type")
+    @GetMapping(value = "/booking/payment_type")
     public ResponseEntity<Messages> paymentType(HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString("-"));
         log.info(writeLog);
@@ -92,7 +94,9 @@ public class BookingController {
 
         Messages resp = new Messages();
         resp.success();
-        resp.setData(initService.listCitizenship());
+        List<Citizenship> list = initService.listCitizenship();
+        list.sort(Comparator.comparing(Citizenship::getName));
+        resp.setData(list);
         String writeLogResp = HttpUtility.writeLogResp(mapper.writeValueAsString(new Messages(resp.getResponseCode(), resp.getResponseMessage())));
         log.info(writeLogResp);
         return ResponseEntity.ok().body(resp);

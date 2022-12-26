@@ -4,7 +4,6 @@ import com.binar.tix.entities.*;
 import com.binar.tix.enums.RoleEnum;
 import com.binar.tix.service.InitializeService;
 import com.binar.tix.service.NotificationService;
-import com.binar.tix.service.SetupData;
 import com.binar.tix.service.UserService;
 import com.binar.tix.utility.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
