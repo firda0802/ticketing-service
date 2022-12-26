@@ -23,7 +23,6 @@ public interface NotificationService {
 
     Page<Notifications> getNotifUsers(Pageable paging, int userId);
 
-
     int countNotifUsers(int userId);
     void createUpdateNotifCategory(int id, String name);
 

@@ -3,6 +3,7 @@ package com.binar.tix.service;
 import com.binar.tix.entities.NotifCategory;
 import com.binar.tix.entities.Notifications;
 import com.binar.tix.payload.ReqCreateNotification;
+import com.binar.tix.projections.NotificationCount;
 import com.binar.tix.repository.NotifCategoryRepository;
 import com.binar.tix.repository.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,12 @@ public class NotificationServiceImpl implements NotificationService{
 
     @Override
     public int countNotifUsers(int idUsers) {
-        return notifRepository.getCount(idUsers).getJumlah();
+        NotificationCount notificationCount = notifRepository.getCount(idUsers);
+        if(notificationCount != null){
+            return notifRepository.getCount(idUsers).getJumlah();
+        }else{
+            return 0;
+        }
     }
 
     @Override
