@@ -151,7 +151,7 @@ public class BookingController {
                             "code\": AF\"\n" +
                             "}")
             }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
-    @GetMapping(value = "/booking//citizenship")
+    @GetMapping(value = "/booking/citizenship")
     public ResponseEntity<Messages> citizenship(HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString("-"));
         log.info(writeLog);
