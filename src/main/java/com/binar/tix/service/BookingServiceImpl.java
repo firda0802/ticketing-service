@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Pageable;
 
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -326,7 +328,8 @@ public class BookingServiceImpl implements BookingService {
         StrongTextEncryptor textEncryptor = new StrongTextEncryptor();
         textEncryptor.setPassword(Constant.ENCRYPT_KEY);
         try {
-            String decryptToken = textEncryptor.decrypt(token);
+            String result = URLDecoder.decode(token, StandardCharsets.UTF_8);
+            String decryptToken = textEncryptor.decrypt(result);
             Optional<Orders> data = ordersRepository.findById(decryptToken);
             return data.isPresent();
         } catch (Exception e) {

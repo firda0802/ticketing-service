@@ -13,6 +13,8 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +28,10 @@ public class QrCode {
         StrongTextEncryptor textEncryptor = new StrongTextEncryptor();
         textEncryptor.setPassword(Constant.ENCRYPT_KEY);
         String qrCodeUrl = "";
-        BitMatrix bitMatrix = new QRCodeWriter().encode(textEncryptor.encrypt(invoiceNo), BarcodeFormat.QR_CODE, 250, 250);
+        String result = textEncryptor.encrypt(invoiceNo);
+        String key = URLEncoder.encode(result, StandardCharsets.UTF_8);
+
+        BitMatrix bitMatrix = new QRCodeWriter().encode(Constant.STAGING_QR+key, BarcodeFormat.QR_CODE, 250, 250);
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         MatrixToImageWriter.writeToStream(bitMatrix, "png", out);
 
