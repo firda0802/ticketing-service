@@ -352,7 +352,7 @@ public class BookingController {
                     } else {
                         h.setBookingBy("Ny. " + o.getBookingBy());
                     }
-
+                    h.setQrCodeUrl(o.getQrCodeUrl());
                     h.setPaymentDate(o.getPaymentDate());
                     h.setPaymentName(o.getPayment().getPaymentMethod());
                     h.setTotalPerson(o.getOrdersDetails().size());
@@ -421,7 +421,7 @@ public class BookingController {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(tokenQr));
         log.info(writeLog);
 
-        boolean status = bookingService.validateTokenQr(tokenQr);
+        boolean status = bookingService.validateTokenQr(tokenQr.replace(":",""));
         Messages resp = new Messages();
         if (status) {
             resp.setResponseCode(Constant.OK);

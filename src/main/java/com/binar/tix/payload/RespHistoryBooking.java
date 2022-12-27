@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 public class RespHistoryBooking {
 
     private String invoiceNo;
+    private String qrCodeUrl;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+7")
     private LocalDateTime paymentDate;
     private String bookingBy;
