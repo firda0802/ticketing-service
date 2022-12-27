@@ -1,34 +1,7 @@
 package com.binar.tix.controller;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.binar.tix.entities.Orders;
-import com.binar.tix.payload.Messages;
-import com.binar.tix.payload.PagingResponse;
-import com.binar.tix.payload.ReqCreateOrder;
-import com.binar.tix.payload.ReqShowBooking;
-import com.binar.tix.payload.RespCreateOrder;
-import com.binar.tix.payload.RespHistoryBooking;
-import com.binar.tix.payload.RespScheduleReturn;
+import com.binar.tix.payload.*;
 import com.binar.tix.service.BookingService;
 import com.binar.tix.service.InitializeService;
 import com.binar.tix.utility.Constant;
@@ -36,17 +9,28 @@ import com.binar.tix.utility.HttpUtility;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.zxing.WriterException;
-
-import lombok.extern.slf4j.Slf4j;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/booking")
 public class BookingController {
 
     @Autowired
@@ -142,7 +126,7 @@ public class BookingController {
                             "status\": true\"\n" +
                             "}")
             }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
-    @GetMapping(value = "/payment_type")
+    @GetMapping(value = "/booking/payment_type")
     public ResponseEntity<Messages> paymentType(HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString("-"));
         log.info(writeLog);
@@ -167,7 +151,7 @@ public class BookingController {
                             "code\": AF\"\n" +
                             "}")
             }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
-    @GetMapping(value = "/citizenship")
+    @GetMapping(value = "/booking//citizenship")
     public ResponseEntity<Messages> citizenship(HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString("-"));
         log.info(writeLog);
@@ -255,7 +239,7 @@ public class BookingController {
                             "}, \n" +
                             "}")
             }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
-    @GetMapping(value = "/chose-seats/{scheduleId}")
+    @GetMapping(value = "/booking/chose-seats/{scheduleId}")
     public ResponseEntity<Messages> seatsAvailable(@PathVariable(name = "scheduleId") int scheduleId,
             HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(scheduleId));
@@ -276,7 +260,7 @@ public class BookingController {
                             "    \"responseMessage\": \"Sukses\",\n" +
                             "}")
             }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
-    @PostMapping(value = "/create-order")
+    @PostMapping(value = "/booking/create-order")
     public ResponseEntity<Messages> createOrder(@RequestBody ReqCreateOrder req, HttpServletRequest httpServletRequest)
             throws WriterException, IOException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(req));
@@ -338,7 +322,7 @@ public class BookingController {
                             "totalPaging\" : 1, \n" +
                             "}")
             }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
-    @GetMapping(value = "/history")
+    @GetMapping(value = "/booking/history")
     public ResponseEntity<Messages> historyBooking(@RequestParam(name = "limit") int limit,
             @RequestParam(name = "pageNumber") int pageNumber, HttpServletRequest httpServletRequest)
             throws JsonProcessingException {
@@ -418,7 +402,7 @@ public class BookingController {
                             "totalPaging\" : 1, \n" +
                             "}")
             }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
-    @GetMapping(value = "/history-detail/{invoiceNo}")
+    @GetMapping(value = "/booking/history-detail/{invoiceNo}")
     public ResponseEntity<Messages> detailHistory(@PathVariable(name = "invoiceNo") String invoiceNo,
             HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(invoiceNo));
