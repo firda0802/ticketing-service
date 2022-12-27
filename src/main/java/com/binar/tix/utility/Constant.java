@@ -8,7 +8,7 @@ public class Constant {
 
     public static final String STAGING_QR = "https://flight-booking-react-f9wcrc0nz-saepasomba.vercel.app/qr-validation/:";
     public static final String AUTH = "Authorization";
-    public  static final String ENCRYPT_KEY = "44F4iTX9nplIpohdCXMh8GijF6iM1aGZooY";
+    public  static final String ENCRYPT_KEY = "ThisIsASecretKey";
     public  static final String DOMESTIK = "domestik";
     public  static final String INTER = "international";
     public static final String EMAIL = "email";

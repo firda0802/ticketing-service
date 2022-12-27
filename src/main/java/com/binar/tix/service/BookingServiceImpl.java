@@ -4,6 +4,7 @@ import com.binar.tix.entities.*;
 import com.binar.tix.enums.StatusEnum;
 import com.binar.tix.payload.*;
 import com.binar.tix.repository.*;
+import com.binar.tix.utility.AES;
 import com.binar.tix.utility.Constant;
 import com.binar.tix.utility.QrCode;
 import com.google.zxing.WriterException;
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Pageable;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.text.Format;
@@ -325,14 +328,12 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Boolean validateTokenQr(String token) {
-        StrongTextEncryptor textEncryptor = new StrongTextEncryptor();
-        textEncryptor.setPassword(Constant.ENCRYPT_KEY);
         try {
-            String result = URLDecoder.decode(token, StandardCharsets.UTF_8);
-            String decryptToken = textEncryptor.decrypt(result);
+            String decryptToken = AES.decrypt(token);
             Optional<Orders> data = ordersRepository.findById(decryptToken);
             return data.isPresent();
         } catch (Exception e) {
+            log.error(e.getMessage());
             return false;
         }
     }
