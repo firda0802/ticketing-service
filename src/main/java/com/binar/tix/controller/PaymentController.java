@@ -5,6 +5,7 @@ import com.binar.tix.payload.ReqCreatePayment;
 import com.binar.tix.service.CrudService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -12,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,17 +26,15 @@ public class PaymentController {
     @Autowired
     CrudService paymentService;
 
-    @Operation(summary="Menambahkan Pembayaran")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Pembayaran berhasil ditambahkan.",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "400", description = "Eror dari sisi Browser .",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "500", description = "Eror dari sisi Server.",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))})})
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Menambahkan Pembayaran",
+                            description = "Penambahan metode pembayaran selain yang sudah tersedia - oleh ADMIN",
+                            value = "{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Berhasil Ditambahkan\"\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @PostMapping("/add-payment")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Messages> create(@RequestBody ReqCreatePayment payment){
@@ -46,17 +46,22 @@ public class PaymentController {
         return ResponseEntity.ok().body(messages);
     }
 
-    @Operation(summary="Menampilkan Pembayaran")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "", description = ".",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "400", description = "Eror dari sisi Browser .",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "500", description = "Eror dari sisi Server.",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))})})
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Menampilkan Metode Pembayaran",
+                            description = "Menampilkan semua metode pembayaran yang tersedia untuk proses pembelian tiket.",
+                            value ="{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Berhasil Ditampilkan\",\n" +
+                                    "    \"data\": [\n" +
+                                    "        {\n" +
+                                    "            \"paymentId\": 1,\n" +
+                                    "            \"paymentMethod\": \"Link Aja\",\n" +
+                                    "            \"status\": true\n" +
+                                    "        }" +
+                                    "    ]\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @GetMapping("/get-payment")
     public ResponseEntity<Messages> get(){
         Messages messages= new Messages();
@@ -67,17 +72,15 @@ public class PaymentController {
         return ResponseEntity.ok().body(messages);
     }
 
-    @Operation(summary="Mengupdate Data Pembayaran")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "", description = ".",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "400", description = "Eror dari sisi Browser .",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "500", description = "Eror dari sisi Server.",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))})})
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Mengupdate Metode Pembayaran",
+                            description = "Update metode pembayaran dilakukan jika ada perubahan yang diinginkan pada metode pembayaran tertentu - oleh ADMIN.",
+                            value = "{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Berhasil Diupdate\"\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @PutMapping("/update-payment/{paymentId}")
     public ResponseEntity<Messages> update(@PathVariable Integer paymentId, @RequestBody ReqCreatePayment payment){
         Messages messages= new Messages();
@@ -94,17 +97,15 @@ public class PaymentController {
         return ResponseEntity.ok().body(messages);
     }
 
-    @Operation(summary="Menghapus Data Pembayaran")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "", description = ".",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "400", description = "Eror dari sisi Browser .",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "500", description = "Eror dari sisi Server.",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))})})
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Menghapus Metode Pembayaran",
+                            description = "Hapus suatu metode pembayaran apabila sudah tidak tersedia - oleh ADMIN berdasarkan id nya.",
+                            value = "{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Berhasil Dihapus\"\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @DeleteMapping("/delete-payment/{paymentId}")
     public ResponseEntity<Messages> delete(@PathVariable Integer paymentId){
         Messages messages= new Messages();

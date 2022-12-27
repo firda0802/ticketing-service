@@ -5,6 +5,7 @@ import com.binar.tix.payload.ReqCreateSchedule;
 import com.binar.tix.service.CrudService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -12,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,17 +26,15 @@ public class ScheduleController {
     @Autowired
     CrudService scheduleService;
 
-    @Operation(summary="Menambahkan Jadwal")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Jadwal berhasil ditambahkan.",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "400", description = "Eror dari sisi Browser .",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "500", description = "Eror dari sisi Server.",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))})})
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Menambahkan Jadwal",
+                            description = "Penambahan jadwal selain dari jadwal yang sudah tersedia.",
+                            value = "{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Berhasil Ditambahkan\",\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @PostMapping("/add-schedule")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Messages> create(@RequestBody ReqCreateSchedule schedule){
@@ -45,17 +45,16 @@ public class ScheduleController {
         return ResponseEntity.ok().body(messages);
     }
 
-    @Operation(summary="Menampilkan Jadwal")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "", description = ".",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "400", description = "Eror dari sisi Browser .",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "500", description = "Eror dari sisi Server.",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))})})
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Menampilkan Jadwal",
+                            description = "Menampilkan semua jadwal yang tersedia",
+                            value = "{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Berhasil Ditampilkan\",\n" +
+                                    "    \"data\": \"eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjQ1LCJlbWFpbCI6InJpa29qYW51YXJzYXdhbHVkc3NpbnNzQGdtYWlsLmNvbSIsInJvbGUiOiJCVVlFUiIsImp0aSI6ImFkOWM4MzllLWJiMWEtNDBlMS1iZGM3LWY2NDk3MzMwMDM5YSIsImlhdCI6MTY3MTQzMzQ4OCwiZXhwIjoxNjc0MDI1NDg4fQ.rC9MG_QV1zhR9f78GYL_JCsNGq1a3iGYu9SDCOE7jck\"\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @GetMapping("/get-schedule")
     public ResponseEntity<Messages> get(){
 
@@ -66,17 +65,15 @@ public class ScheduleController {
         return ResponseEntity.ok().body(messages);
     }
 
-    @Operation(summary="Mengupdate Data Jadwal")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "", description = ".",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "400", description = "Eror dari sisi Browser .",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "500", description = "Eror dari sisi Server.",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))})})
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Mengupdate Jadwal",
+                            description = "Update jadwal untuk perubahan pada jadwal tertentu",
+                            value = "{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Berhasil Diupdate\",\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @PutMapping("/update-schedule/{scheduleId}")
     public ResponseEntity<Messages> update(@PathVariable Integer scheduleId, @RequestBody ReqCreateSchedule schedule){
         Messages messages= new Messages();
@@ -93,17 +90,15 @@ public class ScheduleController {
         return ResponseEntity.ok().body(messages);
     }
 
-    @Operation(summary="Menghapus Jadwal")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "", description = ".",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "400", description = "Eror dari sisi Browser .",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "500", description = "Eror dari sisi Server.",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))})})
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Menghapus Jadwal",
+                            description = "Hapus jadwal untuk menghapus jadwal yang tidak tersedia berdasarkan id nya",
+                            value = "{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Berhasil Dihapus\",\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @DeleteMapping("/delete-schedule/{scheduleId}")
     public ResponseEntity<Messages> delete(@PathVariable Integer scheduleId){
         Messages messages= new Messages();

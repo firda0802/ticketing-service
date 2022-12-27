@@ -122,6 +122,18 @@ public class UsersController {
         return ResponseEntity.ok().body(resp);
     }
 
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Menampilkan Jumlah Notifikasi",
+                            description = "Menampilkan jumlah notifikasi akun yang belum dibaca oleh user.",
+                            value = "{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Sukses\",\n" +
+                                    "    \"data\": {\n" +
+                                    "        \"jumlahNotif\": 1\n" +
+                                    "    }\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @GetMapping(value = "/users/count-notif")
     public ResponseEntity<Messages> countNotif(HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString("-"));
@@ -137,6 +149,23 @@ public class UsersController {
         return ResponseEntity.ok().body(resp);
     }
 
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Menampilkan User Profile",
+                            description = "User profile berisi data-data user yang akan ditampilkan",
+                            value = "{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Sukses\",\n" +
+                                    "    \"data\": {\n" +
+                                    "        \"userId\": 2,\n" +
+                                    "        \"fullName\": \"Rizki Chrismasyadi Sianipar\",\n" +
+                                    "        \"email\": \"rizki@gmail.com\",\n" +
+                                    "        \"birthDate\": null,\n" +
+                                    "        \"phoneNo\": \"089628224306\",\n" +
+                                    "        \"address\": \"Medan\"\n" +
+                                    "    }\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @GetMapping(value = "/users/my-profile")
     public ResponseEntity<Messages> myprofile(HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString("-"));
@@ -160,6 +189,15 @@ public class UsersController {
         return ResponseEntity.ok().body(resp);
     }
 
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Mengupdate User Profile",
+                            description = "Update user profile untuk melakukan perubahan pada data user",
+                            value = "{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Sukses\"\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @PutMapping(value = "/users/update-profile")
     public ResponseEntity<Messages> update(@RequestBody ReqUpdateUser req, HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString("-"));
@@ -179,6 +217,15 @@ public class UsersController {
         return ResponseEntity.ok().body(resp);
     }
 
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Menghapus Data User",
+                            description = "Hapus data user untuk menghapus data dari user tertentu",
+                            value = "{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Sukses\"\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @DeleteMapping(value = "/users/delete-user")
     public ResponseEntity<Messages> deleteUser(HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString("-"));
@@ -194,7 +241,34 @@ public class UsersController {
         return ResponseEntity.ok().body(resp);
     }
 
-
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Menampilkan Notifikasi",
+                            description = "Tampilkan notifikasi yang akan dikirimkan kepada user tertentu",
+                            value = "{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Sukses\",\n" +
+                                    "    \"data\": [\n" +
+                                    "        {\n" +
+                                    "            \"notificationId\": 63,\n" +
+                                    "            \"notificationCategoryId\": 1,\n" +
+                                    "            \"notifcategory\": {\n" +
+                                    "                \"notificationCategoryId\": 1,\n" +
+                                    "                \"notifcategoryName\": \"Introduce\"\n" +
+                                    "            },\n" +
+                                    "            \"userId\": 53,\n" +
+                                    "            \"title\": \"Hai! Selamat datang di Safety Fly\",\n" +
+                                    "            \"content\": \"Nikmati layanan pemesanan tiket pesawat secara online disini\",\n" +
+                                    "            \"cdate\": \"2022-12-26 14:54:20\",\n" +
+                                    "            \"status\": true\n" +
+                                    "        }\n" +
+                                    "    ],\n" +
+                                    "    \"paging\": {\n" +
+                                    "        \"totalData\": 1,\n" +
+                                    "        \"totalPaging\": 1\n" +
+                                    "    }\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @GetMapping(value = "/users/get-notif")
     public ResponseEntity<Messages> getNotif(@RequestParam(name = "limit") int limit, @RequestParam(name = "pageNumber") int pageNumber, HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString("limit : " + limit + " , pageNumber : " + pageNumber));
