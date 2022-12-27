@@ -5,12 +5,11 @@ import com.binar.tix.payload.ReqCreateSeats;
 import com.binar.tix.service.CrudService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,17 +22,15 @@ public class SeatsController {
     @Autowired
     CrudService seatsService;
 
-    @Operation(summary="Menambahkan Kursi")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Kursi berhasil ditambahkan.",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "400", description = "Eror dari sisi Browser .",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "500", description = "Eror dari sisi Server.",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))})})
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Menambahkan Kursi",
+                            description = "Penambahan kursi penumpang yang tersedia pada suatu pesawat",
+                            value = "{\n" +
+                                    "    \"responseCode\": 201,\n" +
+                                    "    \"responseMessage\": \"Berhasil Ditambahkan\"\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @PostMapping("/add-seats")
     public ResponseEntity<Messages> create(@RequestBody ReqCreateSeats seats){
         seatsService.saveSeats(seats);
@@ -43,17 +40,30 @@ public class SeatsController {
         return ResponseEntity.ok().body(messages);
     }
 
-    @Operation(summary="Menampilkan Kursi")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "", description = ".",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "400", description = "Eror dari sisi Browser .",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "500", description = "Eror dari sisi Server.",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))})})
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Menampilkan Data Kursi",
+                            description = "Menampilkan semua data kursi yang tersedia pada suatu pesawat",
+                            value = "{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Berhasil Ditampilkan\",\n" +
+                                    "    \"data\": [\n" +
+                                    "        {\n" +
+                                    "            \"seatsId\": 1,\n" +
+                                    "            \"seatsNumber\": \"D15\",\n" +
+                                    "            \"seatsGroup\": \"D\",\n" +
+                                    "            \"positions\": 15,\n" +
+                                    "            \"classId\": 2,\n" +
+                                    "            \"airplanesId\": 1,\n" +
+                                    "            \"classSeats\": {\n" +
+                                    "                \"classId\": 2,\n" +
+                                    "                \"name\": \"Business Class\",\n" +
+                                    "                \"price\": 100000\n" +
+                                    "            }\n"+
+                                    "       }\n"+
+                                    "    ]\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @GetMapping("/get-seats")
     public ResponseEntity<Messages> get(){
         Messages messages= new Messages();
@@ -63,17 +73,15 @@ public class SeatsController {
         return ResponseEntity.ok().body(messages);
     }
 
-    @Operation(summary="Mengupdate Data Kursi")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "", description = ".",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "400", description = "Eror dari sisi Browser .",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "500", description = "Eror dari sisi Server.",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))})})
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Mengupdate Data Kursi",
+                            description = "Update data kursi untuk perubahan yang diinginkan pada data kursi tertentu.",
+                            value = "{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Berhasil Diupdate\"\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @PutMapping("/update-seats/{seatsId}")
     public ResponseEntity<Messages> update(@PathVariable Integer seatsId, @RequestBody ReqCreateSeats seats){
         Messages messages= new Messages();
@@ -90,17 +98,15 @@ public class SeatsController {
         return ResponseEntity.ok().body(messages);
     }
 
-    @Operation(summary="Menghapus Data Kursi")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "", description = ".",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "400", description = "Eror dari sisi Browser .",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "500", description = "Eror dari sisi Server.",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))})})
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Menghapus Data Kursi",
+                            description = "Hapus data kursi untuk menghapus kursi yang sudah tidak tersedia lagi di suatu pesawat berdasarkan id nya",
+                            value = "{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Berhasil Dihapus\"\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @DeleteMapping("delete-seats/{seatsId}")
     public ResponseEntity<Messages> delete(@PathVariable Integer seatsId){
         Messages messages= new Messages();
