@@ -57,6 +57,9 @@ public class BookingServiceImpl implements BookingService {
     @Autowired
     SeatsRepository seatsRepository;
 
+    @Autowired
+    AirportRepository airportRepository;
+
     @Override
     public List<DestinationCity> listDestinationCity() {
         return destinationCityRepository.findAll();
@@ -287,6 +290,7 @@ public class BookingServiceImpl implements BookingService {
             msg.success();
             RespHistoryDetail resp = new RespHistoryDetail();
             resp.setInvoiceNo(o.getInvoiceNo());
+            resp.setQrCodeUrl(o.getQrCodeUrl());
             resp.setBookingBy(getTitle(o.getTitle()) + o.getBookingBy());
             resp.setAirplane(o.getSchedule().getAirplane().getType());
             resp.setStartTime(o.getSchedule().getStartTime());
@@ -299,7 +303,14 @@ public class BookingServiceImpl implements BookingService {
             String destination1 = o.getSchedule().getDestination().getDepartureCity().getCityName();
             String destination2 = o.getSchedule().getDestination().getDestinationsCity().getCityName();
             resp.setDepartureCity(destination1);
+            resp.setDepartureAirport(o.getSchedule().getAirplane().getAirport().getName());
             resp.setDestinationsCity(destination2);
+            Airport airport = airportRepository.getAirport(o.getSchedule().getDestination().getDestinations());
+            if(airport != null){
+                resp.setDestinationsAirport(airport.getName());
+            }else{
+                resp.setDestinationsAirport("-");
+            }
 
             List<RespHistoryDetailtem> detail = new ArrayList<>();
             for (OrdersDetails d : o.getOrdersDetails()) {
