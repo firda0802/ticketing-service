@@ -32,7 +32,7 @@ public interface UsersRepository extends JpaRepository<Users, Integer> {
     @Modifying(clearAutomatically = true)
     @Query("update Users a set a.status = false where a.userId =:userId")
     void deleteAkun(@Param("userId") int userId);
-    Optional<Users> findByEmailIgnoreCaseAndStatusAndRoleId(String email, Boolean status, int roleId);
+    Users findByEmailIgnoreCaseAndStatusAndRoleId(String email, Boolean status, int roleId);
 
     Optional<Users> findByEmailIgnoreCaseAndStatus(String email, Boolean status);
 }

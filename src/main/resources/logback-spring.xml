@@ -36,7 +36,7 @@
         <appender-ref ref="Console" />
     </root>
 
-    <logger name="com.binar.rjs" level="debug" additivity="false">
+    <logger name="com.binar.tix" level="debug" additivity="false">
         <appender-ref ref="RollingFile" />
         <appender-ref ref="Console" />
     </logger>

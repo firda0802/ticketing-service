@@ -6,6 +6,8 @@ public class Constant {
 
     private Constant() {}
 
+    public static final String KEY1 = "QiFuYXIgUzNydmljZSAkJC";
+    public static final String KEY2 = "MgRmluYWwgUHJvajNjdEAqKg";
     public static final String STAGING_QR = "https://flight-booking-react-f9wcrc0nz-saepasomba.vercel.app/qr-validation/:";
     public static final String AUTH = "Authorization";
     public  static final String ENCRYPT_KEY = "ThisIsASecretKey";

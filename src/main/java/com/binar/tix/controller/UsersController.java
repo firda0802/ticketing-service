@@ -298,6 +298,15 @@ public class UsersController {
         }
     }
 
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Menghapus Data User",
+                            description = "Hapus data user untuk menghapus data dari user tertentu",
+                            value = "{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Sukses\"\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @PostMapping(value = "/ext/googleid-token")
     public ResponseEntity<Messages> verifyGoogleId(@RequestBody RespLogin req, HttpServletRequest httpServletRequest) throws IOException, GeneralSecurityException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(req));
