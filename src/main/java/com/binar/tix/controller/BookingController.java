@@ -415,13 +415,13 @@ public class BookingController {
         return ResponseEntity.ok().body(resp);
     }
 
-    @GetMapping(value = "/validate-token/{tokenQr}")
-    public ResponseEntity<Messages> validateToken(@PathVariable(name = "tokenQr") String tokenQr,
+    @GetMapping(value = "/qr")
+    public ResponseEntity<Messages> validateToken(@RequestParam(required = false, defaultValue = "") String token,
             HttpServletRequest httpServletRequest) throws JsonProcessingException {
-        String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(tokenQr));
+        String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(token));
         log.info(writeLog);
 
-        boolean status = bookingService.validateTokenQr(tokenQr.replace(":",""));
+        boolean status = bookingService.validateTokenQr(token);
         Messages resp = new Messages();
         if (status) {
             resp.setResponseCode(Constant.OK);
