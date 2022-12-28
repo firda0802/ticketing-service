@@ -13,6 +13,7 @@ import java.util.List;
 public class RespHistoryDetail {
 
     private String invoiceNo;
+    private String qrCodeUrl;
     private String airplane;
     private String classType;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+7")
@@ -25,7 +26,9 @@ public class RespHistoryDetail {
     @JsonFormat(pattern = "HH:mm", timezone = "GMT+7")
     private LocalTime endTime;
     private String departureCity;
+    private String departureAirport;
     private String destinationsCity;
+    private String destinationsAirport;
     private int totalPerson;
     private List<RespHistoryDetailtem> detail;
     private String paymentName;
