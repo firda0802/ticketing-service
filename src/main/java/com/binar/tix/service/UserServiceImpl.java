@@ -16,6 +16,8 @@ import com.binar.tix.utility.MD5;
 
 import java.util.*;
 
+import org.apache.http.util.TextUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -28,7 +30,6 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Service;
 
@@ -52,8 +53,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String registerUser(ReqRegister req) {
-        Optional<Users> cekUser = usersRepository.findByEmailIgnoreCaseAndStatusAndRoleId(req.getEmail(), true, 1);
-        if (cekUser.isPresent()) {
+        Users cekUser = usersRepository.findByEmailIgnoreCaseAndStatusAndRoleId(req.getEmail(), true, 1);
+        if (cekUser != null) {
             return "";
         } else {
             Users newUsers = new Users();
@@ -86,8 +87,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addRole(RoleUser role) {
-        roleRepository.saveAndFlush(role);
+    public RoleUser addRole(RoleUser role) {
+       return roleRepository.saveAndFlush(role);
     }
 
     @Override
@@ -119,7 +120,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> validateSession(String session) {
         try {
-            Key hmacKey = new SecretKeySpec(Base64.getDecoder().decode(secretKey),
+            String key = secretKey;
+            if(TextUtils.isEmpty(key)){
+                //mockito doesn't support @value
+                key = Constant.KEY1+Constant.KEY2;
+            }
+            Key hmacKey = new SecretKeySpec(Base64.getDecoder().decode(key),
                     SignatureAlgorithm.HS256.getJcaName());
             Jws<Claims> jwt = Jwts.parserBuilder()
                     .setSigningKey(hmacKey)
@@ -135,6 +141,7 @@ public class UserServiceImpl implements UserService {
                 return Optional.empty();
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return Optional.empty();
         }
     }
@@ -155,13 +162,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Users checkEmail(String email) {
-        Optional<Users> cekUser = usersRepository.findByEmailIgnoreCaseAndStatusAndRoleId(email, true, 1);
-        return cekUser.orElse(null);
+        return usersRepository.findByEmailIgnoreCaseAndStatusAndRoleId(email, true, 1);
     }
 
     @Override
     public String generateToken(int userId, String roleName, String email) {
-        Key hmacKey = new SecretKeySpec(Base64.getDecoder().decode(secretKey),
+        String key = secretKey;
+        if(TextUtils.isEmpty(key)){
+            //mockito doesn't support @value
+            key = Constant.KEY1+Constant.KEY2;
+        }
+        Key hmacKey = new SecretKeySpec(Base64.getDecoder().decode(key),
                 SignatureAlgorithm.HS256.getJcaName());
         Instant now = Instant.now();
         return Jwts.builder()

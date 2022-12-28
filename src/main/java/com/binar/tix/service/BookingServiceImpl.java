@@ -10,17 +10,12 @@ import com.binar.tix.utility.QrCode;
 import com.google.zxing.WriterException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.jasypt.util.text.StrongTextEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
