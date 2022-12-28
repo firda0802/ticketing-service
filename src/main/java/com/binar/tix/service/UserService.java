@@ -26,7 +26,7 @@ public interface UserService {
 
     Users getOneUsers(int userId);
 
-    void addRole(RoleUser name);
+    RoleUser addRole(RoleUser name);
 
     List<RoleUser> getAllRole();
     void deleteUser(int userId);
