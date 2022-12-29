@@ -8,6 +8,12 @@ import com.binar.tix.repository.AirplaneRepository;
 import com.binar.tix.repository.AirportRepository;
 import com.binar.tix.repository.PaymentRepository;
 import com.binar.tix.repository.ScheduleRepository;
+import com.binar.tix.payload.ReqCreateSchedule;
+import com.binar.tix.payload.ReqCreateSeats;
+import com.binar.tix.payload.ReqUpdateClass;
+import com.binar.tix.repository.SeatsRepository;
+import com.binar.tix.repository.ClassRepository;
+import com.binar.tix.repository.DestinationRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -46,6 +52,23 @@ class CrudServiceImplTest {
 
     @Mock
     ScheduleRepository scheduleRepository;
+
+    @Mock
+    SeatsRepository seatsRepository;
+
+    @Mock
+    ClassRepository classRepository;
+
+    @Mock
+    DestinationRepository destinationRepository;
+
+    Schedule schedule = new Schedule();
+
+    Seats seats = new Seats();
+
+    ClassSeats classSeats = new ClassSeats();
+
+    Destination destination = new Destination();
 
     Airplane airplane = new Airplane();
 
@@ -88,9 +111,9 @@ class CrudServiceImplTest {
         assertEquals(airplane.getAirportId(), airplaneRepository.saveAndFlush(airplane).getAirportId());
     }
 
-//    @Test
-//    void saveAirplaneNegativeTest() {
-//    }
+    // @Test
+    // void saveAirplaneNegativeTest() {
+    // }
 
     @Test
     void updateAirplanePositiveTest() {
@@ -112,7 +135,7 @@ class CrudServiceImplTest {
     void updateAirplaneNegativeTest() {
         ReqCreateAirplane req = new ReqCreateAirplane();
         airplane.setAirplaneId(1);
-        Boolean result = crudService.updateAirplane(5,req);
+        Boolean result = crudService.updateAirplane(5, req);
         System.out.println(result);
         assertEquals(false, result);
     }
@@ -134,7 +157,7 @@ class CrudServiceImplTest {
 
     @Test
     void updateAirportPositiveTest() {
-        crudService.updateAirport(4,"Kualanamu","Medan",4 );
+        crudService.updateAirport(4, "Kualanamu", "Medan", 4);
         doReturn(Optional.of(airport)).when(airportRepository).findById(4);
         verify(airportRepository).findById(4);
     }
@@ -142,7 +165,7 @@ class CrudServiceImplTest {
     @Test
     void updateAirportNegativeTest() {
         airport.setIdAirport(2);
-        Boolean result = crudService.updateAirport(5,"Kualanamu","Medan",2);
+        Boolean result = crudService.updateAirport(5, "Kualanamu", "Medan", 2);
         System.out.println(result);
         assertEquals(false, result);
     }
@@ -194,9 +217,9 @@ class CrudServiceImplTest {
         assertEquals(payment.getStatus(), paymentRepository.saveAndFlush(payment).getStatus());
     }
 
-//    @Test
-//    void savePaymentNegativeTest() {
-//    }
+    // @Test
+    // void savePaymentNegativeTest() {
+    // }
 
     @Test
     void updatePaymentPositiveTest() {
@@ -216,7 +239,7 @@ class CrudServiceImplTest {
     void updatePaymentNegativeTest() {
         ReqCreatePayment req = new ReqCreatePayment();
         payment.setPaymentId(21);
-        Boolean result = crudService.updatePayment(5,req);
+        Boolean result = crudService.updatePayment(5, req);
         System.out.println(result);
         assertEquals(false, result);
     }
@@ -246,11 +269,239 @@ class CrudServiceImplTest {
         verify(scheduleRepository).findAll();
     }
 
+    /**
+     * 
+     */
     @Test
     void findAllScheduleNegativeTest() {
         when(crudService.findAllSchedule()).thenReturn(new ArrayList<>());
         List<Schedule> schedules = crudService.findAllSchedule();
         Throwable exception = assertThrows(IndexOutOfBoundsException.class, () -> schedules.get(0));
         assertEquals("Index 0 out of bounds for length 0", exception.getMessage());
+    }
+
+    @Test
+    void saveSchedulePositiveTest() {
+        ReqCreateSchedule req = new ReqCreateSchedule();
+        req.setDestinationId(1);
+        req.setClassId(3);
+        req.setPrice((int) 785.000);
+        req.setAirplanesId(33);
+        req.setFlight("international");
+        schedule.setDestinationId(req.getDestinationId());
+        schedule.setClassId(req.getClassId());
+        schedule.setPrice(req.getPrice());
+        schedule.setAirplanesId(req.getAirplanesId());
+        schedule.setFlight(req.getFlight());
+
+        crudService.saveSchedule(req);
+        doReturn(schedule).when(scheduleRepository).saveAndFlush(schedule);
+        assertEquals(schedule.getDestinationId(), scheduleRepository.saveAndFlush(schedule).getDestinationId());
+        assertEquals(schedule.getClassId(), scheduleRepository.saveAndFlush(schedule).getClassId());
+        assertEquals(schedule.getPrice(), scheduleRepository.saveAndFlush(schedule).getPrice());
+        assertEquals(schedule.getAirplanesId(), scheduleRepository.saveAndFlush(schedule).getAirplanesId());
+        assertEquals(schedule.getFlight(), scheduleRepository.saveAndFlush(schedule).getFlight());
+    }
+
+    // @Test
+    // void saveScheduleNegativeTest(){
+
+    // }
+
+    @Test
+    void updateSchedulePositiveTest() {
+        ReqCreateSchedule req = new ReqCreateSchedule();
+        req.setDestinationId(1);
+        req.setClassId(3);
+        req.setPrice((int) 785.000);
+        req.setAirplanesId(33);
+        req.setFlight("international");
+        schedule.setDestinationId(req.getDestinationId());
+        schedule.setClassId(req.getClassId());
+        schedule.setPrice(req.getPrice());
+        schedule.setAirplanesId(req.getAirplanesId());
+        schedule.setFlight(req.getFlight());
+        schedule.setScheduleId(311833);
+
+        crudService.updateSchedule(311833, req);
+        doReturn(Optional.of(schedule)).when(scheduleRepository).findById(311833);
+        verify(scheduleRepository).findById(311833);
+    }
+
+    @Test
+    void updateScheduleNegativeTest() {
+        ReqCreateSchedule req = new ReqCreateSchedule();
+        schedule.setScheduleId(311833);
+        Boolean result = crudService.updateSchedule(500000, req);
+        System.out.println(result);
+        assertEquals(true, result);
+    }
+
+    @Test
+    void deleteSchedulePositiveTest() {
+        CrudService mockInstance = mock(CrudService.class);
+        when(mockInstance.deleteSchedule(311833)).thenReturn(true);
+        assertEquals(true, mockInstance.deleteSchedule(311833));
+    }
+
+    @Test
+    void deleteScheduleNegativeTest() {
+        schedule.setScheduleId(2);
+        Boolean result = crudService.deleteSchedule(500000);
+        System.out.println(result);
+        assertEquals(false, result);
+    }
+
+    @Test
+    void findAllSeatsPositiveTest() {
+        List<Seats> seats = new ArrayList();
+        seats.add(new Seats());
+        given(seatsRepository.findAll()).willReturn(seats);
+        List<Seats> expected = crudService.findAllSeats();
+        assertEquals(expected, seats);
+        verify(seatsRepository).findAll();
+    }
+
+    @Test
+    void findAllSeatsNegativeTest(){
+        when(crudService.findAllSeats()).thenReturn(new ArrayList<>());
+        List<Seats> seats = crudService.findAllSeats();
+        Throwable exception = assertThrows(IndexOutOfBoundsException.class, () -> seats.get(0));
+        assertEquals("Index 0 out of bounds for length 0", exception.getMessage());
+    }
+
+    @Test
+    void saveSeatsPositiveTest() {
+        ReqCreateSeats req = new ReqCreateSeats();
+        req.setSeatsGroup("A");
+        req.setSeatsNumber("A2");
+        req.setPositions(2);
+        req.setClassId(3);
+        req.setAirplanesId(33);
+        req.setClassSeats("First Class");
+        seats.setSeatsGroup(req.getSeatsGroup());
+        seats.setSeatsNumber(req.getSeatsNumber());
+        seats.setPositions(req.getPositions());
+        seats.setClassId(req.getClassId());
+        seats.setAirplanesId(req.getAirplanesId());
+        seats.setClassSeats(req.getClassSeats());
+
+        crudService.saveSeats(req);
+        doReturn(seats).when(seatsRepository).saveAndFlush(seats);
+        assertEquals(seats.getSeatsGroup(), seatsRepository.saveAndFlush(seats).getSeatsGroup());
+        assertEquals(seats.getSeatsNumber(), seatsRepository.saveAndFlush(seats).getSeatsNumber());
+        assertEquals(seats.getPositions(), seatsRepository.saveAndFlush(seats).getPositions());
+        assertEquals(seats.getClassId(), seatsRepository.saveAndFlush(seats).getClassId());
+        assertEquals(seats.getAirplanesId(), seatsRepository.saveAndFlush(seats).getAirplanesId());
+        assertEquals(seats.getClassSeats(), seatsRepository.saveAndFlush(seats).getClassSeats());
+    }
+    // @Test
+    // void saveSeatsNegativeTest(){
+
+    // }
+    @Test
+    void updateSeatsPositiveTest() {
+        ReqCreateSeats req = new ReqCreateSeats();
+        req.setSeatsGroup("A");
+        req.setSeatsNumber("A2");
+        req.setPositions(2);
+        req.setClassId(3);
+        req.setAirplanesId(33);
+        req.setClassSeats("First Class");
+        seats.setSeatsGroup(req.getSeatsGroup());
+        seats.setSeatsNumber(req.getSeatsNumber());
+        seats.setPositions(req.getPositions());
+        seats.setClassId(req.getClassId());
+        seats.setAirplanesId(req.getAirplanesId());
+        seats.setClassSeats(req.getClassSeats());
+        seats.setSeatsId(req.getSeatsId(1));
+
+        crudService.updateSeats(1, req);
+        doReturn(Optional.of(seats)).when(seatsRepository).findById(1);
+        verify(seatsRepository).findById(1);
+    }
+
+    @Test
+    void updateSeatsNegativeTest() {
+        ReqCreateSeats req = new ReqCreateSeats();
+        seats.setSeatsId(2);
+        Boolean result = crudService.updateSeats(2000, req);
+        System.out.println(result);
+        assertEquals(true, result);
+    }
+
+    @Test
+    void deleteSeatsPositiveTest() {
+        CrudService mockInstance = mock(CrudService.class);
+        when(mockInstance.deleteSeats(1)).thenReturn(true);
+        assertEquals(true, mockInstance.deleteSeats(1));
+    }
+
+    @Test
+    void deleteSeatsNegativeTest() {
+        seats.setSeatsId(2);
+        Boolean result = crudService.deleteSeats(2000);
+        System.out.println(result);
+        assertEquals(false, result);
+    }
+
+    @Test
+    void updateAddClassPositiveTest() {
+        crudService.updateAddClass(1, "Economi Class", 35000, 0);
+        doReturn(Optional.of(classSeats)).when(classRepository).findById(1);
+        verify(classRepository).findById(1);
+    }
+
+    @Test
+    void updateAddClassNegativeTest() {
+        classSeats.setClassId(2);
+        Boolean result = crudService.updateAddClass(4, "Economi Class", 35000, 0);
+        System.out.println(result);
+        assertEquals(false, result);
+    }
+
+    @Test
+    void deleteClassSeatsPositiveTest() {
+        CrudService mockInstance = mock(CrudService.class);
+        when(mockInstance.deleteClassSeats(1)).thenReturn(true);
+        assertEquals(true, mockInstance.deleteClassSeats(1));
+    }
+
+    @Test
+    void deleteClassSeatsNegativeTest() {
+        classSeats.setClassId(2);
+        Boolean result = crudService.deleteClassSeats(4);
+        System.out.println(result);
+        assertEquals(false, result);
+    }
+
+    @Test
+    void updateAddDestinationPositiveTest() {
+        crudService.updateAddDestination(1, 21723750, 1, 10, 435);
+        doReturn(Optional.of(destination)).when(destinationRepository).findById(1);
+        verify(destinationRepository).findById(1);
+    }
+
+    @Test
+    void updateAddDestinationNegativeTest() {
+        destination.setDestinationId(2);
+        Boolean result = crudService.updateAddDestination(50, 21723750, 1, 10, 435);
+        System.out.println(result);
+        assertEquals(false, result);
+    }
+
+    @Test
+    void deleteDestinationPositiveTest() {
+        CrudService mockInstance = mock(CrudService.class);
+        when(mockInstance.deleteDestination(1)).thenReturn(true);
+        assertEquals(true, mockInstance.deleteDestination(1));
+    }
+
+    @Test
+    void deleteDestinationNegativeTest() {
+        destination.setDestinationId(2);
+        Boolean result = crudService.deleteDestination(50);
+        System.out.println(result);
+        assertEquals(false, result);
     }
 }

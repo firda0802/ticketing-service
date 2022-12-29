@@ -20,4 +20,14 @@ public class ReqCreateSeats {
 
     private ClassSeats classSeats;
 
+    public Integer getSeatsId(int i) {
+        return null;
+    }
+
+    public void setClassSeats(String string) {
+    }
+
+    public void setSeatsGroup(String string) {
+    }
+
 }
