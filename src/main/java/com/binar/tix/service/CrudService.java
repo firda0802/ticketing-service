@@ -30,7 +30,7 @@ public interface CrudService {
 
     Boolean deletePayment(Integer paymentId);
 
-    List<Schedule> findAllSchedule();
+    List<Schedule> findAllSchedule(int limit, int offset);
 
     Schedule saveSchedule(ReqCreateSchedule schedule);
 
