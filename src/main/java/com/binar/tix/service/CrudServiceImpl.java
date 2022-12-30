@@ -313,16 +313,4 @@ public class CrudServiceImpl implements CrudService {
             return false;
         }
     }
-
-    @Override
-    public Boolean updateAddClass(int i, String string, int j, int k) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Boolean updateAddDestination(int i, int j, int k, int l, int m) {
-        // TODO Auto-generated method stub
-        return null;
-    }
 }
