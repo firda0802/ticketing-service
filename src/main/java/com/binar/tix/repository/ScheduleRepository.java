@@ -2,6 +2,8 @@ package com.binar.tix.repository;
 
 import com.binar.tix.entities.Schedule;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -15,4 +17,7 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Integer> {
     Schedule findByDestinationIdAndClassIdAndFlightDateAndStartTimeAndEndTime(int destinationId, int classId, LocalDate flightDate, LocalTime startTime, LocalTime endTime);
 
     Optional<Schedule> findById(Integer scheduleId);
+
+    @Query(nativeQuery = true, value = "select * from schedule limit :limit offset :offset ")
+    List<Schedule> getSchedule(@Param("limit") int limit, @Param("offset") int offset);
 }

@@ -415,6 +415,14 @@ public class BookingController {
         return ResponseEntity.ok().body(resp);
     }
 
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Qr Code Verifikasi", description = "Qr Code berisi kan token yang jika discan akan memverifikasi token apakah qr code tersebut valid atau tidak.",
+                            value = "{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Verified Success Token\"\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
     @GetMapping(value = "/qr")
     public ResponseEntity<Messages> validateToken(@RequestParam(required = false, defaultValue = "", value="token") String token,
             HttpServletRequest httpServletRequest) throws JsonProcessingException {
