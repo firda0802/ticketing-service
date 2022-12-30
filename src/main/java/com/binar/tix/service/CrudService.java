@@ -54,8 +54,4 @@ public interface CrudService {
 
     Boolean deleteDestination(int id);
 
-    Boolean updateAddClass(int i, String string, int j, int k);
-
-    Boolean updateAddDestination(int i, int j, int k, int l, int m);
-
 }

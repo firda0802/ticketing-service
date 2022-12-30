@@ -31,7 +31,7 @@ public class SigninWithGoogle {
     public  Messages verify(String googleTokenId) throws GeneralSecurityException, IOException {
         Messages resp = new Messages();
         GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new GsonFactory())
-                .setAudience(Collections.singletonList("424104245551-94u06m9jdfcqe5130ssdvklga626sp12.apps.googleusercontent.com"))
+                .setAudience(Collections.singletonList("568466100708-h2abh5rirojs5llpnpuf1ft07oqhhsbi.apps.googleusercontent.com"))
                 .build();
 
         GoogleIdToken idToken = verifier.verify(googleTokenId);

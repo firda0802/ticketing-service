@@ -1,26 +1,12 @@
 package com.binar.tix.service;
 
 import com.binar.tix.entities.*;
-import com.binar.tix.payload.ReqCreateAirplane;
-import com.binar.tix.payload.ReqCreateAirport;
-import com.binar.tix.payload.ReqCreatePayment;
-import com.binar.tix.repository.AirplaneRepository;
-import com.binar.tix.repository.AirportRepository;
-import com.binar.tix.repository.PaymentRepository;
-import com.binar.tix.repository.ScheduleRepository;
-import com.binar.tix.payload.ReqCreateSchedule;
-import com.binar.tix.payload.ReqCreateSeats;
-import com.binar.tix.payload.ReqUpdateClass;
-import com.binar.tix.repository.SeatsRepository;
-import com.binar.tix.repository.ClassRepository;
-import com.binar.tix.repository.DestinationRepository;
-import org.junit.jupiter.api.Assertions;
+import com.binar.tix.payload.*;
+import com.binar.tix.repository.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
@@ -29,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
@@ -110,10 +96,6 @@ class CrudServiceImplTest {
         assertEquals(airplane.getLuggageCapacity(), airplaneRepository.saveAndFlush(airplane).getLuggageCapacity());
         assertEquals(airplane.getAirportId(), airplaneRepository.saveAndFlush(airplane).getAirportId());
     }
-
-    // @Test
-    // void saveAirplaneNegativeTest() {
-    // }
 
     @Test
     void updateAirplanePositiveTest() {
@@ -333,8 +315,7 @@ class CrudServiceImplTest {
         ReqCreateSchedule req = new ReqCreateSchedule();
         schedule.setScheduleId(311833);
         Boolean result = crudService.updateSchedule(500000, req);
-        System.out.println(result);
-        assertEquals(true, result);
+        assertEquals(false, result);
     }
 
     @Test
@@ -426,8 +407,7 @@ class CrudServiceImplTest {
         ReqCreateSeats req = new ReqCreateSeats();
         seats.setSeatsId(2);
         Boolean result = crudService.updateSeats(2000, req);
-        System.out.println(result);
-        assertEquals(true, result);
+        assertEquals(false, result);
     }
 
     @Test
@@ -447,16 +427,24 @@ class CrudServiceImplTest {
 
     @Test
     void updateAddClassPositiveTest() {
-        crudService.updateAddClass(1, "Economi Class", 35000, 0);
-        doReturn(Optional.of(classSeats)).when(classRepository).findById(1);
-        verify(classRepository).findById(1);
+        ReqUpdateClass req = new ReqUpdateClass();
+        req.setName("Economi Class");
+        req.setPrice(35000);
+        crudService.updateAddClass(req);
+        classSeats.setName(req.getName());
+        classSeats.setPrice(req.getPrice());
+        doReturn(classSeats).when(classRepository).saveAndFlush(classSeats);
+        assertEquals(classSeats, classRepository.saveAndFlush(classSeats));
     }
 
     @Test
     void updateAddClassNegativeTest() {
+        ReqUpdateClass req = new ReqUpdateClass();
+        req.setId(88);
+        req.setName("Economi Class");
+        req.setPrice(35000);
         classSeats.setClassId(2);
-        Boolean result = crudService.updateAddClass(4, "Economi Class", 35000, 0);
-        System.out.println(result);
+        Boolean result = crudService.updateAddClass(req);
         assertEquals(false, result);
     }
 
@@ -477,7 +465,13 @@ class CrudServiceImplTest {
 
     @Test
     void updateAddDestinationPositiveTest() {
-        crudService.updateAddDestination(1, 21723750, 1, 10, 435);
+        ReqUpdateDestination req = new ReqUpdateDestination();
+        req.setId(1);
+        req.setDuration(250);
+        req.setPrice(7500);
+        req.setDestinationCityId(1);
+        req.setDepartureCityId(2);
+        crudService.updateAddDestination(req);
         doReturn(Optional.of(destination)).when(destinationRepository).findById(1);
         verify(destinationRepository).findById(1);
     }
@@ -485,8 +479,13 @@ class CrudServiceImplTest {
     @Test
     void updateAddDestinationNegativeTest() {
         destination.setDestinationId(2);
-        Boolean result = crudService.updateAddDestination(50, 21723750, 1, 10, 435);
-        System.out.println(result);
+        ReqUpdateDestination req = new ReqUpdateDestination();
+        req.setId(75);
+        req.setDuration(250);
+        req.setPrice(7500);
+        req.setDestinationCityId(1);
+        req.setDepartureCityId(2);
+        Boolean result = crudService.updateAddDestination(req);
         assertEquals(false, result);
     }
 
