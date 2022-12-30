@@ -6,11 +6,8 @@ import com.binar.tix.service.CrudService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -56,12 +53,12 @@ public class ScheduleController {
                                     "}")
             }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @GetMapping("/get-schedule")
-    public ResponseEntity<Messages> get(){
+    public ResponseEntity<Messages> get(@RequestParam(name = "limit") int limit, @RequestParam(name = "offset") int offset){
 
         Messages messages= new Messages();
         messages.setResponseCode(200);
         messages.setResponseMessage("Berhasil Ditampilkan");
-        messages.setData(scheduleService.findAllSchedule());
+        messages.setData(scheduleService.findAllSchedule(limit, offset));
         return ResponseEntity.ok().body(messages);
     }
 

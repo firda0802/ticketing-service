@@ -1,19 +1,5 @@
 package com.binar.tix.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.binar.tix.payload.Messages;
 import com.binar.tix.payload.ReqUpdatePayment;
 import com.binar.tix.service.AdminService;
@@ -21,15 +7,16 @@ import com.binar.tix.service.InitializeService;
 import com.binar.tix.utility.HttpUtility;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
@@ -142,29 +129,4 @@ public class AdminController {
         log.info(writeLogResp);
         return ResponseEntity.ok().body(resp);
     }
-
-    public static org.slf4j.Logger getLog() {
-        return log;
-    }
-
-    public InitializeService getInitService() {
-        return initService;
-    }
-
-    public void setInitService(InitializeService initService) {
-        this.initService = initService;
-    }
-
-    public AdminService getAdminService() {
-        return adminService;
-    }
-
-    public void setAdminService(AdminService adminService) {
-        this.adminService = adminService;
-    }
-
-    public ObjectMapper getMapper() {
-        return mapper;
-    }
-
 }

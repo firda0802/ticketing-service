@@ -243,12 +243,12 @@ class CrudServiceImplTest {
 
     @Test
     void findAllSchedulePositiveTest() {
-        List<Schedule> schedules = new ArrayList();
+        List<Schedule> schedules = new ArrayList<>();
         schedules.add(new Schedule());
-        given(scheduleRepository.findAll()).willReturn(schedules);
-        List<Schedule> expected = crudService.findAllSchedule();
+        given(scheduleRepository.getSchedule(10,0)).willReturn(schedules);
+        List<Schedule> expected = crudService.findAllSchedule(10,0);
         assertEquals(expected, schedules);
-        verify(scheduleRepository).findAll();
+        verify(scheduleRepository).getSchedule(10,0);
     }
 
     /**
@@ -256,8 +256,8 @@ class CrudServiceImplTest {
      */
     @Test
     void findAllScheduleNegativeTest() {
-        when(crudService.findAllSchedule()).thenReturn(new ArrayList<>());
-        List<Schedule> schedules = crudService.findAllSchedule();
+        when(crudService.findAllSchedule(10,0)).thenReturn(new ArrayList<>());
+        List<Schedule> schedules = crudService.findAllSchedule(10,0);
         Throwable exception = assertThrows(IndexOutOfBoundsException.class, () -> schedules.get(0));
         assertEquals("Index 0 out of bounds for length 0", exception.getMessage());
     }

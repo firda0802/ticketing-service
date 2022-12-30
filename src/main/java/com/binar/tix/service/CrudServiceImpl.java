@@ -149,8 +149,8 @@ public class CrudServiceImpl implements CrudService {
     }
 
     @Override
-    public List<Schedule> findAllSchedule() {
-        return scheduleRepository.findAll();
+    public List<Schedule> findAllSchedule(int limit, int offset) {
+        return scheduleRepository.getSchedule(10, 0);
     }
 
     @Override

@@ -300,11 +300,16 @@ public class UsersController {
 
     @Operation(responses = {
             @ApiResponse(responseCode = "200", content = @Content(examples = {
-                    @ExampleObject(name = "Menghapus Data User",
-                            description = "Hapus data user untuk menghapus data dari user tertentu",
+                    @ExampleObject(name = "GoogleId Token",
+                            description = "Digunakan untuk login menggunakan google",
                             value = "{\n" +
                                     "    \"responseCode\": 200,\n" +
-                                    "    \"responseMessage\": \"Sukses\"\n" +
+                                    "    \"responseMessage\": \"Sukses\",\n" +
+                                    "    \"data\": {\n" +
+                                    "        \"fullName\": \"Josh Zoy\",\n" +
+                                    "        \"email\": \"zik@gmail.com\",\n" +
+                                    "        \"token\": \"eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjE1LCJlbWFpbCI6Inppa0BnbWFpbC5jb20iLCJyb2xlIjoiQlVZRVIiLCJqdGkiOiIyNTcwYjFjZi1lOTQwLTRkNzktOWFlMS02OTBhYTUyMzUwMmQiLCJpYXQiOjE2NzIzOTE5MDgsImV4cCI6MTY3NDk4MzkwOH0.Mv_amskZsCgYBOj7y_V-oA_i8-IaOBJWxx5WYgayKTU\"\n" +
+                                    "    }\n" +
                                     "}")
             }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @PostMapping(value = "/ext/googleid-token")
