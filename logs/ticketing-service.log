@@ -957,3 +957,56 @@ Body   : {"token":"eyJhbGciOiJSUzI1NiIsImtpZCI6IjhlMGFjZjg5MWUwOTAwOTFlZjFhNWU3Z
 2022-12-30 10:03:34,202 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2022-12-30 10:03:34,204 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2022-12-30 10:03:34,211 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-12-30 13:02:34,922 INFO org.springframework.boot.SpringApplicationBannerPrinter [main] 
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.5)
+
+
+2022-12-30 13:02:35,004 INFO org.springframework.boot.StartupInfoLogger [main] Starting TicketingServiceApplication using Java 11 on MSI with PID 16896 (D:\Studi Independen\Project\ticketing-service\target\classes started by RikoJanuarSawaludin in D:\Studi Independen\Project\ticketing-service)
+2022-12-30 13:02:35,005 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.5, Spring v5.3.23
+2022-12-30 13:02:35,006 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-12-30 13:02:35,785 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-30 13:02:35,878 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 82 ms. Found 18 JPA repository interfaces.
+2022-12-30 13:02:36,730 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-12-30 13:02:36,744 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-12-30 13:02:36,744 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-12-30 13:02:36,745 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-30 13:02:36,916 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-12-30 13:02:36,917 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1856 ms
+2022-12-30 13:02:37,144 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-30 13:02:37,224 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-30 13:02:37,383 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-30 13:02:37,506 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-12-30 13:02:37,631 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-12-30 13:02:37,649 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-12-30 13:02:38,645 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-30 13:02:38,654 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-30 13:02:39,224 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'corsFilter' configured for use
+2022-12-30 13:02:39,225 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2022-12-30 13:02:39,614 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@37a36194, com.binar.tix.config.CorsFilter@1d0acb8f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6abaa14b, org.springframework.security.web.context.SecurityContextPersistenceFilter@4ee1c29a, org.springframework.security.web.header.HeaderWriterFilter@58ebfbcb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5f32de90, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1181526e, com.binar.tix.config.SecurityAuthenticationFilter@530d40b4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3b60be3, org.springframework.security.web.session.SessionManagementFilter@4960b819, org.springframework.security.web.access.ExceptionTranslationFilter@2480acc3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@46067a74]
+2022-12-30 13:02:39,726 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-30 13:02:40,477 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [main] Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2022-12-30 13:02:40,626 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-12-30 13:02:40,645 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path '/ticketing-service'
+2022-12-30 13:02:40,654 INFO org.springframework.boot.StartupInfoLogger [main] Started TicketingServiceApplication in 6.216 seconds (JVM running for 6.69)
+2022-12-30 13:02:42,554 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-12-30 13:02:42,554 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-12-30 13:02:42,555 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2022-12-30 13:02:42,676 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-1] Incoming Request Header {content-length=[59], postman-token=[0c5c717c-86e1-4fed-8d06-ec23f5e87c8f], host=[localhost:8080], content-type=[application/json], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.30.0], accept=[*/*]}
+Method : POST
+Path   : /ticketing-service/ext/login
+Body   : {"email":"j@gmail.com"}
+2022-12-30 13:02:42,734 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-1] Response : {"responseCode":200,"responseMessage":"Sukses"}
+2022-12-30 13:02:54,372 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-3] Incoming Request Header {content-length=[67], postman-token=[b0e2a082-9a11-4dad-ba67-85f61f370e1d], host=[localhost:8080], content-type=[application/json], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.30.0], accept=[*/*]}
+Method : POST
+Path   : /ticketing-service/ext/login
+Body   : {"email":"admin@safly.com"}
+2022-12-30 13:02:54,379 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-3] Response : {"responseCode":200,"responseMessage":"Sukses"}
+2022-12-30 13:03:58,442 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-30 13:03:58,444 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-12-30 13:03:58,449 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
