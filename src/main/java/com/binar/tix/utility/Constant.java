@@ -9,6 +9,7 @@ public class Constant {
     public static final String KEY1 = "QiFuYXIgUzNydmljZSAkJC";
     public static final String KEY2 = "MgRmluYWwgUHJvajNjdEAqKg";
     public static final String STAGING_QR = "https://ticket-app-5-staging.vercel.app/qr-validation?token=";
+    public static final String PROD_QR = "https://ticket-app-5.vercel.app/qr-validation?token=";
     public static final String AUTH = "Authorization";
     public  static final String ENCRYPT_KEY = "ThisIsASecretKey";
     public  static final String DOMESTIK = "domestik";
