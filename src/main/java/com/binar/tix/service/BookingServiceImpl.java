@@ -261,6 +261,8 @@ public class BookingServiceImpl implements BookingService {
             Optional<Destination> cekDestination = destinationRepository.findByDepartureAndDestinations(destination, departure);
             if (cekDestination.isPresent()) {
                 Destination dst = cekDestination.get();
+                log.info(dst.getDestinationId() + " destination id");
+                log.info(s1.getClassId() + " class id");
                 Schedule returnSchedule = scheduleRepository.findByDestinationIdAndClassIdAndFlightDateAndStartTimeAndEndTime(dst.getDestinationId(), s1.getClassId(), s1.getFlightDate(), s1.getStartTime(), s1.getEndTime());
                 scheduleIds = returnSchedule.getScheduleId();
                 resp.setClassId(returnSchedule.getClassId());
