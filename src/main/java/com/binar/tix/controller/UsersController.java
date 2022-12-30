@@ -308,11 +308,11 @@ public class UsersController {
                                     "}")
             }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @PostMapping(value = "/ext/googleid-token")
-    public ResponseEntity<Messages> verifyGoogleId(@RequestBody RespLogin req, HttpServletRequest httpServletRequest) throws IOException, GeneralSecurityException {
+    public ResponseEntity<Messages> verifyGoogleId(@RequestBody ReqSigninGoogle req, HttpServletRequest httpServletRequest) throws IOException, GeneralSecurityException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(req));
         log.info(writeLog);
 
-        Messages resp = googleOauth.verify(req.getToken());
+        Messages resp = googleOauth.verify(req);
 
         String writeLogResp = HttpUtility.writeLogResp(mapper.writeValueAsString(new Messages(resp.getResponseCode(), resp.getResponseMessage())));
         log.info(writeLogResp);

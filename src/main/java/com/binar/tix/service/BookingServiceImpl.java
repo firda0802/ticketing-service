@@ -339,7 +339,6 @@ public class BookingServiceImpl implements BookingService {
             Optional<Orders> data = ordersRepository.findById(decryptToken);
             return data.isPresent();
         } catch (Exception e) {
-            log.error(e.getMessage());
             return false;
         }
     }
@@ -348,8 +347,10 @@ public class BookingServiceImpl implements BookingService {
     public String getTitle(String title) {
         if (title.equals("Tuan")) {
             return "Tn. ";
-        } else {
+        } else if(title.equals("Nyonya")) {
             return "Ny. ";
+        }else{
+            return "Nn. ";
         }
     }
 }

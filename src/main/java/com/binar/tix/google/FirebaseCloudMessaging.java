@@ -35,7 +35,7 @@ public class FirebaseCloudMessaging {
     private static final JSONObject MESSAGE = new JSONObject();
     private static final JSONObject DATA = new JSONObject();
 
-    private static final String PROJECT_ID = "binar-academy-8e376";
+    private static final String PROJECT_ID = "safly-a958f";
     private static final String BASE_URL = "https://fcm.googleapis.com";
     private static final String FCM_SEND_ENDPOINT = "/v1/projects/" + PROJECT_ID + "/messages:send";
 
