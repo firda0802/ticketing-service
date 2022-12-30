@@ -19,6 +19,7 @@ public interface CrudService {
     Boolean deleteAirplane(Integer airplaneId);
 
     Boolean updateAirport(Integer id, String name, String address, int cityId);
+
     Boolean deleteAirport(Integer id);
 
     List<Payment> findAllPayment();
@@ -53,5 +54,8 @@ public interface CrudService {
 
     Boolean deleteDestination(int id);
 
+    Boolean updateAddClass(int i, String string, int j, int k);
+
+    Boolean updateAddDestination(int i, int j, int k, int l, int m);
 
 }
