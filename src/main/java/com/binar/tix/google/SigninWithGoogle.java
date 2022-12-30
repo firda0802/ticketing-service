@@ -55,7 +55,6 @@ public class SigninWithGoogle {
             req.setEmail(data.getEmail());
             req.setPassword(MD5.encrypt(RandomStringUtils.randomAlphanumeric(10)));
             req.setFullName(data.getFullName());
-            userService.registerUser(req);
             data.setToken(userService.registerUser(req));
         }
         resp.success();
