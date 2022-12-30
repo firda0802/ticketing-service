@@ -5,13 +5,11 @@ import com.binar.tix.payload.ReqCreateAirplane;
 import com.binar.tix.service.CrudService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,17 +21,14 @@ public class AirplaneController {
     @Autowired
     CrudService crudService;
 
-    @Operation(summary="Menambahkan Pesawat")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Pesawat berhasil ditambahkan.",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "400", description = "Eror dari sisi Browser .",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "500", description = "Eror dari sisi Server.",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))})})
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Menambahkan Airplane", description = "Airplane bisa ditambahkan jika ingin ada data baru airplane",
+                            value = "{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Berhasil Ditambahkan\"\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
     @PostMapping("/add-airplane")
     public ResponseEntity<Messages> create(@RequestBody ReqCreateAirplane airplane){
         crudService.saveAirplane(airplane);
@@ -43,19 +38,33 @@ public class AirplaneController {
         return ResponseEntity.ok().body(messages);
     }
 
-    @Operation(summary="Menampilkan Pesawat")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "", description = ".",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "400", description = "Eror dari sisi Browser .",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "500", description = "Eror dari sisi Server.",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))})})
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Menampilkan Pesawat", description = "",
+                            value = "{\n" +
+                                    "   \"responseCode\":200,\n" +
+                                    "   \"responseMessage\":\"Berhasil Ditampilkan\",\n" +
+                                    "   \"data\":[\n" +
+                                    "      {\n" +
+                                    "         \"airplaneId\":1,\n" +
+                                    "         \"type\":\"Boeing 777-300ER\",\n" +
+                                    "         \"luggageCapacity\":50,\n" +
+                                    "         \"airportId\":1,\n" +
+                                    "         \"airport\":{\n" +
+                                    "            \"idAirport\":1,\n" +
+                                    "            \"name\":\"Bandar Udara Internasional Soekarno–Hatta\",\n" +
+                                    "            \"address\":\"Jl. Soetta\",\n" +
+                                    "            \"cityId\":4,\n" +
+                                    "            \"city\":{\n" +
+                                    "               \"destinationCityId\":4,\n" +
+                                    "               \"cityName\":\"Makassar\"\n" +
+                                    "            }\n" +
+                                    "         }\n" +
+                                    "      }\n" +
+                                    "   ]\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
     @GetMapping("/get-airplane")
-    @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<Messages> get(){
         Messages messages= new Messages();
         messages.setResponseCode(200);
@@ -64,17 +73,14 @@ public class AirplaneController {
         return ResponseEntity.ok().body(messages);
     }
 
-    @Operation(summary="Mengupdate Data Pesawat")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "", description = ".",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "400", description = "Eror dari sisi Browser .",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "500", description = "Eror dari sisi Server.",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))})})
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Mengupdate Data Airplane", description = "Untuk mengubah data airplane, pastikan id yang dimasukan benar dan data yang diubah bisa diatur sesuai dengan kebutuhan.",
+                            value = "{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Berhasil Diupdate\"\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
     @PutMapping("/update-airplane/{airplaneId}")
     public ResponseEntity<Messages> update(@PathVariable Integer airplaneId, @RequestBody ReqCreateAirplane airplane){
         Messages messages= new Messages();
@@ -91,17 +97,14 @@ public class AirplaneController {
         return ResponseEntity.ok().body(messages);
     }
 
-    @Operation(summary="Menghapus Data Pesawat")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "", description = ".",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "400", description = "Eror dari sisi Browser .",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "500", description = "Eror dari sisi Server.",
-                    content = {@Content(mediaType="application/json",
-                            schema = @Schema(implementation = Response.class))})})
+    @Operation(responses = {
+            @ApiResponse(responseCode = "200", content = @Content(examples = {
+                    @ExampleObject(name = "Menghapus Data Airplane", description = "Data airplane bisa dihapus dengan memasukan id yang valid yang hendak ingin dihapus",
+                            value = "{\n" +
+                                    "    \"responseCode\": 200,\n" +
+                                    "    \"responseMessage\": \"Berhasil Dihapus\"\n" +
+                                    "}")
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
     @DeleteMapping("/delete-airplane/{airplaneId}")
     public ResponseEntity<Messages> delete(@PathVariable Integer airplaneId){
         Messages messages= new Messages();
