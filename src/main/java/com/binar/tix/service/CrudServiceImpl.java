@@ -66,7 +66,7 @@ public class CrudServiceImpl implements CrudService {
     public Boolean deleteAirplane(Integer airplaneId) {
         Optional<Airplane> airplanes = airplaneRepository.findById(airplaneId);
         if (airplanes.isPresent()) {
-            Airplane airplane1= airplanes.get();
+            Airplane airplane1 = airplanes.get();
             airplaneRepository.delete(airplane1);
             return true;
         } else {
@@ -102,10 +102,10 @@ public class CrudServiceImpl implements CrudService {
     @Override
     public Boolean deleteAirport(Integer id) {
         Optional<Airport> airport = airportRepository.findById(id);
-        if(airport.isPresent()){
+        if (airport.isPresent()) {
             airportRepository.delete(airport.get());
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -140,7 +140,7 @@ public class CrudServiceImpl implements CrudService {
     public Boolean deletePayment(Integer paymentId) {
         Optional<Payment> payments = paymentRepository.findById(paymentId);
         if (payments.isPresent()) {
-            Payment payment1= payments.get();
+            Payment payment1 = payments.get();
             paymentRepository.delete(payment1);
             return true;
         } else {
@@ -152,8 +152,6 @@ public class CrudServiceImpl implements CrudService {
     public List<Schedule> findAllSchedule() {
         return scheduleRepository.findAll();
     }
-
-
 
     @Override
     public Schedule saveSchedule(ReqCreateSchedule schedule) {
@@ -167,7 +165,7 @@ public class CrudServiceImpl implements CrudService {
     }
 
     @Override
-    public Boolean updateSchedule(Integer scheduleId,ReqCreateSchedule schedule) {
+    public Boolean updateSchedule(Integer scheduleId, ReqCreateSchedule schedule) {
         Optional<Schedule> schedules = scheduleRepository.findById(scheduleId);
         if (schedules.isPresent()) {
             Schedule schedule1 = schedules.get();
@@ -186,7 +184,7 @@ public class CrudServiceImpl implements CrudService {
     public Boolean deleteSchedule(Integer scheduleId) {
         Optional<Schedule> schedules = scheduleRepository.findById(scheduleId);
         if (schedules.isPresent()) {
-            Schedule schedule1= schedules.get();
+            Schedule schedule1 = schedules.get();
             scheduleRepository.delete(schedule1);
             return true;
         } else {
@@ -199,7 +197,7 @@ public class CrudServiceImpl implements CrudService {
         return seatsRepository.findAll();
     }
 
-    public Optional<Seats> findBySeatsId(Integer seatsId){
+    public Optional<Seats> findBySeatsId(Integer seatsId) {
         return seatsRepository.findById(seatsId);
     }
 
@@ -236,7 +234,7 @@ public class CrudServiceImpl implements CrudService {
     public Boolean deleteSeats(Integer seatsId) {
         Optional<Seats> seats = seatsRepository.findById(seatsId);
         if (seats.isPresent()) {
-            Seats seats1= seats.get();
+            Seats seats1 = seats.get();
             seatsRepository.delete(seats1);
             return true;
         } else {
@@ -314,5 +312,17 @@ public class CrudServiceImpl implements CrudService {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public Boolean updateAddClass(int i, String string, int j, int k) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Boolean updateAddDestination(int i, int j, int k, int l, int m) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }
