@@ -1010,3 +1010,159 @@ Body   : {"email":"admin@safly.com"}
 2022-12-30 13:03:58,442 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2022-12-30 13:03:58,444 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2022-12-30 13:03:58,449 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-12-30 14:03:14,042 INFO org.springframework.boot.SpringApplicationBannerPrinter [main] 
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.5)
+
+
+2022-12-30 14:03:14,106 INFO org.springframework.boot.StartupInfoLogger [main] Starting TicketingServiceApplication using Java 11 on MSI with PID 18736 (D:\Studi Independen\Project\ticketing-service\target\classes started by RikoJanuarSawaludin in D:\Studi Independen\Project\ticketing-service)
+2022-12-30 14:03:14,106 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.5, Spring v5.3.23
+2022-12-30 14:03:14,107 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-12-30 14:03:14,799 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-30 14:03:14,892 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 84 ms. Found 18 JPA repository interfaces.
+2022-12-30 14:03:15,639 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-12-30 14:03:15,648 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-12-30 14:03:15,649 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-12-30 14:03:15,649 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-30 14:03:15,868 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-12-30 14:03:15,869 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1723 ms
+2022-12-30 14:03:16,079 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-30 14:03:16,131 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-30 14:03:16,334 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-30 14:03:16,474 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-12-30 14:03:16,602 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-12-30 14:03:16,621 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-12-30 14:03:17,562 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-30 14:03:17,570 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-30 14:03:18,125 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'corsFilter' configured for use
+2022-12-30 14:03:18,126 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2022-12-30 14:03:18,529 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6d911985, com.binar.tix.config.CorsFilter@ab5dde4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@706c2726, org.springframework.security.web.context.SecurityContextPersistenceFilter@c76762, org.springframework.security.web.header.HeaderWriterFilter@13976c57, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2db82155, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@128d397c, com.binar.tix.config.SecurityAuthenticationFilter@6b8f87dc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@255482cb, org.springframework.security.web.session.SessionManagementFilter@80b70fd, org.springframework.security.web.access.ExceptionTranslationFilter@45bbb3e8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@222dc36c]
+2022-12-30 14:03:18,707 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-30 14:03:19,419 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [main] Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2022-12-30 14:03:19,558 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-12-30 14:03:19,577 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path '/ticketing-service'
+2022-12-30 14:03:19,586 INFO org.springframework.boot.StartupInfoLogger [main] Started TicketingServiceApplication in 5.926 seconds (JVM running for 6.448)
+2022-12-30 14:03:54,923 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-12-30 14:03:54,925 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2022-12-30 14:03:54,926 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 1 ms
+2022-12-30 14:03:55,024 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-2] Incoming Request Header {content-length=[1231], postman-token=[1ffc0cd3-e1d3-4233-a32f-ec10dc35e959], host=[localhost:8080], content-type=[application/json], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.30.0], accept=[*/*]}
+Method : POST
+Path   : /ticketing-service/ext/googleid-token
+Body   : {"email":"zio@gmail.com","fullName":"Js Corp Service","token":"eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg3NTNiYmFiM2U4YzBmZjdjN2ZiNzg0ZWM5MmY5ODk3YjVjZDkwN2QiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSnMgQ29ycCBTZXJ2aWNlIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FFZEZUcDRhN1RtUnpPTGFpVzBWb0FERGRTQmhsOXR2QTJ5T0Zqb2s1M2hlPXM5Ni1jIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL3NhZmx5LWE5NThmIiwiYXVkIjoic2FmbHktYTk1OGYiLCJhdXRoX3RpbWUiOjE2NzIzODMwNTIsInVzZXJfaWQiOiJ2VFIzdlRWMmFiZ1JtOW1QM2hMRGYzUVFicG0yIiwic3ViIjoidlRSM3ZUVjJhYmdSbTltUDNoTERmM1FRYnBtMiIsImlhdCI6MTY3MjM4MzA1MiwiZXhwIjoxNjcyMzg2NjUyLCJlbWFpbCI6ImpzY29ycG9yYXRpb24uc2VydmljZUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjEwMDg2MTQ1MDM3OTU0NTE1NTA1OCJdLCJlbWFpbCI6WyJqc2NvcnBvcmF0aW9uLnNlcnZpY2VAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.kkQ2xq_3-xmv5xGjugxXUgCM8utzktc7uXyuwEqdpc6ceGDio_vcx_vqT4z_uCzBPp2VCyGmkxp-_6Cft5lUQEifxhQSK2M58iPZilvPh6TTfn3i_7o3JMtoYeA50BOg3aEoccKQF28lACyJ3I5TKhzAEEnooLgHctMg03sjrY7JEBbsv4ByNvipMKWamV5KTENkb3-_rQyvD7JKBNl1gebhM8h2LeP_EWTTSfZJJ8lDoPi-h24xcPyFo7i8ZpVtBO-LZtIpq1oys540COGA4ExjQuCbrs5FVGP1-9OPAkiVPqe99APXNgS2ZWizUADvMfJgXzMe5xtPJnJq8GAE3A"}
+2022-12-30 14:03:55,212 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-2] Response : {"responseCode":200,"responseMessage":"Sukses"}
+2022-12-30 14:04:18,624 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-30 14:04:18,626 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-12-30 14:04:18,634 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-12-30 14:04:31,158 INFO org.springframework.boot.SpringApplicationBannerPrinter [main] 
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.5)
+
+
+2022-12-30 14:04:31,247 INFO org.springframework.boot.StartupInfoLogger [main] Starting TicketingServiceApplication using Java 11 on MSI with PID 1404 (D:\Studi Independen\Project\ticketing-service\target\classes started by RikoJanuarSawaludin in D:\Studi Independen\Project\ticketing-service)
+2022-12-30 14:04:31,247 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.5, Spring v5.3.23
+2022-12-30 14:04:31,248 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-12-30 14:04:31,975 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-30 14:04:32,061 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 78 ms. Found 18 JPA repository interfaces.
+2022-12-30 14:04:32,802 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-12-30 14:04:32,811 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-12-30 14:04:32,812 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-12-30 14:04:32,812 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-30 14:04:32,957 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-12-30 14:04:32,958 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1652 ms
+2022-12-30 14:04:33,141 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-30 14:04:33,184 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-30 14:04:33,307 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-30 14:04:33,400 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-12-30 14:04:33,490 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-12-30 14:04:33,506 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-12-30 14:04:34,358 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-30 14:04:34,366 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-30 14:04:35,005 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'corsFilter' configured for use
+2022-12-30 14:04:35,005 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2022-12-30 14:04:35,406 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@641255d1, com.binar.tix.config.CorsFilter@75d61b62, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@74159dc9, org.springframework.security.web.context.SecurityContextPersistenceFilter@395abe85, org.springframework.security.web.header.HeaderWriterFilter@c76762, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2eb91767, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@520eb9f8, com.binar.tix.config.SecurityAuthenticationFilter@6560f387, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@53086bdc, org.springframework.security.web.session.SessionManagementFilter@2db82155, org.springframework.security.web.access.ExceptionTranslationFilter@5af7e2f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@77e1b84c]
+2022-12-30 14:04:35,543 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-30 14:04:36,336 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [main] Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2022-12-30 14:04:36,531 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-12-30 14:04:36,557 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path '/ticketing-service'
+2022-12-30 14:04:36,566 INFO org.springframework.boot.StartupInfoLogger [main] Started TicketingServiceApplication in 5.917 seconds (JVM running for 6.51)
+2022-12-30 14:04:41,529 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-12-30 14:04:41,529 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2022-12-30 14:04:41,529 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 0 ms
+2022-12-30 14:04:41,639 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-2] Incoming Request Header {content-length=[1231], postman-token=[56a50935-d329-4fb4-abb7-7bc7d711d2be], host=[localhost:8080], content-type=[application/json], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.30.0], accept=[*/*]}
+Method : POST
+Path   : /ticketing-service/ext/googleid-token
+Body   : {"email":"zio@gmail.com","fullName":"Js Corp Service","token":"eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg3NTNiYmFiM2U4YzBmZjdjN2ZiNzg0ZWM5MmY5ODk3YjVjZDkwN2QiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSnMgQ29ycCBTZXJ2aWNlIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FFZEZUcDRhN1RtUnpPTGFpVzBWb0FERGRTQmhsOXR2QTJ5T0Zqb2s1M2hlPXM5Ni1jIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL3NhZmx5LWE5NThmIiwiYXVkIjoic2FmbHktYTk1OGYiLCJhdXRoX3RpbWUiOjE2NzIzODMwNTIsInVzZXJfaWQiOiJ2VFIzdlRWMmFiZ1JtOW1QM2hMRGYzUVFicG0yIiwic3ViIjoidlRSM3ZUVjJhYmdSbTltUDNoTERmM1FRYnBtMiIsImlhdCI6MTY3MjM4MzA1MiwiZXhwIjoxNjcyMzg2NjUyLCJlbWFpbCI6ImpzY29ycG9yYXRpb24uc2VydmljZUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjEwMDg2MTQ1MDM3OTU0NTE1NTA1OCJdLCJlbWFpbCI6WyJqc2NvcnBvcmF0aW9uLnNlcnZpY2VAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.kkQ2xq_3-xmv5xGjugxXUgCM8utzktc7uXyuwEqdpc6ceGDio_vcx_vqT4z_uCzBPp2VCyGmkxp-_6Cft5lUQEifxhQSK2M58iPZilvPh6TTfn3i_7o3JMtoYeA50BOg3aEoccKQF28lACyJ3I5TKhzAEEnooLgHctMg03sjrY7JEBbsv4ByNvipMKWamV5KTENkb3-_rQyvD7JKBNl1gebhM8h2LeP_EWTTSfZJJ8lDoPi-h24xcPyFo7i8ZpVtBO-LZtIpq1oys540COGA4ExjQuCbrs5FVGP1-9OPAkiVPqe99APXNgS2ZWizUADvMfJgXzMe5xtPJnJq8GAE3A"}
+2022-12-30 14:04:41,701 INFO com.binar.tix.google.SigninWithGoogle [http-nio-8080-exec-2] masuk a
+2022-12-30 14:04:41,748 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-2] Response : {"responseCode":200,"responseMessage":"Sukses"}
+2022-12-30 14:06:28,292 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-5] Incoming Request Header {content-length=[1230], postman-token=[15a0918d-22cb-44aa-a9de-cab0524f096f], host=[localhost:8080], content-type=[application/json], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.30.0], accept=[*/*]}
+Method : POST
+Path   : /ticketing-service/ext/googleid-token
+Body   : {"email":"zi@gmail.com","fullName":"Js Corp Service","token":"eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg3NTNiYmFiM2U4YzBmZjdjN2ZiNzg0ZWM5MmY5ODk3YjVjZDkwN2QiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSnMgQ29ycCBTZXJ2aWNlIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FFZEZUcDRhN1RtUnpPTGFpVzBWb0FERGRTQmhsOXR2QTJ5T0Zqb2s1M2hlPXM5Ni1jIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL3NhZmx5LWE5NThmIiwiYXVkIjoic2FmbHktYTk1OGYiLCJhdXRoX3RpbWUiOjE2NzIzODMwNTIsInVzZXJfaWQiOiJ2VFIzdlRWMmFiZ1JtOW1QM2hMRGYzUVFicG0yIiwic3ViIjoidlRSM3ZUVjJhYmdSbTltUDNoTERmM1FRYnBtMiIsImlhdCI6MTY3MjM4MzA1MiwiZXhwIjoxNjcyMzg2NjUyLCJlbWFpbCI6ImpzY29ycG9yYXRpb24uc2VydmljZUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjEwMDg2MTQ1MDM3OTU0NTE1NTA1OCJdLCJlbWFpbCI6WyJqc2NvcnBvcmF0aW9uLnNlcnZpY2VAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.kkQ2xq_3-xmv5xGjugxXUgCM8utzktc7uXyuwEqdpc6ceGDio_vcx_vqT4z_uCzBPp2VCyGmkxp-_6Cft5lUQEifxhQSK2M58iPZilvPh6TTfn3i_7o3JMtoYeA50BOg3aEoccKQF28lACyJ3I5TKhzAEEnooLgHctMg03sjrY7JEBbsv4ByNvipMKWamV5KTENkb3-_rQyvD7JKBNl1gebhM8h2LeP_EWTTSfZJJ8lDoPi-h24xcPyFo7i8ZpVtBO-LZtIpq1oys540COGA4ExjQuCbrs5FVGP1-9OPAkiVPqe99APXNgS2ZWizUADvMfJgXzMe5xtPJnJq8GAE3A"}
+2022-12-30 14:06:28,296 INFO com.binar.tix.google.SigninWithGoogle [http-nio-8080-exec-5] masuk b
+2022-12-30 14:06:28,343 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-5] Response : {"responseCode":200,"responseMessage":"Sukses"}
+2022-12-30 14:06:49,618 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-30 14:06:49,620 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-12-30 14:06:49,629 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2022-12-30 14:06:53,858 INFO org.springframework.boot.SpringApplicationBannerPrinter [main] 
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.5)
+
+
+2022-12-30 14:06:53,925 INFO org.springframework.boot.StartupInfoLogger [main] Starting TicketingServiceApplication using Java 11 on MSI with PID 23492 (D:\Studi Independen\Project\ticketing-service\target\classes started by RikoJanuarSawaludin in D:\Studi Independen\Project\ticketing-service)
+2022-12-30 14:06:53,925 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.5, Spring v5.3.23
+2022-12-30 14:06:53,926 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-12-30 14:06:54,576 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-12-30 14:06:54,666 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 82 ms. Found 18 JPA repository interfaces.
+2022-12-30 14:06:55,399 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2022-12-30 14:06:55,408 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2022-12-30 14:06:55,409 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2022-12-30 14:06:55,409 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-12-30 14:06:55,563 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2022-12-30 14:06:55,563 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1603 ms
+2022-12-30 14:06:55,744 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-12-30 14:06:55,790 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-12-30 14:06:55,935 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-12-30 14:06:56,046 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2022-12-30 14:06:56,131 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2022-12-30 14:06:56,147 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-12-30 14:06:57,075 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-12-30 14:06:57,083 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-12-30 14:06:57,644 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'corsFilter' configured for use
+2022-12-30 14:06:57,645 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2022-12-30 14:06:58,007 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@641255d1, com.binar.tix.config.CorsFilter@75d61b62, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@74159dc9, org.springframework.security.web.context.SecurityContextPersistenceFilter@395abe85, org.springframework.security.web.header.HeaderWriterFilter@c76762, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2eb91767, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@520eb9f8, com.binar.tix.config.SecurityAuthenticationFilter@6560f387, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@53086bdc, org.springframework.security.web.session.SessionManagementFilter@2db82155, org.springframework.security.web.access.ExceptionTranslationFilter@5af7e2f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@77e1b84c]
+2022-12-30 14:06:58,124 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-12-30 14:06:58,769 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [main] Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2022-12-30 14:06:58,935 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2022-12-30 14:06:58,957 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path '/ticketing-service'
+2022-12-30 14:06:58,966 INFO org.springframework.boot.StartupInfoLogger [main] Started TicketingServiceApplication in 5.519 seconds (JVM running for 5.97)
+2022-12-30 14:07:02,990 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-12-30 14:07:02,992 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2022-12-30 14:07:02,993 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2022-12-30 14:07:03,102 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-1] Incoming Request Header {content-length=[1231], postman-token=[364c39c8-b2f3-4388-9c47-2c570a583460], host=[localhost:8080], content-type=[application/json], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.30.0], accept=[*/*]}
+Method : POST
+Path   : /ticketing-service/ext/googleid-token
+Body   : {"email":"zik@gmail.com","fullName":"Js Corp Service","token":"eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg3NTNiYmFiM2U4YzBmZjdjN2ZiNzg0ZWM5MmY5ODk3YjVjZDkwN2QiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSnMgQ29ycCBTZXJ2aWNlIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FFZEZUcDRhN1RtUnpPTGFpVzBWb0FERGRTQmhsOXR2QTJ5T0Zqb2s1M2hlPXM5Ni1jIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL3NhZmx5LWE5NThmIiwiYXVkIjoic2FmbHktYTk1OGYiLCJhdXRoX3RpbWUiOjE2NzIzODMwNTIsInVzZXJfaWQiOiJ2VFIzdlRWMmFiZ1JtOW1QM2hMRGYzUVFicG0yIiwic3ViIjoidlRSM3ZUVjJhYmdSbTltUDNoTERmM1FRYnBtMiIsImlhdCI6MTY3MjM4MzA1MiwiZXhwIjoxNjcyMzg2NjUyLCJlbWFpbCI6ImpzY29ycG9yYXRpb24uc2VydmljZUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjEwMDg2MTQ1MDM3OTU0NTE1NTA1OCJdLCJlbWFpbCI6WyJqc2NvcnBvcmF0aW9uLnNlcnZpY2VAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.kkQ2xq_3-xmv5xGjugxXUgCM8utzktc7uXyuwEqdpc6ceGDio_vcx_vqT4z_uCzBPp2VCyGmkxp-_6Cft5lUQEifxhQSK2M58iPZilvPh6TTfn3i_7o3JMtoYeA50BOg3aEoccKQF28lACyJ3I5TKhzAEEnooLgHctMg03sjrY7JEBbsv4ByNvipMKWamV5KTENkb3-_rQyvD7JKBNl1gebhM8h2LeP_EWTTSfZJJ8lDoPi-h24xcPyFo7i8ZpVtBO-LZtIpq1oys540COGA4ExjQuCbrs5FVGP1-9OPAkiVPqe99APXNgS2ZWizUADvMfJgXzMe5xtPJnJq8GAE3A"}
+2022-12-30 14:07:03,266 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-1] Response : {"responseCode":200,"responseMessage":"Sukses"}
+2022-12-30 14:07:07,311 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-3] Incoming Request Header {content-length=[1231], postman-token=[a502f0a0-cb7b-4584-9dae-57df51671dd6], host=[localhost:8080], content-type=[application/json], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.30.0], accept=[*/*]}
+Method : POST
+Path   : /ticketing-service/ext/googleid-token
+Body   : {"email":"zik@gmail.com","fullName":"Js Corp Service","token":"eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg3NTNiYmFiM2U4YzBmZjdjN2ZiNzg0ZWM5MmY5ODk3YjVjZDkwN2QiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiSnMgQ29ycCBTZXJ2aWNlIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FFZEZUcDRhN1RtUnpPTGFpVzBWb0FERGRTQmhsOXR2QTJ5T0Zqb2s1M2hlPXM5Ni1jIiwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL3NhZmx5LWE5NThmIiwiYXVkIjoic2FmbHktYTk1OGYiLCJhdXRoX3RpbWUiOjE2NzIzODMwNTIsInVzZXJfaWQiOiJ2VFIzdlRWMmFiZ1JtOW1QM2hMRGYzUVFicG0yIiwic3ViIjoidlRSM3ZUVjJhYmdSbTltUDNoTERmM1FRYnBtMiIsImlhdCI6MTY3MjM4MzA1MiwiZXhwIjoxNjcyMzg2NjUyLCJlbWFpbCI6ImpzY29ycG9yYXRpb24uc2VydmljZUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjEwMDg2MTQ1MDM3OTU0NTE1NTA1OCJdLCJlbWFpbCI6WyJqc2NvcnBvcmF0aW9uLnNlcnZpY2VAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.kkQ2xq_3-xmv5xGjugxXUgCM8utzktc7uXyuwEqdpc6ceGDio_vcx_vqT4z_uCzBPp2VCyGmkxp-_6Cft5lUQEifxhQSK2M58iPZilvPh6TTfn3i_7o3JMtoYeA50BOg3aEoccKQF28lACyJ3I5TKhzAEEnooLgHctMg03sjrY7JEBbsv4ByNvipMKWamV5KTENkb3-_rQyvD7JKBNl1gebhM8h2LeP_EWTTSfZJJ8lDoPi-h24xcPyFo7i8ZpVtBO-LZtIpq1oys540COGA4ExjQuCbrs5FVGP1-9OPAkiVPqe99APXNgS2ZWizUADvMfJgXzMe5xtPJnJq8GAE3A"}
+2022-12-30 14:07:07,316 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-3] Response : {"responseCode":200,"responseMessage":"Sukses"}
+2022-12-30 14:07:09,626 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-12-30 14:07:09,626 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2022-12-30 14:07:09,642 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
