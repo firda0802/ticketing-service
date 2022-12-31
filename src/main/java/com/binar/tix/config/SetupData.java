@@ -594,7 +594,7 @@ public class SetupData {
 
             //--Makassar
             //Makassar - Jakarta
-            Destination mkj1 = new Destination(makassar.getDestinationCityId(), jakarta.getDestinationCityId(), 640000, 140);
+            Destination mkj1 = new Destination(makassar.getDestinationCityId(), jakarta.getDestinationCityId(), 640000, 145);
             //Makassar - Surabaya
             Destination mkj3 = new Destination(makassar.getDestinationCityId(), surabaya.getDestinationCityId(), 329600, 95);
             //Makassar - Medan
@@ -612,7 +612,7 @@ public class SetupData {
 
             //--Yogyakarta
             //Yogyakarta - Jakarta
-            Destination yj1 = new Destination(yogyakarta.getDestinationCityId(), jakarta.getDestinationCityId(), 224800, 70);
+            Destination yj1 = new Destination(yogyakarta.getDestinationCityId(), jakarta.getDestinationCityId(), 224800, 75);
             //Yogyakarta - Surabaya
             Destination yj3 = new Destination(yogyakarta.getDestinationCityId(), surabaya.getDestinationCityId(), 129600, 210);
             //Yogyakarta - Medan
