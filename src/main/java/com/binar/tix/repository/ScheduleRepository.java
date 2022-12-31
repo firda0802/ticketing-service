@@ -14,7 +14,7 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Integer> {
 
     List<Schedule> findByDestinationIdAndClassIdAndFlightDate(int destinationId, int classId, LocalDate flightDate);
 
-    Schedule findByDestinationIdAndClassIdAndFlightDateAndStartTimeAndEndTime(int destinationId, int classId, LocalDate flightDate, LocalTime startTime, LocalTime endTime);
+    Schedule findByDestinationIdAndClassIdAndFlightDateAndStartTime(int destinationId, int classId, LocalDate flightDate, LocalTime startTime);
 
     Optional<Schedule> findById(Integer scheduleId);
 
