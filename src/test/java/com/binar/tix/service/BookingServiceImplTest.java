@@ -52,12 +52,13 @@ class BookingServiceImplTest {
     List<DestinationCity> destinationCityList = new ArrayList<>();
     List<ClassSeats> classSeatsList = new ArrayList<>();
     List<PassengerType> passengerTypeList = new ArrayList<>();
-    Schedule schedule =  new Schedule(1, 1, 7500, LocalTime.of(3, 40), LocalTime.of(3, 40).plusMinutes(750), LocalDate.now(), new ScheduleAirplane(1, 5000, Constant.DOMESTIK));
+    Schedule schedule = new Schedule(1, 1, 7500, LocalTime.of(3, 40), LocalTime.of(3, 40).plusMinutes(750), LocalDate.now(), new ScheduleAirplane(1, 5000, Constant.DOMESTIK));
+
     @BeforeEach
     void setUp() {
         destinationCityList.add(new DestinationCity("Jakarta"));
-        classSeatsList.add(new ClassSeats("Ekonomi",7500));
-        passengerTypeList.add(new PassengerType("Anak-Anak", "Usia 2-11 tahun"));
+        classSeatsList.add(new ClassSeats("Ekonomi", 7500));
+        passengerTypeList.add(new PassengerType("Anak-Anak", "Usia 2-11 tahun", 2));
     }
 
     @Test
@@ -105,7 +106,21 @@ class BookingServiceImplTest {
         Pageable paging = PageRequest.of(1, 10);
         Page<Orders> page = ordersRepository.findByUserId(1, paging);
         when(bookingService.historyBooking(1, paging)).thenReturn(page);
-        verify(ordersRepository).findByUserId(1,paging);
+        verify(ordersRepository).findByUserId(1, paging);
+    }
+
+    @Test
+    void validatePassenger() {
+        Boolean expResult = true;
+        Boolean actResult = bookingService.validatePassenger(1, 1, 1);
+        assertEquals(expResult, actResult);
+    }
+
+    @Test
+    void validatePassengerNegative() {
+        Boolean expResult = false;
+        Boolean actResult = bookingService.validatePassenger(0, 1, 1);
+        assertEquals(expResult, actResult);
     }
 
     @Test
@@ -131,6 +146,7 @@ class BookingServiceImplTest {
         var actResult = scheduleRepository.findById(1);
         assertEquals(expResult, actResult);
     }
+
     @Test
     void createOrder() throws IOException, WriterException {
         ReqCreateOrder req = new ReqCreateOrder();
@@ -174,7 +190,7 @@ class BookingServiceImplTest {
 
     @Test
     void detailHistory() {
-        String invNumber  = "INV-7778-200";
+        String invNumber = "INV-7778-200";
         bookingService.detailHistory(invNumber);
         doReturn(Optional.of(new Orders())).when(ordersRepository).findById(invNumber);
         assertTrue(ordersRepository.findById(invNumber).isPresent());

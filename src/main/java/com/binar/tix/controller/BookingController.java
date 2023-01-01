@@ -1,6 +1,7 @@
 package com.binar.tix.controller;
 
 import com.binar.tix.entities.Orders;
+import com.binar.tix.entities.PassengerType;
 import com.binar.tix.payload.*;
 import com.binar.tix.service.BookingService;
 import com.binar.tix.service.InitializeService;
@@ -27,7 +28,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -49,7 +53,7 @@ public class BookingController {
                             "    \"data\": \"destinationCityId\": 1, \n" +
                             "cityName\": Jakarta\"\n" +
                             "}")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @GetMapping(value = "/destination-city")
     public ResponseEntity<Messages> destinationCity(HttpServletRequest httpServletRequest)
             throws JsonProcessingException {
@@ -74,7 +78,7 @@ public class BookingController {
                             "name\": Economi Class\"\n" +
                             "price\": 35.000\"\n" +
                             "}")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @GetMapping(value = "/class-seats")
     public ResponseEntity<Messages> classSeats(HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString("-"));
@@ -99,7 +103,7 @@ public class BookingController {
                             "type\": Anak - Anak\"\n" +
                             "description\": Umur 2 - 11 Tahun\"\n" +
                             "}")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @GetMapping(value = "/passenger_type")
     public ResponseEntity<Messages> passengerType(HttpServletRequest httpServletRequest)
             throws JsonProcessingException {
@@ -108,7 +112,9 @@ public class BookingController {
 
         Messages resp = new Messages();
         resp.success();
-        resp.setData(bookingService.listPassengerType());
+        List<PassengerType> list = bookingService.listPassengerType();
+        list.sort(Comparator.comparing(PassengerType::getPosition));
+        resp.setData(list);
         String writeLogResp = HttpUtility.writeLogResp(
                 mapper.writeValueAsString(new Messages(resp.getResponseCode(), resp.getResponseMessage())));
         log.info(writeLogResp);
@@ -125,7 +131,7 @@ public class BookingController {
                             "paymentMethod\": DANA\"\n" +
                             "status\": true\"\n" +
                             "}")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @GetMapping(value = "/booking/payment_type")
     public ResponseEntity<Messages> paymentType(HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString("-"));
@@ -150,7 +156,7 @@ public class BookingController {
                             "name\": Afghanistan\"\n" +
                             "code\": AF\"\n" +
                             "}")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @GetMapping(value = "/booking/citizenship")
     public ResponseEntity<Messages> citizenship(HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString("-"));
@@ -194,25 +200,53 @@ public class BookingController {
                             "price\": 72676250,}\n" +
                             "]\n" +
                             "}")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @PostMapping(value = "/schedule-available")
     public ResponseEntity<Messages> scheduleAvailable(@RequestBody ReqShowBooking req,
-            HttpServletRequest httpServletRequest) throws JsonProcessingException {
+                                                      HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(req));
         log.info(writeLog);
-
+        List<PassengerData> passenger = req.getPassenger();
+        Map<String, List<PassengerData>> list
+                = passenger.stream().collect(Collectors.groupingBy(d -> String.valueOf(d.getPassengerType())));
         if (req.getDepartureDate().isBefore(LocalDate.now())
                 || (req.getReturnDate() != null && req.getReturnDate().isBefore(req.getDepartureDate()))) {
             return ResponseEntity.status(Constant.BAD_REQUEST)
                     .body(new Messages(Constant.BAD_REQUEST, "Setidaknya pilih tanggal hari ini"));
-        } else {
-            Messages resp = bookingService.showScheduleFlight(req);
-            String writeLogResp = HttpUtility.writeLogResp(
-                    mapper.writeValueAsString(new Messages(resp.getResponseCode(), resp.getResponseMessage())));
-            log.info(writeLogResp);
-            return ResponseEntity.ok().body(resp);
+        } else if (list.size() == 3) {
+                int dewasa = 0;
+                int anak = 0;
+                int bayi = 0;
+                int undefined = 0;
+                for (PassengerData p : passenger) {
+                    String kategori = bookingService.passengerType(p.getPassengerType());
+                    switch (kategori) {
+                        case "Dewasa":
+                            dewasa += p.getQtyPerson();
+                            break;
+                        case "Anak - Anak":
+                            anak += p.getQtyPerson();
+                            break;
+                        case "Bayi":
+                            bayi += p.getQtyPerson();
+                            break;
+                        default:
+                            undefined += 1;
+                            log.info("Undefined Passenger Type "+p.getPassengerType());
+                            break;
+                    }
+                }
+                Boolean status = bookingService.validatePassenger(dewasa, anak, bayi);
+                if (Boolean.TRUE.equals(status) && undefined == 0) {
+                    Messages resp = bookingService.showScheduleFlight(req);
+                    String writeLogResp = HttpUtility.writeLogResp(
+                            mapper.writeValueAsString(new Messages(resp.getResponseCode(), resp.getResponseMessage())));
+                    log.info(writeLogResp);
+                    return ResponseEntity.ok().body(resp);
+                }
         }
-
+        return ResponseEntity.status(Constant.BAD_REQUEST)
+                .body(new Messages(Constant.BAD_REQUEST, "Passenger tidak valid"));
     }
 
     @Operation(responses = {
@@ -238,10 +272,10 @@ public class BookingController {
                             "canBook\": \"true\", \n" +
                             "}, \n" +
                             "}")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @GetMapping(value = "/booking/chose-seats/{scheduleId}")
     public ResponseEntity<Messages> seatsAvailable(@PathVariable(name = "scheduleId") int scheduleId,
-            HttpServletRequest httpServletRequest) throws JsonProcessingException {
+                                                   HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(scheduleId));
         log.info(writeLog);
 
@@ -259,7 +293,7 @@ public class BookingController {
                             "    \"responseCode\": 200,\n" +
                             "    \"responseMessage\": \"Sukses\",\n" +
                             "}")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @PostMapping(value = "/booking/create-order")
     public ResponseEntity<Messages> createOrder(@RequestBody ReqCreateOrder req, HttpServletRequest httpServletRequest)
             throws WriterException, IOException {
@@ -321,10 +355,10 @@ public class BookingController {
                             "totalData\" : 1, \n" +
                             "totalPaging\" : 1, \n" +
                             "}")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @GetMapping(value = "/booking/history")
     public ResponseEntity<Messages> historyBooking(@RequestParam(name = "limit") int limit,
-            @RequestParam(name = "pageNumber") int pageNumber, HttpServletRequest httpServletRequest)
+                                                   @RequestParam(name = "pageNumber") int pageNumber, HttpServletRequest httpServletRequest)
             throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest,
                 mapper.writeValueAsString("limit : " + limit + " , pageNumber : " + pageNumber));
@@ -401,10 +435,10 @@ public class BookingController {
                             "totalData\" : 1, \n" +
                             "totalPaging\" : 1, \n" +
                             "}")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @GetMapping(value = "/booking/history-detail/{invoiceNo}")
     public ResponseEntity<Messages> detailHistory(@PathVariable(name = "invoiceNo") String invoiceNo,
-            HttpServletRequest httpServletRequest) throws JsonProcessingException {
+                                                  HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(invoiceNo));
         log.info(writeLog);
 
@@ -422,10 +456,10 @@ public class BookingController {
                                     "    \"responseCode\": 200,\n" +
                                     "    \"responseMessage\": \"Verified Success Token\"\n" +
                                     "}")
-            }, mediaType = MediaType.APPLICATION_JSON_VALUE)) })
+            }, mediaType = MediaType.APPLICATION_JSON_VALUE))})
     @GetMapping(value = "/qr")
-    public ResponseEntity<Messages> validateToken(@RequestParam(required = false, defaultValue = "", value="token") String token,
-            HttpServletRequest httpServletRequest) throws JsonProcessingException {
+    public ResponseEntity<Messages> validateToken(@RequestParam(required = false, defaultValue = "", value = "token") String token,
+                                                  HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(token));
         log.info(writeLog);
         log.info(token);

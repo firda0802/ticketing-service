@@ -1,5 +1,6 @@
 package com.binar.tix.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -25,8 +26,13 @@ public class PassengerType implements Serializable {
     @Column(name = "description")
     private String description;
 
-    public PassengerType(String type, String description) {
+    @JsonIgnore
+    @Column(name = "position")
+    private int position;
+
+    public PassengerType(String type, String description, int position) {
         this.type = type;
         this.description = description;
+        this.position = position;
     }
 }

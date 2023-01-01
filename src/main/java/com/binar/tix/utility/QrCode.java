@@ -29,7 +29,7 @@ public class QrCode {
         String result = AES.encrypt(invoiceNo);
         assert result != null;
         String key = URLEncoder.encode(result, StandardCharsets.UTF_8);
-        BitMatrix bitMatrix = new QRCodeWriter().encode(Constant.PROD_QR+key, BarcodeFormat.QR_CODE, 250, 250);
+        BitMatrix bitMatrix = new QRCodeWriter().encode(Constant.STAGING_QR+key, BarcodeFormat.QR_CODE, 250, 250);
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         MatrixToImageWriter.writeToStream(bitMatrix, "png", out);
 
