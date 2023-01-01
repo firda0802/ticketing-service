@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService {
             ReqCreateNotification notif = new ReqCreateNotification();
             notif.setUserId(newUsers.getUserId());
             notif.setNotificationCategoryId(1);
-            notif.setTitle("Hai! Selamat datang di Safety Fly");
+            notif.setTitle("Hai! Selamat datang di Safely Fly");
             notif.setContent("Nikmati layanan pemesanan tiket pesawat secara online disini");
             notificationService.createNotifUsers(notif);
 
