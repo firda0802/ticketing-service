@@ -87,9 +87,9 @@ public class SetupData {
         }
 
         //Passenge Type
-        PassengerType type1 = new PassengerType("Anak - Anak", "Umur 2 - 11 Tahun");
-        PassengerType type2 = new PassengerType("Dewasa", "12 Tahun lebih");
-        PassengerType type3 = new PassengerType("Bayi", "Dibawah usia 2 tahun");
+        PassengerType type1 = new PassengerType("Anak - Anak", "Umur 2 - 11 Tahun",2);
+        PassengerType type2 = new PassengerType("Dewasa", "12 Tahun lebih",1);
+        PassengerType type3 = new PassengerType("Bayi", "Dibawah usia 2 tahun",3);
 
         if (initService.getPassengerType().isEmpty()) {
             initService.initPassengerType(type1);

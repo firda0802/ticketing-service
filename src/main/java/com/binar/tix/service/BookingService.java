@@ -45,4 +45,8 @@ public interface BookingService {
     Messages detailHistory(String invoiceNo);
 
     Boolean validateTokenQr(String token);
+
+    String passengerType(int passengerId);
+
+    Boolean validatePassenger(int dewasa, int anak, int bayi);
 }

@@ -252,7 +252,7 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public RespScheduleReturn getScheduleReturn(int scheduleId, LocalDate returnDate) {
         RespScheduleReturn resp = new RespScheduleReturn();
-        int scheduleIds = 0;
+        Integer scheduleIds = 0;
         Optional<Schedule> data = scheduleRepository.findById(scheduleId);
         if (data.isPresent()) {
             Schedule s1 = data.get();
@@ -262,10 +262,11 @@ public class BookingServiceImpl implements BookingService {
             if (cekDestination.isPresent()) {
                 Destination dst = cekDestination.get();
                 Schedule returnSchedule = scheduleRepository.findByDestinationIdAndClassIdAndFlightDateAndStartTime(dst.getDestinationId(), s1.getClassId(), s1.getFlightDate(), s1.getStartTime());
-                assert returnSchedule != null;
-                scheduleIds = returnSchedule.getScheduleId();
-                resp.setClassId(returnSchedule.getClassId());
-                resp.setAirplaneId(returnSchedule.getAirplanesId());
+                if (returnSchedule != null) {
+                    scheduleIds = returnSchedule.getScheduleId();
+                    resp.setClassId(returnSchedule.getClassId());
+                    resp.setAirplaneId(returnSchedule.getAirplanesId());
+                }
             }
         }
         resp.setScheduleId(scheduleIds);
@@ -302,9 +303,9 @@ public class BookingServiceImpl implements BookingService {
             resp.setDepartureAirport(o.getSchedule().getAirplane().getAirport().getName());
             resp.setDestinationsCity(destination2);
             Airport airport = airportRepository.getAirport(o.getSchedule().getDestination().getDestinations());
-            if(airport != null){
+            if (airport != null) {
                 resp.setDestinationsAirport(airport.getName());
-            }else{
+            } else {
                 resp.setDestinationsAirport("-");
             }
 
@@ -345,12 +346,32 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
+    public String passengerType(int passengerId) {
+        Optional<PassengerType> passengerType = passengerTypeRepository.findById(passengerId);
+        if (passengerType.isPresent()) {
+            return passengerType.get().getType();
+        } else {
+            return "";
+        }
+
+    }
+
+    @Override
+    public Boolean validatePassenger(int dewasa, int anak, int bayi) {
+        if (dewasa <= 0) {
+            return false;
+        } else {
+            return bayi <= dewasa;
+        }
+    }
+
+    @Override
     public String getTitle(String title) {
         if (title.equals("Tuan")) {
             return "Tn. ";
-        } else if(title.equals("Nyonya")) {
+        } else if (title.equals("Nyonya")) {
             return "Ny. ";
-        }else{
+        } else {
             return "Nn. ";
         }
     }

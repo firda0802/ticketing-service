@@ -179,7 +179,7 @@ class InitializeServiceImplTest {
 
     @Test
     void initPassengerType() {
-        PassengerType passengerType = new PassengerType("Anak-anak", "Untuk anak umur 3-12 tahun");
+        PassengerType passengerType = new PassengerType("Anak-anak", "Untuk anak umur 3-12 tahun",2);
         when(initializeService.initPassengerType(passengerType)).thenReturn(passengerType);
         String expectedType = passengerType.getType();
         String actualType = initializeService.initPassengerType(passengerType).getType();
@@ -188,7 +188,7 @@ class InitializeServiceImplTest {
 
     @Test
     void getPassengerType() {
-        List<PassengerType> list = List.of(new PassengerType("Anak-anak", "Untuk anak umur 3-12 tahun"), new PassengerType("Dewasa", "Usia di atas 12 tahun"));
+        List<PassengerType> list = List.of(new PassengerType("Anak-anak", "Untuk anak umur 3-12 tahun",2), new PassengerType("Dewasa", "Usia di atas 12 tahun",1));
         when(initializeService.getPassengerType()).thenReturn(list);
         assertEquals(list.size(), initializeService.getPassengerType().size());
     }
