@@ -462,7 +462,7 @@ public class BookingController {
                                                   HttpServletRequest httpServletRequest) throws JsonProcessingException {
         String writeLog = HttpUtility.writeLogRequest(httpServletRequest, mapper.writeValueAsString(token));
         log.info(writeLog);
-        log.info(token);
+
         boolean status = bookingService.validateTokenQr(token);
         Messages resp = new Messages();
         if (status) {
