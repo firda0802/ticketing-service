@@ -1204,3 +1204,251 @@ Body   : {"departureCity":1,"destinationsCity":3,"departureDate":"2023-01-01","r
 2023-01-01 09:10:02,356 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-01-01 09:10:02,357 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2023-01-01 09:10:02,374 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-01-01 11:10:57,336 INFO org.springframework.boot.SpringApplicationBannerPrinter [main] 
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.5)
+
+
+2023-01-01 11:10:57,442 INFO org.springframework.boot.StartupInfoLogger [main] Starting TicketingServiceApplication using Java 11 on MSI with PID 24292 (D:\Studi Independen\Project\ticketing-service\target\classes started by RikoJanuarSawaludin in D:\Studi Independen\Project\ticketing-service)
+2023-01-01 11:10:57,443 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.5, Spring v5.3.23
+2023-01-01 11:10:57,444 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-01-01 11:10:58,416 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-01 11:10:58,547 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 120 ms. Found 18 JPA repository interfaces.
+2023-01-01 11:10:59,553 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-01-01 11:10:59,563 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-01-01 11:10:59,564 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-01-01 11:10:59,564 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-01-01 11:10:59,754 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-01-01 11:10:59,755 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2245 ms
+2023-01-01 11:10:59,995 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-01 11:11:00,059 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.12.Final
+2023-01-01 11:11:00,222 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-01-01 11:11:00,332 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-01-01 11:11:00,429 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-01-01 11:11:00,452 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2023-01-01 11:11:01,528 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-01 11:11:01,536 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-01 11:11:02,153 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'corsFilter' configured for use
+2023-01-01 11:11:02,154 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2023-01-01 11:11:02,620 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1259b2a5, com.binar.tix.config.CorsFilter@6779af40, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7cf166db, org.springframework.security.web.context.SecurityContextPersistenceFilter@377cc0f8, org.springframework.security.web.header.HeaderWriterFilter@43f5b014, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@fbdba1c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@108fd5d5, com.binar.tix.config.SecurityAuthenticationFilter@121f9c52, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@68303aad, org.springframework.security.web.session.SessionManagementFilter@5c59dfc7, org.springframework.security.web.access.ExceptionTranslationFilter@73a88711, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6d5fea64]
+2023-01-01 11:11:02,758 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-01-01 11:11:03,525 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [main] Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2023-01-01 11:11:03,697 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-01-01 11:11:03,722 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path '/ticketing-service'
+2023-01-01 11:11:03,735 INFO org.springframework.boot.StartupInfoLogger [main] Started TicketingServiceApplication in 6.83 seconds (JVM running for 7.438)
+2023-01-01 11:11:28,251 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-01-01 11:11:28,252 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2023-01-01 11:11:28,253 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 1 ms
+2023-01-01 11:11:28,389 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-2] Incoming Request Header {content-length=[112], postman-token=[ceb6ecbf-a46f-4091-a353-6fda463efada], host=[localhost:8080], content-type=[application/json], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.30.0], accept=[*/*]}
+Method : POST
+Path   : /ticketing-service/ext/register
+Body   : {"fullName":"Riko Januar Sawaludin","email":"jimi@gmail.com"}
+2023-01-01 11:11:28,555 INFO com.binar.tix.controller.UsersController [http-nio-8080-exec-2] Response : {"responseCode":200,"responseMessage":"Sukses"}
+2023-01-01 11:11:38,598 INFO com.binar.tix.controller.BookingController [http-nio-8080-exec-3] Incoming Request Header {authorization=[eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoiamltaUBnbWFpbC5jb20iLCJyb2xlIjoiQlVZRVIiLCJqdGkiOiI3NjQ2YWM5OC03Mjk1LTQwMDAtOGVhNS04M2Y2MWRhNDlmMzQiLCJpYXQiOjE2NzI1NDYyODgsImV4cCI6MTY3NTEzODI4OH0.7O-XcPj432Zcrjj7ik1OKnLa_mdPPwMogKkAmXLynfA], content-length=[344], postman-token=[d6bec83b-cdd8-4883-bf06-f726cfed7889], host=[localhost:8080], content-type=[application/json], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.30.0], accept=[*/*]}
+Method : POST
+Path   : /ticketing-service/schedule-available
+Body   : {"departureCity":1,"destinationsCity":3,"departureDate":"2023-01-01","returnDate":null,"passenger":[{"passengerType":1,"qtyPerson":1},{"passengerType":2,"qtyPerson":1},{"passengerType":3,"qtyPerson":2}],"classSeats":1}
+2023-01-01 11:11:43,109 INFO com.binar.tix.controller.BookingController [http-nio-8080-exec-5] Incoming Request Header {authorization=[eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoiamltaUBnbWFpbC5jb20iLCJyb2xlIjoiQlVZRVIiLCJqdGkiOiI3NjQ2YWM5OC03Mjk1LTQwMDAtOGVhNS04M2Y2MWRhNDlmMzQiLCJpYXQiOjE2NzI1NDYyODgsImV4cCI6MTY3NTEzODI4OH0.7O-XcPj432Zcrjj7ik1OKnLa_mdPPwMogKkAmXLynfA], content-length=[344], postman-token=[bf7937e3-ba5d-47f4-bca7-1f9c4e382fe3], host=[localhost:8080], content-type=[application/json], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.30.0], accept=[*/*]}
+Method : POST
+Path   : /ticketing-service/schedule-available
+Body   : {"departureCity":1,"destinationsCity":3,"departureDate":"2023-01-01","returnDate":null,"passenger":[{"passengerType":1,"qtyPerson":1},{"passengerType":2,"qtyPerson":1},{"passengerType":3,"qtyPerson":1}],"classSeats":1}
+2023-01-01 11:11:43,181 INFO com.binar.tix.controller.BookingController [http-nio-8080-exec-5] Response : {"responseCode":200,"responseMessage":"Sukses"}
+2023-01-01 11:11:56,615 DEBUG org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider [http-nio-8080-exec-6] Failed to find user 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoiamhvbnJpa29AZ21haWwuY29tIiwicm9sZSI6IkJVWUVSIiwianRpIjoiMjAxMGJhOWQtMDQyMS00MmFkLTgyNGYtMWNiMWFhYzMwM2JjIiwiaWF0IjoxNjcyNDQ2MTU2LCJleHAiOjE2NzUwMzgxNTZ9.jfoLUcycZdRBQNK7FutgFUmqw6LsVbl7mJ80-zDtddA'
+2023-01-01 11:12:11,321 DEBUG org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider [http-nio-8080-exec-7] Authenticated user
+2023-01-01 11:12:11,333 DEBUG org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider [http-nio-8080-exec-7] Authenticated user
+2023-01-01 11:12:11,340 INFO com.binar.tix.controller.BookingController [http-nio-8080-exec-7] Incoming Request Header {authorization=[eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoiamltaUBnbWFpbC5jb20iLCJyb2xlIjoiQlVZRVIiLCJqdGkiOiI3NjQ2YWM5OC03Mjk1LTQwMDAtOGVhNS04M2Y2MWRhNDlmMzQiLCJpYXQiOjE2NzI1NDYyODgsImV4cCI6MTY3NTEzODI4OH0.7O-XcPj432Zcrjj7ik1OKnLa_mdPPwMogKkAmXLynfA], postman-token=[07f03fe5-717a-4005-9ef5-06289f90b1bd], host=[localhost:8080], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.30.0], accept=[*/*]}
+Method : GET
+Path   : /ticketing-service/booking/chose-seats/5857
+Body   : 5857
+2023-01-01 11:12:11,465 INFO com.binar.tix.controller.BookingController [http-nio-8080-exec-7] Response : {"responseCode":200,"responseMessage":"Sukses"}
+2023-01-01 11:12:21,658 DEBUG org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider [http-nio-8080-exec-8] Failed to find user 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoiamhvbnJpa29AZ21haWwuY29tIiwicm9sZSI6IkJVWUVSIiwianRpIjoiN2U3Y2U1YjctOTQwOC00NWUwLThmYzgtNjJmNTlmNmJiZGI5IiwiaWF0IjoxNjcyNDQ2NTY1LCJleHAiOjE2NzUwMzg1NjV9.q9tDnDBBRg8nWSpUOw19exzYWMo3Dh9kZVRvmjah3Ho'
+2023-01-01 11:12:33,026 DEBUG org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider [http-nio-8080-exec-9] Authenticated user
+2023-01-01 11:12:33,033 DEBUG org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider [http-nio-8080-exec-9] Authenticated user
+2023-01-01 11:12:33,049 INFO com.binar.tix.controller.BookingController [http-nio-8080-exec-9] Incoming Request Header {authorization=[eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoiamltaUBnbWFpbC5jb20iLCJyb2xlIjoiQlVZRVIiLCJqdGkiOiI3NjQ2YWM5OC03Mjk1LTQwMDAtOGVhNS04M2Y2MWRhNDlmMzQiLCJpYXQiOjE2NzI1NDYyODgsImV4cCI6MTY3NTEzODI4OH0.7O-XcPj432Zcrjj7ik1OKnLa_mdPPwMogKkAmXLynfA], content-length=[466], postman-token=[39028716-f902-4214-885e-ac74bd360dbc], host=[localhost:8080], content-type=[application/json], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.30.0], accept=[*/*]}
+Method : POST
+Path   : /ticketing-service/booking/create-order
+Body   : {"title":"Tuan","returnDate":null,"bookingBy":"Riko","email":"rikojanuarsawaludin@gmail.com","phoneNo":"081324778721","scheduleId":5857,"paymentId":1,"amount":1245000,"details":[{"idSeats":81,"title":"Tuan","fullName":"Jhon Smith","passengerType":2,"citizenship":2,"passportNumber":null,"issuingCountry":null,"expirationDate":null}]}
+2023-01-01 11:12:36,278 INFO com.binar.tix.controller.BookingController [http-nio-8080-exec-9] Response : {"responseCode":200,"responseMessage":"Sukses"}
+2023-01-01 11:16:24,617 INFO com.binar.tix.controller.BookingController [http-nio-8080-exec-2] Incoming Request Header {postman-token=[a7c17c34-5054-469c-bc12-baadef065d7c], host=[localhost:8080], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.30.0], accept=[*/*]}
+Method : GET
+Path   : /ticketing-service/qr
+Body   : "bN8jepzkFLGIW5/MNPA5aD/Ljmhv09G/52WGQGiaLDY="
+2023-01-01 11:16:24,618 INFO com.binar.tix.controller.BookingController [http-nio-8080-exec-2] bN8jepzkFLGIW5/MNPA5aD/Ljmhv09G/52WGQGiaLDY=
+2023-01-01 11:16:24,625 INFO com.binar.tix.controller.BookingController [http-nio-8080-exec-2] Response : {"responseCode":204,"responseMessage":"Token is Invalid"}
+2023-01-01 11:16:26,867 INFO com.binar.tix.controller.BookingController [http-nio-8080-exec-3] Incoming Request Header {postman-token=[ea6bb5f1-dfb3-4984-a758-2f9d80df13cb], host=[localhost:8080], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.30.0], accept=[*/*]}
+Method : GET
+Path   : /ticketing-service/qr
+Body   : "bN8jepzkFLGIW5/MNPA5aD/Ljmhv09G/52WGQGiaLDY="
+2023-01-01 11:16:26,867 INFO com.binar.tix.controller.BookingController [http-nio-8080-exec-3] bN8jepzkFLGIW5/MNPA5aD/Ljmhv09G/52WGQGiaLDY=
+2023-01-01 11:16:26,873 INFO com.binar.tix.controller.BookingController [http-nio-8080-exec-3] Response : {"responseCode":204,"responseMessage":"Token is Invalid"}
+2023-01-01 11:16:52,350 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-01 11:16:52,351 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-01-01 11:16:52,358 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-01-01 11:16:57,933 INFO org.springframework.boot.SpringApplicationBannerPrinter [main] 
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.5)
+
+
+2023-01-01 11:16:58,012 INFO org.springframework.boot.StartupInfoLogger [main] Starting TicketingServiceApplication using Java 11 on MSI with PID 20560 (D:\Studi Independen\Project\ticketing-service\target\classes started by RikoJanuarSawaludin in D:\Studi Independen\Project\ticketing-service)
+2023-01-01 11:16:58,013 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.5, Spring v5.3.23
+2023-01-01 11:16:58,014 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-01-01 11:16:58,763 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-01 11:16:58,867 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 94 ms. Found 18 JPA repository interfaces.
+2023-01-01 11:16:59,778 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-01-01 11:16:59,788 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-01-01 11:16:59,788 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-01-01 11:16:59,789 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-01-01 11:16:59,961 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-01-01 11:16:59,962 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1897 ms
+2023-01-01 11:17:00,188 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-01 11:17:00,238 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.12.Final
+2023-01-01 11:17:00,415 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-01-01 11:17:00,539 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-01-01 11:17:00,640 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-01-01 11:17:00,657 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2023-01-01 11:17:01,672 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-01 11:17:01,681 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-01 11:17:02,309 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'corsFilter' configured for use
+2023-01-01 11:17:02,309 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2023-01-01 11:17:02,763 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2c02cf78, com.binar.tix.config.CorsFilter@3e7fc07e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@29ebaf2f, org.springframework.security.web.context.SecurityContextPersistenceFilter@9e4388d, org.springframework.security.web.header.HeaderWriterFilter@3dcf6026, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@21399e53, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2a6871ad, com.binar.tix.config.SecurityAuthenticationFilter@121f9c52, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1a61f634, org.springframework.security.web.session.SessionManagementFilter@2bd158ea, org.springframework.security.web.access.ExceptionTranslationFilter@4cddc3d9, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@34074149]
+2023-01-01 11:17:02,896 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-01-01 11:17:03,641 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [main] Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2023-01-01 11:17:03,790 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-01-01 11:17:03,813 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path '/ticketing-service'
+2023-01-01 11:17:03,824 INFO org.springframework.boot.StartupInfoLogger [main] Started TicketingServiceApplication in 6.31 seconds (JVM running for 6.902)
+2023-01-01 11:17:05,687 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-01-01 11:17:05,688 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2023-01-01 11:17:05,690 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 1 ms
+2023-01-01 11:17:05,760 INFO com.binar.tix.controller.BookingController [http-nio-8080-exec-2] Incoming Request Header {postman-token=[54cf43af-37e9-4b06-9e3e-88409d684c32], host=[localhost:8080], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.30.0], accept=[*/*]}
+Method : GET
+Path   : /ticketing-service/qr
+Body   : "bN8jepzkFLGIW5/MNPA5aD/Ljmhv09G/52WGQGiaLDY="
+2023-01-01 11:17:05,824 INFO com.binar.tix.controller.BookingController [http-nio-8080-exec-2] Response : {"responseCode":204,"responseMessage":"Token is Invalid"}
+2023-01-01 11:17:35,604 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-01 11:17:35,606 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-01-01 11:17:35,613 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-01-01 11:17:41,351 INFO org.springframework.boot.SpringApplicationBannerPrinter [main] 
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.5)
+
+
+2023-01-01 11:17:41,426 INFO org.springframework.boot.StartupInfoLogger [main] Starting TicketingServiceApplication using Java 11 on MSI with PID 7300 (D:\Studi Independen\Project\ticketing-service\target\classes started by RikoJanuarSawaludin in D:\Studi Independen\Project\ticketing-service)
+2023-01-01 11:17:41,427 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.5, Spring v5.3.23
+2023-01-01 11:17:41,427 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-01-01 11:17:42,210 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-01 11:17:42,339 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 119 ms. Found 18 JPA repository interfaces.
+2023-01-01 11:17:43,239 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-01-01 11:17:43,248 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-01-01 11:17:43,248 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-01-01 11:17:43,249 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-01-01 11:17:43,426 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-01-01 11:17:43,426 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1955 ms
+2023-01-01 11:17:43,666 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-01 11:17:43,720 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.12.Final
+2023-01-01 11:17:43,895 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-01-01 11:17:44,014 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-01-01 11:17:44,110 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-01-01 11:17:44,129 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2023-01-01 11:17:45,116 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-01 11:17:45,125 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-01 11:17:45,761 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'corsFilter' configured for use
+2023-01-01 11:17:45,762 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2023-01-01 11:17:46,246 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4cc28ad0, com.binar.tix.config.CorsFilter@29811d4d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@28f081ad, org.springframework.security.web.context.SecurityContextPersistenceFilter@72c29d87, org.springframework.security.web.header.HeaderWriterFilter@5134a7d6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@20e9b10b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2c485b3a, com.binar.tix.config.SecurityAuthenticationFilter@11896af6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@56fc2cea, org.springframework.security.web.session.SessionManagementFilter@72851503, org.springframework.security.web.access.ExceptionTranslationFilter@5f32de90, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6abaa14b]
+2023-01-01 11:17:46,379 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-01-01 11:17:47,119 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [main] Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2023-01-01 11:17:47,259 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-01-01 11:17:47,277 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path '/ticketing-service'
+2023-01-01 11:17:47,286 INFO org.springframework.boot.StartupInfoLogger [main] Started TicketingServiceApplication in 6.499 seconds (JVM running for 7.1)
+2023-01-01 11:17:54,542 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-01-01 11:17:54,543 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2023-01-01 11:17:54,545 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 1 ms
+2023-01-01 11:17:54,626 INFO com.binar.tix.controller.BookingController [http-nio-8080-exec-2] Incoming Request Header {postman-token=[f969e309-2baf-494d-8df3-0b3d51b1e475], host=[localhost:8080], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.30.0], accept=[*/*]}
+Method : GET
+Path   : /ticketing-service/qr
+Body   : "bN8jepzkFLGIW5/MNPA5aD/Ljmhv09G/52WGQGiaLDY="
+2023-01-01 11:17:54,651 INFO com.binar.tix.service.BookingServiceImpl [http-nio-8080-exec-2] INV-YZK-221231-11318
+2023-01-01 11:17:54,697 INFO com.binar.tix.controller.BookingController [http-nio-8080-exec-2] Response : {"responseCode":204,"responseMessage":"Token is Invalid"}
+2023-01-01 11:18:59,877 INFO com.binar.tix.controller.BookingController [http-nio-8080-exec-5] Incoming Request Header {postman-token=[556c6a0f-5fda-4697-b739-47ac90524694], host=[localhost:8080], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.30.0], accept=[*/*]}
+Method : GET
+Path   : /ticketing-service/qr
+Body   : "bN8jepzkFLGIW5/MNPA5aD/Ljmhv09G/52WGQGiaLDY="
+2023-01-01 11:18:59,877 INFO com.binar.tix.service.BookingServiceImpl [http-nio-8080-exec-5] INV-YZK-221231-11318
+2023-01-01 11:18:59,884 INFO com.binar.tix.controller.BookingController [http-nio-8080-exec-5] Response : {"responseCode":204,"responseMessage":"Token is Invalid"}
+2023-01-01 11:19:11,526 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-01 11:19:11,528 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-01-01 11:19:11,534 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-01-01 11:22:15,630 INFO org.springframework.boot.SpringApplicationBannerPrinter [main] 
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.5)
+
+
+2023-01-01 11:22:15,693 INFO org.springframework.boot.StartupInfoLogger [main] Starting TicketingServiceApplication using Java 11 on MSI with PID 26780 (D:\Studi Independen\Project\ticketing-service\target\classes started by RikoJanuarSawaludin in D:\Studi Independen\Project\ticketing-service)
+2023-01-01 11:22:15,693 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.5, Spring v5.3.23
+2023-01-01 11:22:15,693 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-01-01 11:22:16,554 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-01 11:22:16,648 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 98 ms. Found 18 JPA repository interfaces.
+2023-01-01 11:22:17,510 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-01-01 11:22:17,510 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-01-01 11:22:17,510 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-01-01 11:22:17,510 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-01-01 11:22:17,666 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-01-01 11:22:17,666 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1942 ms
+2023-01-01 11:22:17,870 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-01 11:22:17,916 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.12.Final
+2023-01-01 11:22:18,073 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-01-01 11:22:18,198 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-01-01 11:22:18,291 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-01-01 11:22:18,307 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2023-01-01 11:22:19,263 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-01 11:22:19,263 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-01 11:22:19,859 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'corsFilter' configured for use
+2023-01-01 11:22:19,859 DEBUG org.springframework.web.filter.GenericFilterBean [main] Filter 'authenticationFilter' configured for use
+2023-01-01 11:22:20,312 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1013aa94, com.binar.tix.config.CorsFilter@36bd07ec, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@85b9f9c, org.springframework.security.web.context.SecurityContextPersistenceFilter@72ad577b, org.springframework.security.web.header.HeaderWriterFilter@218fc40d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4c31b6c2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5605a59b, com.binar.tix.config.SecurityAuthenticationFilter@7d3a2459, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@26a004ed, org.springframework.security.web.session.SessionManagementFilter@26bbbe9e, org.springframework.security.web.access.ExceptionTranslationFilter@3e574f9c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@25093079]
+2023-01-01 11:22:20,424 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-01-01 11:22:21,252 WARN org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration [main] Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2023-01-01 11:22:21,393 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-01-01 11:22:21,410 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path '/ticketing-service'
+2023-01-01 11:22:21,426 INFO org.springframework.boot.StartupInfoLogger [main] Started TicketingServiceApplication in 6.188 seconds (JVM running for 6.615)
+2023-01-01 11:23:40,287 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-01-01 11:23:40,288 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-01-01 11:23:40,290 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 2 ms
+2023-01-01 11:23:40,402 DEBUG org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider [http-nio-8080-exec-1] Authenticated user
+2023-01-01 11:23:40,420 DEBUG org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider [http-nio-8080-exec-1] Authenticated user
+2023-01-01 11:23:40,542 INFO com.binar.tix.controller.BookingController [http-nio-8080-exec-1] Incoming Request Header {authorization=[eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjIsImVtYWlsIjoiamltaUBnbWFpbC5jb20iLCJyb2xlIjoiQlVZRVIiLCJqdGkiOiI3NjQ2YWM5OC03Mjk1LTQwMDAtOGVhNS04M2Y2MWRhNDlmMzQiLCJpYXQiOjE2NzI1NDYyODgsImV4cCI6MTY3NTEzODI4OH0.7O-XcPj432Zcrjj7ik1OKnLa_mdPPwMogKkAmXLynfA], content-length=[466], postman-token=[9dc96b7d-f6a7-49b0-86f7-ec564895ec07], host=[localhost:8080], content-type=[application/json], connection=[keep-alive], cache-control=[no-cache], accept-encoding=[gzip, deflate, br], user-agent=[PostmanRuntime/7.30.0], accept=[*/*]}
+Method : POST
+Path   : /ticketing-service/booking/create-order
+Body   : {"title":"Tuan","returnDate":null,"bookingBy":"Riko","email":"rikojanuarsawaludin@gmail.com","phoneNo":"081324778721","scheduleId":5857,"paymentId":1,"amount":1245000,"details":[{"idSeats":31,"title":"Tuan","fullName":"Jhon Smith","passengerType":2,"citizenship":2,"passportNumber":null,"issuingCountry":null,"expirationDate":null}]}
+2023-01-01 11:23:42,893 INFO com.binar.tix.controller.BookingController [http-nio-8080-exec-1] Response : {"responseCode":200,"responseMessage":"Sukses"}
+2023-01-01 11:35:08,358 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-7] Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in method name [0x19n0xc80xf7<f0xeaq0x8e0xaa0xd20xb30x1aD0x970xc40x9a0xa80x830xab0xba0x8c0xc10xab0x000x000x000x000xb60xd50xb20xa20xbb0x880x830xab0xba0x8c0xc20xa30xf2o0x1eI0xd90xbaL0xdb0x100x8c0xc10xab0xba0x8c0xea0x800xba0x8c0xc10xab0x920x8c0xc10xab0xba0x8c0xc10xab0xba0x8c0xc10xab0xba0x8c0xc10xab0xbb0x8d0xc10xab0xba0x8c0xd70xab0xba0x8c0xc10xab0xba0x8c0xc10xab0xba0x8c0xc10xab0xba0x8c0xc10xab0xba0x8c0xc50xab0xba0x8c0xc10xab0xba0x8c0xc10xab0x040x00...]. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:419)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:271)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1789)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
