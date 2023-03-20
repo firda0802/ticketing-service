@@ -205,6 +205,7 @@ public class BookingServiceImpl implements BookingService {
                 Seats seats = seatsRepository.findById(d.getIdSeats()).orElse(null);
                 assert seats != null;
                 Seats returnSeats = seatsRepository.findByClassIdAndAirplanesIdAndSeatsNumber(scheduleReturn.getClassId(), scheduleReturn.getAirplaneId(), seats.getSeatsNumber());
+                log.info(scheduleReturn.getClassId() +" - "+ scheduleReturn.getAirplaneId() +" - "+ seats.getSeatsNumber());
                 detail.setSeatsId(returnSeats.getSeatsId());
             }
 

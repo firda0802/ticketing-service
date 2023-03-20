@@ -9,12 +9,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import java.util.Optional;
 import org.springframework.stereotype.Component;
 import com.binar.tix.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  *
  * @author Riko
  */
 @Component
+@Slf4j
 public class SecurityAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
 
     @Autowired
@@ -26,9 +28,10 @@ public class SecurityAuthenticationProvider extends AbstractUserDetailsAuthentic
     }
 
     @Override
-    protected UserDetails retrieveUser(String userName, UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken) throws AuthenticationException {
-
+    protected UserDetails retrieveUser(String header, UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken) throws AuthenticationException {
+        log.info("PROVIDER : "+header);
         Object token= usernamePasswordAuthenticationToken.getCredentials();
+        log.info("TOKEN : "+ token);
         return Optional
                 .ofNullable(token)
                 .map(String::valueOf)

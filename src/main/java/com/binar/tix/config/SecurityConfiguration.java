@@ -75,6 +75,7 @@ public class SecurityConfiguration {
         return http.build();
     }
 
+    //kalo mau muultiple header, ditambahin lagi SecurityAuthenticationFilter yang lain, nanti di add filter before
     @Bean
     SecurityAuthenticationFilter authenticationFilter() throws Exception {
         final SecurityAuthenticationFilter filter = new SecurityAuthenticationFilter(PROTECTED_URLS);

@@ -507,14 +507,14 @@ public class SetupData {
             tokyoFc.setType(typeFirstClass);
             tokyoFc.setLuggageCapacity(50);
             tokyoFc.setAirportId(airportTokyo.getIdAirport());
-            jeddahFc.setSeats(generateSeatsFirstClass());
+            tokyoFc.setSeats(generateSeatsFirstClass());
             initService.initAirplanes(tokyoFc);
 
             //Airplane - London
             londonFc.setType(typeFirstClass);
             londonFc.setLuggageCapacity(50);
             londonFc.setAirportId(airportLondon.getIdAirport());
-            jeddahFc.setSeats(generateSeatsFirstClass());
+            londonFc.setSeats(generateSeatsFirstClass());
             initService.initAirplanes(londonFc);
         }
 
@@ -703,7 +703,7 @@ public class SetupData {
 
     private void generateScheduleFirstClass(List<Destination> destinations, int airplane1) {
         int priceFc = firstClassPrice.getPricingId();
-        for (Destination req : destinations) {
+        destinations.forEach(req -> {
             int destinationId = req.getDestinationId();
             for (long i = 0; i <= 365; i++) {
                 LocalDate flighDate = LocalDate.now().plusDays(i);
@@ -711,13 +711,13 @@ public class SetupData {
                 Schedule schedule2 = new Schedule(destinationId, firstClass.getClassId(), priceFc, LocalTime.of(19, 30), LocalTime.of(19, 30).plusMinutes(req.getDuration()), flighDate, new ScheduleAirplane(airplane1, 915000, Constant.INTER));
                 initService.initSchedule(Arrays.asList(schedule1, schedule2));
             }
-        }
+        });
     }
 
     private void generateSchedule(List<Destination> destinations, int airplane1, int airplane2) {
         int priceEconomy = economiPrice.getPricingId();
         int priceBusiness = businessPrice.getPricingId();
-        for (Destination req : destinations) {
+        destinations.forEach(req -> {
             int destinationId = req.getDestinationId();
             for (long i = 0; i <= 365; i++) {
                 LocalDate flighDate = LocalDate.now().plusDays(i);
@@ -736,6 +736,6 @@ public class SetupData {
                 Schedule schedule9 = new Schedule(destinationId, businessClass.getClassId(), priceBusiness, LocalTime.of(16, 45), LocalTime.of(16, 45).plusMinutes(req.getDuration()), flighDate, new ScheduleAirplane(airplane1, 60000, Constant.DOMESTIK));
                 initService.initSchedule(Arrays.asList(schedule, schedule1, schedule2, schedule3, schedule4, schedule5, schedule6, schedule7, schedule8, schedule9));
             }
-        }
+        });
     }
 }

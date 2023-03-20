@@ -31,7 +31,7 @@ public class SecurityAuthenticationFilter extends AbstractAuthenticationProcessi
     @Override
     public Authentication attemptAuthentication(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws AuthenticationException, IOException, ServletException {
         String token = StringUtils.isNotEmpty(httpServletRequest.getHeader(AUTHORIZATION)) ? httpServletRequest.getHeader(AUTHORIZATION) : "";
-        Authentication requestAuthentication = new UsernamePasswordAuthenticationToken(token, token);
+        Authentication requestAuthentication = new UsernamePasswordAuthenticationToken(AUTHORIZATION, token);
         return getAuthenticationManager().authenticate(requestAuthentication);
 
     }
